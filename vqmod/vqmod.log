@@ -1,0 +1,130 @@
+---------- Date: 2012-10-16 18:46:50 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /
+MOD DETAILS:
+   modFile   : /Applications/XAMPP/xamppfiles/htdocs/Loja-Virtual/vqmod/xml/vqmod_opencart.xml
+   id        : VQMOD CORE FOR OPENCART STARTUP.PHP - DO NOT REMOVE AS THIS IS NEEDED FOR VQMOD IN OPENCART
+   version   : 1.4.x and 1.5.x
+   vqmver    : 1.0.8
+   author    : qphoria
+SEARCH NOT FOUND (ABORTING MOD): if (file_exists($file))
+
+----------------------------------------------------------------------
+
+
+---------- Date: 2012-10-16 18:46:52 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /index.php?route=module/language
+MOD DETAILS:
+   modFile   : /Applications/XAMPP/xamppfiles/htdocs/Loja-Virtual/vqmod/xml/vqmod_opencart.xml
+   id        : VQMOD CORE FOR OPENCART STARTUP.PHP - DO NOT REMOVE AS THIS IS NEEDED FOR VQMOD IN OPENCART
+   version   : 1.4.x and 1.5.x
+   vqmver    : 1.0.8
+   author    : qphoria
+SEARCH NOT FOUND (ABORTING MOD): if (file_exists($file))
+
+----------------------------------------------------------------------
+
+
+---------- Date: 2012-10-16 18:46:52 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /index.php?route=common/home
+MOD DETAILS:
+   modFile   : /Applications/XAMPP/xamppfiles/htdocs/Loja-Virtual/vqmod/xml/vqmod_opencart.xml
+   id        : VQMOD CORE FOR OPENCART STARTUP.PHP - DO NOT REMOVE AS THIS IS NEEDED FOR VQMOD IN OPENCART
+   version   : 1.4.x and 1.5.x
+   vqmver    : 1.0.8
+   author    : qphoria
+SEARCH NOT FOUND (ABORTING MOD): if (file_exists($file))
+
+----------------------------------------------------------------------
+
+
+---------- Date: 2012-10-16 18:46:54 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /index.php?route=product/category&amp;path=57
+MOD DETAILS:
+   modFile   : /Applications/XAMPP/xamppfiles/htdocs/Loja-Virtual/vqmod/xml/vqmod_opencart.xml
+   id        : VQMOD CORE FOR OPENCART STARTUP.PHP - DO NOT REMOVE AS THIS IS NEEDED FOR VQMOD IN OPENCART
+   version   : 1.4.x and 1.5.x
+   vqmver    : 1.0.8
+   author    : qphoria
+SEARCH NOT FOUND (ABORTING MOD): if (file_exists($file))
+
+----------------------------------------------------------------------
+
+
+---------- Date: 2012-10-16 18:46:55 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /index.php?route=product/category&amp;path=25
+MOD DETAILS:
+   modFile   : /Applications/XAMPP/xamppfiles/htdocs/Loja-Virtual/vqmod/xml/vqmod_opencart.xml
+   id        : VQMOD CORE FOR OPENCART STARTUP.PHP - DO NOT REMOVE AS THIS IS NEEDED FOR VQMOD IN OPENCART
+   version   : 1.4.x and 1.5.x
+   vqmver    : 1.0.8
+   author    : qphoria
+SEARCH NOT FOUND (ABORTING MOD): if (file_exists($file))
+
+----------------------------------------------------------------------
+
+
+---------- Date: 2012-10-16 18:46:57 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /index.php?route=module/language
+MOD DETAILS:
+   modFile   : /Applications/XAMPP/xamppfiles/htdocs/Loja-Virtual/vqmod/xml/vqmod_opencart.xml
+   id        : VQMOD CORE FOR OPENCART STARTUP.PHP - DO NOT REMOVE AS THIS IS NEEDED FOR VQMOD IN OPENCART
+   version   : 1.4.x and 1.5.x
+   vqmver    : 1.0.8
+   author    : qphoria
+SEARCH NOT FOUND (ABORTING MOD): if (file_exists($file))
+
+----------------------------------------------------------------------
+
+
+---------- Date: 2012-10-16 18:46:57 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /index.php?route=product/category&amp;path=25
+MOD DETAILS:
+   modFile   : /Applications/XAMPP/xamppfiles/htdocs/Loja-Virtual/vqmod/xml/vqmod_opencart.xml
+   id        : VQMOD CORE FOR OPENCART STARTUP.PHP - DO NOT REMOVE AS THIS IS NEEDED FOR VQMOD IN OPENCART
+   version   : 1.4.x and 1.5.x
+   vqmver    : 1.0.8
+   author    : qphoria
+SEARCH NOT FOUND (ABORTING MOD): if (file_exists($file))
+
+----------------------------------------------------------------------
+
+
+---------- Date: 2012-10-16 18:46:58 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /index.php?route=module/language
+MOD DETAILS:
+   modFile   : /Applications/XAMPP/xamppfiles/htdocs/Loja-Virtual/vqmod/xml/vqmod_opencart.xml
+   id        : VQMOD CORE FOR OPENCART STARTUP.PHP - DO NOT REMOVE AS THIS IS NEEDED FOR VQMOD IN OPENCART
+   version   : 1.4.x and 1.5.x
+   vqmver    : 1.0.8
+   author    : qphoria
+SEARCH NOT FOUND (ABORTING MOD): if (file_exists($file))
+
+----------------------------------------------------------------------
+
+
+---------- Date: 2012-10-16 18:46:58 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /index.php?route=product/category&amp;path=25
+MOD DETAILS:
+   modFile   : /Applications/XAMPP/xamppfiles/htdocs/Loja-Virtual/vqmod/xml/vqmod_opencart.xml
+   id        : VQMOD CORE FOR OPENCART STARTUP.PHP - DO NOT REMOVE AS THIS IS NEEDED FOR VQMOD IN OPENCART
+   version   : 1.4.x and 1.5.x
+   vqmver    : 1.0.8
+   author    : qphoria
+SEARCH NOT FOUND (ABORTING MOD): if (file_exists($file))
+
+----------------------------------------------------------------------
+
+
+---------- Date: 2012-10-16 18:47:05 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /index.php?route=product/category&amp;path=25_28
+MOD DETAILS:
+   modFile   : /Applications/XAMPP/xamppfiles/htdocs/Loja-Virtual/vqmod/xml/vqmod_opencart.xml
+   id        : VQMOD CORE FOR OPENCART STARTUP.PHP - DO NOT REMOVE AS THIS IS NEEDED FOR VQMOD IN OPENCART
+   version   : 1.4.x and 1.5.x
+   vqmver    : 1.0.8
+   author    : qphoria
+SEARCH NOT FOUND (ABORTING MOD): if (file_exists($file))
+
+----------------------------------------------------------------------
+
+
