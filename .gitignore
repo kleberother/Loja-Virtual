@@ -9,3 +9,4 @@ download/
 config.php
 admin/config.php
 nbproject
+*.log
