@@ -6,7 +6,12 @@ system/logs
 system/library
 system/helper
 download/
-config.php
-admin/config.php
+/config.php
+/admin/config.php
 nbproject
 *.log
+.DS_Store
+
+admin/.DS_Store
+
+catalog/.DS_Store
