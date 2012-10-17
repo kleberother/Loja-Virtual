@@ -1,7 +1,7 @@
 <?php
 // Heading
 $_['heading_title']       			= 'PagSeguro';
-
+$_['text_title']                                = 'PagSeguro';
 // Text
 $_['text_payment']        			= 'Pagamento';
 $_['text_success']        			= 'Módulo PagSeguro atualizado com sucesso!';

@@ -1,0 +1,29 @@
+<modification>
+	<id>Quick Checkout</id>
+	<version>For OpenCart 1.5.x</version>
+	<vqmver>1.2.3</vqmver>
+	<author>MarketInSG</author>
+	<file name="catalog/controller/checkout/checkout.php">
+		<operation>
+			<search position="after"><![CDATA[
+				public function index() {	
+			]]></search>
+			<add><![CDATA[
+				$quickcheckout_status = $this->config->get('quickcheckout_status');
+				if ($quickcheckout_status == 1) {
+					$this->redirect($this->url->link('quickcheckout/checkout'));
+				}
+			]]></add>
+		</operation>
+	</file>
+	<file name="catalog/controller/account/logout.php">
+		<operation>
+			<search position="after"><![CDATA[
+				unset($this->session->data['coupon']);
+			]]></search>
+			<add><![CDATA[
+				unset($this->session->data['guest']);
+			]]></add>
+		</operation>
+	</file>
+</modification>
