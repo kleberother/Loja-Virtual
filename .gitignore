@@ -12,4 +12,4 @@ nbproject
 *.log
 .DS_Store
 admin/.DS_Store
-catalog/.DS_Store
+*.log
