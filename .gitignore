@@ -11,7 +11,8 @@ download/
 nbproject
 *.log
 .DS_Store
-
 admin/.DS_Store
-
 catalog/.DS_Store
+install/.DS_Store
+vqmod/.DS_Store
+vqmod/vqmod.log
