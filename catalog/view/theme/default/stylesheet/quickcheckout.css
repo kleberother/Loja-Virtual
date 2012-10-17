@@ -1,0 +1,98 @@
+.quickcheckoutleft {
+	width: 66%;
+	float:left;
+	text-align:left;
+}
+.quickcheckoutright {
+	width: 32%;
+	margin-left: 10px;
+	float: left;
+	text-align: left;
+}
+.quickcheckoutmid {
+	width: 100%;
+	text-align: left;
+}
+.quickcheckout-heading {
+	font-weight: bold;
+	font-size: 16px;
+	color: #000000;
+	margin-top: 10px;
+	text-align:left;
+}
+.quickcheckout-content {
+	border: 1px solid #dddddd;
+	padding: 10px;
+	overflow: auto;
+	color: #555555;
+	text-align:left;
+	margin-bottom: 10px;
+}
+.or {
+	text-align:center;
+	width: 100%;
+	font-size: 24px;
+	color: #aaaaaa;
+}
+.quickcheckout-content .left {
+	float: left;
+	width: 48%;
+	height: 57px;
+	margin-bottom: 5px;
+	margin-right: 12px;
+}
+.quickcheckout-content .right {
+	float: right;
+	width: 48%;
+	margin-bottom: 20px;
+}
+.quickcheckout-content .small-field{
+	width:93%;
+}
+.quickcheckout-content .large-field{
+	width:97%;
+}
+table.quickcheckout-cart {
+	width: 99%;
+	border-collapse: collapse;
+	border-top: 1px solid #DDDDDD;
+	border-left: 1px solid #DDDDDD;
+	border-right: 1px solid #DDDDDD;
+}
+.quickcheckout-cart thead td {
+	background-color: #F7F7F7;
+	border-bottom: 1px solid #DDDDDD;
+	color: #4D4D4D;
+	font-weight: bold;
+	text-align: left;
+	padding: 7px;
+}
+.quickcheckout-cart tbody td {
+	border-bottom: 1px solid #eeeeee;
+	vertical-align: top;
+	padding: 7px;
+}
+.quickcheckout-cart td.image {
+	width: 10%;
+	text-align: center;
+}
+.quickcheckout-cart td.image img {
+	border: 1px solid #DDDDDD;
+}
+.quickcheckout-cart td.name {
+	width: 30%;
+	text-align: left;
+}
+.quickcheckout-cart td.quantity {
+	width: 20%;
+	text-align: left;
+}
+.quickcheckout-cart td.price {
+	text-align: right;
+	width: 20%;
+}
+.quickcheckout-cart td.total {
+	width: 20%;
+	text-align: right;
+	padding-right: 10px;
+}
