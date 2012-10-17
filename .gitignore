@@ -12,4 +12,11 @@ nbproject
 *.log
 .DS_Store
 admin/.DS_Store
+<<<<<<< HEAD
 *.log
+=======
+catalog/.DS_Store
+install/.DS_Store
+vqmod/.DS_Store
+vqmod/vqmod.log
+>>>>>>> Instalação-Portugues
