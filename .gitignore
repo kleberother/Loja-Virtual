@@ -2,3 +2,5 @@ nbproject
 *.log
 *.DS_Store
 *.txt
+config.php
+admin/conifg.php
