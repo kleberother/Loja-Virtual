@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tempo de Geração: Out 17, 2012 as 01:48 PM
+-- Tempo de Geração: Out 18, 2012 as 07:04 PM
 -- Versão do Servidor: 5.1.44
 -- Versão do PHP: 5.3.1
 
@@ -25,7 +25,7 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 -- Estrutura da tabela `oc_address`
 --
 
-CREATE TABLE `oc_address` (
+CREATE TABLE IF NOT EXISTS `oc_address` (
   `address_id` int(11) NOT NULL AUTO_INCREMENT,
   `customer_id` int(11) NOT NULL,
   `firstname` varchar(32) COLLATE utf8_bin NOT NULL DEFAULT '',
@@ -54,7 +54,7 @@ CREATE TABLE `oc_address` (
 -- Estrutura da tabela `oc_affiliate`
 --
 
-CREATE TABLE `oc_affiliate` (
+CREATE TABLE IF NOT EXISTS `oc_affiliate` (
   `affiliate_id` int(11) NOT NULL AUTO_INCREMENT,
   `firstname` varchar(32) COLLATE utf8_bin NOT NULL DEFAULT '',
   `lastname` varchar(32) COLLATE utf8_bin NOT NULL DEFAULT '',
@@ -100,7 +100,7 @@ CREATE TABLE `oc_affiliate` (
 -- Estrutura da tabela `oc_affiliate_transaction`
 --
 
-CREATE TABLE `oc_affiliate_transaction` (
+CREATE TABLE IF NOT EXISTS `oc_affiliate_transaction` (
   `affiliate_transaction_id` int(11) NOT NULL AUTO_INCREMENT,
   `affiliate_id` int(11) NOT NULL,
   `order_id` int(11) NOT NULL,
@@ -121,7 +121,7 @@ CREATE TABLE `oc_affiliate_transaction` (
 -- Estrutura da tabela `oc_attribute`
 --
 
-CREATE TABLE `oc_attribute` (
+CREATE TABLE IF NOT EXISTS `oc_attribute` (
   `attribute_id` int(11) NOT NULL AUTO_INCREMENT,
   `attribute_group_id` int(11) NOT NULL,
   `sort_order` int(3) NOT NULL,
@@ -151,7 +151,7 @@ INSERT INTO `oc_attribute` (`attribute_id`, `attribute_group_id`, `sort_order`) 
 -- Estrutura da tabela `oc_attribute_description`
 --
 
-CREATE TABLE `oc_attribute_description` (
+CREATE TABLE IF NOT EXISTS `oc_attribute_description` (
   `attribute_id` int(11) NOT NULL,
   `language_id` int(11) NOT NULL,
   `name` varchar(64) COLLATE utf8_bin NOT NULL,
@@ -192,7 +192,7 @@ INSERT INTO `oc_attribute_description` (`attribute_id`, `language_id`, `name`) V
 -- Estrutura da tabela `oc_attribute_group`
 --
 
-CREATE TABLE `oc_attribute_group` (
+CREATE TABLE IF NOT EXISTS `oc_attribute_group` (
   `attribute_group_id` int(11) NOT NULL AUTO_INCREMENT,
   `sort_order` int(3) NOT NULL,
   PRIMARY KEY (`attribute_group_id`)
@@ -214,7 +214,7 @@ INSERT INTO `oc_attribute_group` (`attribute_group_id`, `sort_order`) VALUES
 -- Estrutura da tabela `oc_attribute_group_description`
 --
 
-CREATE TABLE `oc_attribute_group_description` (
+CREATE TABLE IF NOT EXISTS `oc_attribute_group_description` (
   `attribute_group_id` int(11) NOT NULL,
   `language_id` int(11) NOT NULL,
   `name` varchar(64) COLLATE utf8_bin NOT NULL,
@@ -241,7 +241,7 @@ INSERT INTO `oc_attribute_group_description` (`attribute_group_id`, `language_id
 -- Estrutura da tabela `oc_banner`
 --
 
-CREATE TABLE `oc_banner` (
+CREATE TABLE IF NOT EXISTS `oc_banner` (
   `banner_id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(64) COLLATE utf8_bin NOT NULL,
   `status` tinyint(1) NOT NULL,
@@ -263,7 +263,7 @@ INSERT INTO `oc_banner` (`banner_id`, `name`, `status`) VALUES
 -- Estrutura da tabela `oc_banner_image`
 --
 
-CREATE TABLE `oc_banner_image` (
+CREATE TABLE IF NOT EXISTS `oc_banner_image` (
   `banner_image_id` int(11) NOT NULL AUTO_INCREMENT,
   `banner_id` int(11) NOT NULL,
   `link` varchar(255) COLLATE utf8_bin NOT NULL,
@@ -291,7 +291,7 @@ INSERT INTO `oc_banner_image` (`banner_image_id`, `banner_id`, `link`, `image`) 
 -- Estrutura da tabela `oc_banner_image_description`
 --
 
-CREATE TABLE `oc_banner_image_description` (
+CREATE TABLE IF NOT EXISTS `oc_banner_image_description` (
   `banner_image_id` int(11) NOT NULL,
   `language_id` int(11) NOT NULL,
   `banner_id` int(11) NOT NULL,
@@ -327,7 +327,7 @@ INSERT INTO `oc_banner_image_description` (`banner_image_id`, `language_id`, `ba
 -- Estrutura da tabela `oc_category`
 --
 
-CREATE TABLE `oc_category` (
+CREATE TABLE IF NOT EXISTS `oc_category` (
   `category_id` int(11) NOT NULL AUTO_INCREMENT,
   `image` varchar(255) COLLATE utf8_bin DEFAULT NULL,
   `parent_id` int(11) NOT NULL DEFAULT '0',
@@ -390,7 +390,7 @@ INSERT INTO `oc_category` (`category_id`, `image`, `parent_id`, `top`, `column`,
 -- Estrutura da tabela `oc_category_description`
 --
 
-CREATE TABLE `oc_category_description` (
+CREATE TABLE IF NOT EXISTS `oc_category_description` (
   `category_id` int(11) NOT NULL,
   `language_id` int(11) NOT NULL,
   `name` varchar(255) COLLATE utf8_bin NOT NULL DEFAULT '',
@@ -489,7 +489,7 @@ INSERT INTO `oc_category_description` (`category_id`, `language_id`, `name`, `de
 -- Estrutura da tabela `oc_category_to_layout`
 --
 
-CREATE TABLE `oc_category_to_layout` (
+CREATE TABLE IF NOT EXISTS `oc_category_to_layout` (
   `category_id` int(11) NOT NULL,
   `store_id` int(11) NOT NULL,
   `layout_id` int(11) NOT NULL,
@@ -507,7 +507,7 @@ CREATE TABLE `oc_category_to_layout` (
 -- Estrutura da tabela `oc_category_to_store`
 --
 
-CREATE TABLE `oc_category_to_store` (
+CREATE TABLE IF NOT EXISTS `oc_category_to_store` (
   `category_id` int(11) NOT NULL,
   `store_id` int(11) NOT NULL,
   PRIMARY KEY (`category_id`,`store_id`)
@@ -563,7 +563,7 @@ INSERT INTO `oc_category_to_store` (`category_id`, `store_id`) VALUES
 -- Estrutura da tabela `oc_country`
 --
 
-CREATE TABLE `oc_country` (
+CREATE TABLE IF NOT EXISTS `oc_country` (
   `country_id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(128) COLLATE utf8_bin NOT NULL,
   `iso_code_2` varchar(2) COLLATE utf8_bin NOT NULL DEFAULT '',
@@ -825,7 +825,7 @@ INSERT INTO `oc_country` (`country_id`, `name`, `iso_code_2`, `iso_code_3`, `add
 -- Estrutura da tabela `oc_coupon`
 --
 
-CREATE TABLE `oc_coupon` (
+CREATE TABLE IF NOT EXISTS `oc_coupon` (
   `coupon_id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(128) COLLATE utf8_bin NOT NULL,
   `code` varchar(10) COLLATE utf8_bin NOT NULL,
@@ -858,7 +858,7 @@ INSERT INTO `oc_coupon` (`coupon_id`, `name`, `code`, `type`, `discount`, `logge
 -- Estrutura da tabela `oc_coupon_history`
 --
 
-CREATE TABLE `oc_coupon_history` (
+CREATE TABLE IF NOT EXISTS `oc_coupon_history` (
   `coupon_history_id` int(11) NOT NULL AUTO_INCREMENT,
   `coupon_id` int(11) NOT NULL,
   `order_id` int(11) NOT NULL,
@@ -879,7 +879,7 @@ CREATE TABLE `oc_coupon_history` (
 -- Estrutura da tabela `oc_coupon_product`
 --
 
-CREATE TABLE `oc_coupon_product` (
+CREATE TABLE IF NOT EXISTS `oc_coupon_product` (
   `coupon_product_id` int(11) NOT NULL AUTO_INCREMENT,
   `coupon_id` int(11) NOT NULL,
   `product_id` int(11) NOT NULL,
@@ -897,7 +897,7 @@ CREATE TABLE `oc_coupon_product` (
 -- Estrutura da tabela `oc_currency`
 --
 
-CREATE TABLE `oc_currency` (
+CREATE TABLE IF NOT EXISTS `oc_currency` (
   `currency_id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(32) COLLATE utf8_bin NOT NULL DEFAULT '',
   `code` varchar(3) COLLATE utf8_bin NOT NULL DEFAULT '',
@@ -915,7 +915,7 @@ CREATE TABLE `oc_currency` (
 --
 
 INSERT INTO `oc_currency` (`currency_id`, `title`, `code`, `symbol_left`, `symbol_right`, `decimal_place`, `value`, `status`, `date_modified`) VALUES
-(4, 'Real', 'BRL', 'R$ ', '', '2', 2.03360009, 1, '2012-10-17 12:39:22');
+(4, 'Real', 'BRL', 'R$ ', '', '2', 1.00000000, 1, '2012-10-18 18:38:04');
 
 -- --------------------------------------------------------
 
@@ -923,7 +923,7 @@ INSERT INTO `oc_currency` (`currency_id`, `title`, `code`, `symbol_left`, `symbo
 -- Estrutura da tabela `oc_customer`
 --
 
-CREATE TABLE `oc_customer` (
+CREATE TABLE IF NOT EXISTS `oc_customer` (
   `customer_id` int(11) NOT NULL AUTO_INCREMENT,
   `store_id` int(11) NOT NULL DEFAULT '0',
   `firstname` varchar(32) COLLATE utf8_bin NOT NULL DEFAULT '',
@@ -957,7 +957,7 @@ CREATE TABLE `oc_customer` (
 -- Estrutura da tabela `oc_customer_group`
 --
 
-CREATE TABLE `oc_customer_group` (
+CREATE TABLE IF NOT EXISTS `oc_customer_group` (
   `customer_group_id` int(11) NOT NULL AUTO_INCREMENT,
   `approval` int(1) NOT NULL,
   `company_id_display` int(1) NOT NULL,
@@ -981,7 +981,7 @@ INSERT INTO `oc_customer_group` (`customer_group_id`, `approval`, `company_id_di
 -- Estrutura da tabela `oc_customer_group_description`
 --
 
-CREATE TABLE `oc_customer_group_description` (
+CREATE TABLE IF NOT EXISTS `oc_customer_group_description` (
   `customer_group_id` int(11) NOT NULL,
   `language_id` int(11) NOT NULL,
   `name` varchar(32) COLLATE utf8_bin NOT NULL,
@@ -1003,7 +1003,7 @@ INSERT INTO `oc_customer_group_description` (`customer_group_id`, `language_id`,
 -- Estrutura da tabela `oc_customer_ip`
 --
 
-CREATE TABLE `oc_customer_ip` (
+CREATE TABLE IF NOT EXISTS `oc_customer_ip` (
   `customer_ip_id` int(11) NOT NULL AUTO_INCREMENT,
   `customer_id` int(11) NOT NULL,
   `ip` varchar(40) COLLATE utf8_bin NOT NULL,
@@ -1023,7 +1023,7 @@ CREATE TABLE `oc_customer_ip` (
 -- Estrutura da tabela `oc_customer_ip_blacklist`
 --
 
-CREATE TABLE `oc_customer_ip_blacklist` (
+CREATE TABLE IF NOT EXISTS `oc_customer_ip_blacklist` (
   `customer_ip_blacklist_id` int(11) NOT NULL AUTO_INCREMENT,
   `ip` varchar(40) COLLATE utf8_bin NOT NULL,
   PRIMARY KEY (`customer_ip_blacklist_id`),
@@ -1041,7 +1041,7 @@ CREATE TABLE `oc_customer_ip_blacklist` (
 -- Estrutura da tabela `oc_customer_online`
 --
 
-CREATE TABLE `oc_customer_online` (
+CREATE TABLE IF NOT EXISTS `oc_customer_online` (
   `ip` varchar(40) COLLATE utf8_bin NOT NULL,
   `customer_id` int(11) NOT NULL,
   `url` text COLLATE utf8_bin NOT NULL,
@@ -1061,7 +1061,7 @@ CREATE TABLE `oc_customer_online` (
 -- Estrutura da tabela `oc_customer_reward`
 --
 
-CREATE TABLE `oc_customer_reward` (
+CREATE TABLE IF NOT EXISTS `oc_customer_reward` (
   `customer_reward_id` int(11) NOT NULL AUTO_INCREMENT,
   `customer_id` int(11) NOT NULL DEFAULT '0',
   `order_id` int(11) NOT NULL DEFAULT '0',
@@ -1082,7 +1082,7 @@ CREATE TABLE `oc_customer_reward` (
 -- Estrutura da tabela `oc_customer_transaction`
 --
 
-CREATE TABLE `oc_customer_transaction` (
+CREATE TABLE IF NOT EXISTS `oc_customer_transaction` (
   `customer_transaction_id` int(11) NOT NULL AUTO_INCREMENT,
   `customer_id` int(11) NOT NULL,
   `order_id` int(11) NOT NULL,
@@ -1103,7 +1103,7 @@ CREATE TABLE `oc_customer_transaction` (
 -- Estrutura da tabela `oc_download`
 --
 
-CREATE TABLE `oc_download` (
+CREATE TABLE IF NOT EXISTS `oc_download` (
   `download_id` int(11) NOT NULL AUTO_INCREMENT,
   `filename` varchar(128) COLLATE utf8_bin NOT NULL DEFAULT '',
   `mask` varchar(128) COLLATE utf8_bin NOT NULL DEFAULT '',
@@ -1123,7 +1123,7 @@ CREATE TABLE `oc_download` (
 -- Estrutura da tabela `oc_download_description`
 --
 
-CREATE TABLE `oc_download_description` (
+CREATE TABLE IF NOT EXISTS `oc_download_description` (
   `download_id` int(11) NOT NULL,
   `language_id` int(11) NOT NULL,
   `name` varchar(64) COLLATE utf8_bin NOT NULL DEFAULT '',
@@ -1141,19 +1141,19 @@ CREATE TABLE `oc_download_description` (
 -- Estrutura da tabela `oc_extension`
 --
 
-CREATE TABLE `oc_extension` (
+CREATE TABLE IF NOT EXISTS `oc_extension` (
   `extension_id` int(11) NOT NULL AUTO_INCREMENT,
   `type` varchar(32) COLLATE utf8_bin NOT NULL,
   `code` varchar(32) COLLATE utf8_bin NOT NULL,
   PRIMARY KEY (`extension_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=429 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=432 ;
 
 --
 -- Extraindo dados da tabela `oc_extension`
 --
 
 INSERT INTO `oc_extension` (`extension_id`, `type`, `code`) VALUES
-(428, 'payment', 'pagseguro'),
+(431, 'shipping', 'correios'),
 (22, 'total', 'shipping'),
 (57, 'total', 'sub_total'),
 (58, 'total', 'tax'),
@@ -1171,7 +1171,9 @@ INSERT INTO `oc_extension` (`extension_id`, `type`, `code`) VALUES
 (393, 'total', 'reward'),
 (398, 'total', 'voucher'),
 (427, 'module', 'featured'),
-(419, 'module', 'slideshow');
+(419, 'module', 'slideshow'),
+(429, 'module', 'quickcheckout'),
+(430, 'module', 'openstock');
 
 -- --------------------------------------------------------
 
@@ -1179,7 +1181,7 @@ INSERT INTO `oc_extension` (`extension_id`, `type`, `code`) VALUES
 -- Estrutura da tabela `oc_geo_zone`
 --
 
-CREATE TABLE `oc_geo_zone` (
+CREATE TABLE IF NOT EXISTS `oc_geo_zone` (
   `geo_zone_id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(32) COLLATE utf8_bin NOT NULL DEFAULT '',
   `description` varchar(255) COLLATE utf8_bin NOT NULL DEFAULT '',
@@ -1203,7 +1205,7 @@ INSERT INTO `oc_geo_zone` (`geo_zone_id`, `name`, `description`, `date_modified`
 -- Estrutura da tabela `oc_information`
 --
 
-CREATE TABLE `oc_information` (
+CREATE TABLE IF NOT EXISTS `oc_information` (
   `information_id` int(11) NOT NULL AUTO_INCREMENT,
   `bottom` int(1) NOT NULL DEFAULT '0',
   `sort_order` int(3) NOT NULL DEFAULT '0',
@@ -1227,7 +1229,7 @@ INSERT INTO `oc_information` (`information_id`, `bottom`, `sort_order`, `status`
 -- Estrutura da tabela `oc_information_description`
 --
 
-CREATE TABLE `oc_information_description` (
+CREATE TABLE IF NOT EXISTS `oc_information_description` (
   `information_id` int(11) NOT NULL,
   `language_id` int(11) NOT NULL,
   `title` varchar(64) COLLATE utf8_bin NOT NULL DEFAULT '',
@@ -1255,7 +1257,7 @@ INSERT INTO `oc_information_description` (`information_id`, `language_id`, `titl
 -- Estrutura da tabela `oc_information_to_layout`
 --
 
-CREATE TABLE `oc_information_to_layout` (
+CREATE TABLE IF NOT EXISTS `oc_information_to_layout` (
   `information_id` int(11) NOT NULL,
   `store_id` int(11) NOT NULL,
   `layout_id` int(11) NOT NULL,
@@ -1273,7 +1275,7 @@ CREATE TABLE `oc_information_to_layout` (
 -- Estrutura da tabela `oc_information_to_store`
 --
 
-CREATE TABLE `oc_information_to_store` (
+CREATE TABLE IF NOT EXISTS `oc_information_to_store` (
   `information_id` int(11) NOT NULL,
   `store_id` int(11) NOT NULL,
   PRIMARY KEY (`information_id`,`store_id`)
@@ -1295,7 +1297,7 @@ INSERT INTO `oc_information_to_store` (`information_id`, `store_id`) VALUES
 -- Estrutura da tabela `oc_language`
 --
 
-CREATE TABLE `oc_language` (
+CREATE TABLE IF NOT EXISTS `oc_language` (
   `language_id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(32) COLLATE utf8_bin NOT NULL DEFAULT '',
   `code` varchar(5) COLLATE utf8_bin NOT NULL,
@@ -1323,11 +1325,11 @@ INSERT INTO `oc_language` (`language_id`, `name`, `code`, `locale`, `image`, `di
 -- Estrutura da tabela `oc_layout`
 --
 
-CREATE TABLE `oc_layout` (
+CREATE TABLE IF NOT EXISTS `oc_layout` (
   `layout_id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(64) COLLATE utf8_bin NOT NULL,
   PRIMARY KEY (`layout_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=12 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=13 ;
 
 --
 -- Extraindo dados da tabela `oc_layout`
@@ -1344,7 +1346,8 @@ INSERT INTO `oc_layout` (`layout_id`, `name`) VALUES
 (8, 'Contate-nos'),
 (9, 'Mapa do Site'),
 (10, 'Afiliados'),
-(11, 'Páginas de Informações');
+(11, 'Páginas de Informações'),
+(12, 'Quick Checkout');
 
 -- --------------------------------------------------------
 
@@ -1352,13 +1355,13 @@ INSERT INTO `oc_layout` (`layout_id`, `name`) VALUES
 -- Estrutura da tabela `oc_layout_route`
 --
 
-CREATE TABLE `oc_layout_route` (
+CREATE TABLE IF NOT EXISTS `oc_layout_route` (
   `layout_route_id` int(11) NOT NULL AUTO_INCREMENT,
   `layout_id` int(11) NOT NULL,
   `store_id` int(11) NOT NULL,
   `route` varchar(255) COLLATE utf8_bin NOT NULL,
   PRIMARY KEY (`layout_route_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=41 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=42 ;
 
 --
 -- Extraindo dados da tabela `oc_layout_route`
@@ -1373,7 +1376,8 @@ INSERT INTO `oc_layout_route` (`layout_route_id`, `layout_id`, `store_id`, `rout
 (38, 11, 0, 'information/information'),
 (39, 5, 0, 'product/manufacturer'),
 (35, 7, 0, 'checkout/'),
-(36, 8, 0, 'information/contact');
+(36, 8, 0, 'information/contact'),
+(41, 12, 0, 'quickcheckout/');
 
 -- --------------------------------------------------------
 
@@ -1381,7 +1385,7 @@ INSERT INTO `oc_layout_route` (`layout_route_id`, `layout_id`, `store_id`, `rout
 -- Estrutura da tabela `oc_length_class`
 --
 
-CREATE TABLE `oc_length_class` (
+CREATE TABLE IF NOT EXISTS `oc_length_class` (
   `length_class_id` int(11) NOT NULL AUTO_INCREMENT,
   `value` decimal(15,8) NOT NULL,
   PRIMARY KEY (`length_class_id`)
@@ -1402,7 +1406,7 @@ INSERT INTO `oc_length_class` (`length_class_id`, `value`) VALUES
 -- Estrutura da tabela `oc_length_class_description`
 --
 
-CREATE TABLE `oc_length_class_description` (
+CREATE TABLE IF NOT EXISTS `oc_length_class_description` (
   `length_class_id` int(11) NOT NULL AUTO_INCREMENT,
   `language_id` int(11) NOT NULL,
   `title` varchar(32) COLLATE utf8_bin NOT NULL,
@@ -1428,7 +1432,7 @@ INSERT INTO `oc_length_class_description` (`length_class_id`, `language_id`, `ti
 -- Estrutura da tabela `oc_manufacturer`
 --
 
-CREATE TABLE `oc_manufacturer` (
+CREATE TABLE IF NOT EXISTS `oc_manufacturer` (
   `manufacturer_id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(64) COLLATE utf8_bin NOT NULL DEFAULT '',
   `image` varchar(255) COLLATE utf8_bin DEFAULT NULL,
@@ -1449,7 +1453,7 @@ INSERT INTO `oc_manufacturer` (`manufacturer_id`, `name`, `image`, `sort_order`)
 -- Estrutura da tabela `oc_manufacturer_to_store`
 --
 
-CREATE TABLE `oc_manufacturer_to_store` (
+CREATE TABLE IF NOT EXISTS `oc_manufacturer_to_store` (
   `manufacturer_id` int(11) NOT NULL,
   `store_id` int(11) NOT NULL,
   PRIMARY KEY (`manufacturer_id`,`store_id`)
@@ -1468,29 +1472,20 @@ INSERT INTO `oc_manufacturer_to_store` (`manufacturer_id`, `store_id`) VALUES
 -- Estrutura da tabela `oc_option`
 --
 
-CREATE TABLE `oc_option` (
+CREATE TABLE IF NOT EXISTS `oc_option` (
   `option_id` int(11) NOT NULL AUTO_INCREMENT,
   `type` varchar(32) COLLATE utf8_bin NOT NULL,
   `sort_order` int(3) NOT NULL,
   PRIMARY KEY (`option_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=13 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=15 ;
 
 --
 -- Extraindo dados da tabela `oc_option`
 --
 
 INSERT INTO `oc_option` (`option_id`, `type`, `sort_order`) VALUES
-(1, 'radio', 2),
-(2, 'checkbox', 3),
-(4, 'text', 4),
-(5, 'select', 1),
-(6, 'textarea', 5),
-(7, 'file', 6),
-(8, 'date', 7),
-(9, 'time', 8),
-(10, 'datetime', 9),
-(11, 'select', 1),
-(12, 'date', 1);
+(13, 'select', 1),
+(14, 'select', 2);
 
 -- --------------------------------------------------------
 
@@ -1498,7 +1493,7 @@ INSERT INTO `oc_option` (`option_id`, `type`, `sort_order`) VALUES
 -- Estrutura da tabela `oc_option_description`
 --
 
-CREATE TABLE `oc_option_description` (
+CREATE TABLE IF NOT EXISTS `oc_option_description` (
   `option_id` int(11) NOT NULL,
   `language_id` int(11) NOT NULL,
   `name` varchar(128) COLLATE utf8_bin NOT NULL,
@@ -1510,28 +1505,10 @@ CREATE TABLE `oc_option_description` (
 --
 
 INSERT INTO `oc_option_description` (`option_id`, `language_id`, `name`) VALUES
-(1, 2, 'Radio'),
-(2, 1, 'Checkbox'),
-(4, 2, 'Texto'),
-(6, 1, 'Textarea'),
-(8, 2, 'Data'),
-(7, 2, 'Arquivo'),
-(5, 2, 'Seleção'),
-(9, 2, 'Tempo'),
-(10, 2, 'Data &amp; Hora'),
-(12, 2, 'Data de Entrega'),
-(11, 1, 'Size'),
-(1, 1, 'Radio'),
-(2, 2, 'Checkbox'),
-(4, 1, 'Text'),
-(6, 2, 'Textarea'),
-(8, 1, 'Date'),
-(7, 1, 'File'),
-(5, 1, 'Select'),
-(9, 1, 'Time'),
-(10, 1, 'Date &amp; Time'),
-(12, 1, 'Delivery Date'),
-(11, 2, 'Size');
+(13, 1, 'Size'),
+(13, 2, 'Tamanhos'),
+(14, 1, 'Colors'),
+(14, 2, 'Cores');
 
 -- --------------------------------------------------------
 
@@ -1539,33 +1516,26 @@ INSERT INTO `oc_option_description` (`option_id`, `language_id`, `name`) VALUES
 -- Estrutura da tabela `oc_option_value`
 --
 
-CREATE TABLE `oc_option_value` (
+CREATE TABLE IF NOT EXISTS `oc_option_value` (
   `option_value_id` int(11) NOT NULL AUTO_INCREMENT,
   `option_id` int(11) NOT NULL,
   `image` varchar(255) COLLATE utf8_bin NOT NULL,
   `sort_order` int(3) NOT NULL,
   PRIMARY KEY (`option_value_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=49 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=56 ;
 
 --
 -- Extraindo dados da tabela `oc_option_value`
 --
 
 INSERT INTO `oc_option_value` (`option_value_id`, `option_id`, `image`, `sort_order`) VALUES
-(45, 2, '', 4),
-(44, 2, '', 3),
-(41, 5, 'no_image.jpg', 3),
-(42, 5, 'no_image.jpg', 4),
-(43, 1, 'no_image.jpg', 3),
-(23, 2, '', 1),
-(24, 2, '', 2),
-(46, 11, '', 1),
-(47, 11, '', 2),
-(48, 11, '', 3),
-(32, 1, 'no_image.jpg', 1),
-(31, 1, 'no_image.jpg', 2),
-(39, 5, 'no_image.jpg', 1),
-(40, 5, 'no_image.jpg', 2);
+(54, 14, 'no_image.jpg', 2),
+(52, 13, 'no_image.jpg', 4),
+(53, 14, 'no_image.jpg', 1),
+(50, 13, 'no_image.jpg', 2),
+(49, 13, 'no_image.jpg', 1),
+(55, 14, 'no_image.jpg', 3),
+(51, 13, 'no_image.jpg', 3);
 
 -- --------------------------------------------------------
 
@@ -1573,7 +1543,7 @@ INSERT INTO `oc_option_value` (`option_value_id`, `option_id`, `image`, `sort_or
 -- Estrutura da tabela `oc_option_value_description`
 --
 
-CREATE TABLE `oc_option_value_description` (
+CREATE TABLE IF NOT EXISTS `oc_option_value_description` (
   `option_value_id` int(11) NOT NULL,
   `language_id` int(11) NOT NULL,
   `option_id` int(11) NOT NULL,
@@ -1586,34 +1556,20 @@ CREATE TABLE `oc_option_value_description` (
 --
 
 INSERT INTO `oc_option_value_description` (`option_value_id`, `language_id`, `option_id`, `name`) VALUES
-(31, 2, 1, 'Pequeno'),
-(31, 1, 1, 'Medium'),
-(45, 1, 2, 'Checkbox 4'),
-(44, 1, 2, 'Checkbox 3'),
-(32, 2, 1, 'Médio'),
-(40, 1, 5, 'Blue'),
-(39, 2, 5, 'Azul'),
-(39, 1, 5, 'Red'),
-(41, 2, 5, 'Verde'),
-(23, 1, 2, 'Checkbox 1'),
-(24, 1, 2, 'Checkbox 2'),
-(48, 1, 11, 'Large'),
-(47, 1, 11, 'Medium'),
-(46, 1, 11, 'Small'),
-(32, 1, 1, 'Small'),
-(43, 2, 1, 'Grande'),
-(45, 2, 2, 'Checkbox 4'),
-(44, 2, 2, 'Checkbox 3'),
-(43, 1, 1, 'Large'),
-(41, 1, 5, 'Green'),
-(42, 2, 5, 'Amarelo'),
-(42, 1, 5, 'Yellow'),
-(23, 2, 2, 'Checkbox 1'),
-(24, 2, 2, 'Checkbox 2'),
-(48, 2, 11, 'Large'),
-(47, 2, 11, 'Medium'),
-(46, 2, 11, 'Small'),
-(40, 2, 5, 'Blue');
+(54, 2, 14, 'Amarelo'),
+(54, 1, 14, 'Yellow'),
+(51, 2, 13, 'G'),
+(51, 1, 13, 'L'),
+(50, 2, 13, 'M'),
+(53, 2, 14, 'Verde'),
+(53, 1, 14, 'Green'),
+(55, 2, 14, 'Azul'),
+(55, 1, 14, 'Blue'),
+(52, 2, 13, 'GG'),
+(52, 1, 13, 'XL'),
+(50, 1, 13, 'M'),
+(49, 2, 13, 'P'),
+(49, 1, 13, 'S');
 
 -- --------------------------------------------------------
 
@@ -1621,7 +1577,7 @@ INSERT INTO `oc_option_value_description` (`option_value_id`, `language_id`, `op
 -- Estrutura da tabela `oc_order`
 --
 
-CREATE TABLE `oc_order` (
+CREATE TABLE IF NOT EXISTS `oc_order` (
   `order_id` int(11) NOT NULL AUTO_INCREMENT,
   `invoice_no` int(11) NOT NULL DEFAULT '0',
   `invoice_prefix` varchar(26) COLLATE utf8_bin NOT NULL,
@@ -1694,7 +1650,7 @@ CREATE TABLE `oc_order` (
 -- Estrutura da tabela `oc_order_download`
 --
 
-CREATE TABLE `oc_order_download` (
+CREATE TABLE IF NOT EXISTS `oc_order_download` (
   `order_download_id` int(11) NOT NULL AUTO_INCREMENT,
   `order_id` int(11) NOT NULL,
   `order_product_id` int(11) NOT NULL,
@@ -1716,7 +1672,7 @@ CREATE TABLE `oc_order_download` (
 -- Estrutura da tabela `oc_order_fraud`
 --
 
-CREATE TABLE `oc_order_fraud` (
+CREATE TABLE IF NOT EXISTS `oc_order_fraud` (
   `order_id` int(11) NOT NULL,
   `customer_id` int(11) NOT NULL,
   `country_match` varchar(3) COLLATE utf8_bin NOT NULL,
@@ -1784,7 +1740,7 @@ CREATE TABLE `oc_order_fraud` (
 -- Estrutura da tabela `oc_order_history`
 --
 
-CREATE TABLE `oc_order_history` (
+CREATE TABLE IF NOT EXISTS `oc_order_history` (
   `order_history_id` int(11) NOT NULL AUTO_INCREMENT,
   `order_id` int(11) NOT NULL,
   `order_status_id` int(5) NOT NULL,
@@ -1805,7 +1761,7 @@ CREATE TABLE `oc_order_history` (
 -- Estrutura da tabela `oc_order_option`
 --
 
-CREATE TABLE `oc_order_option` (
+CREATE TABLE IF NOT EXISTS `oc_order_option` (
   `order_option_id` int(11) NOT NULL AUTO_INCREMENT,
   `order_id` int(11) NOT NULL,
   `order_product_id` int(11) NOT NULL,
@@ -1828,7 +1784,7 @@ CREATE TABLE `oc_order_option` (
 -- Estrutura da tabela `oc_order_product`
 --
 
-CREATE TABLE `oc_order_product` (
+CREATE TABLE IF NOT EXISTS `oc_order_product` (
   `order_product_id` int(11) NOT NULL AUTO_INCREMENT,
   `order_id` int(11) NOT NULL,
   `product_id` int(11) NOT NULL,
@@ -1853,7 +1809,7 @@ CREATE TABLE `oc_order_product` (
 -- Estrutura da tabela `oc_order_status`
 --
 
-CREATE TABLE `oc_order_status` (
+CREATE TABLE IF NOT EXISTS `oc_order_status` (
   `order_status_id` int(11) NOT NULL AUTO_INCREMENT,
   `language_id` int(11) NOT NULL,
   `name` varchar(32) COLLATE utf8_bin NOT NULL,
@@ -1900,7 +1856,7 @@ INSERT INTO `oc_order_status` (`order_status_id`, `language_id`, `name`) VALUES
 -- Estrutura da tabela `oc_order_total`
 --
 
-CREATE TABLE `oc_order_total` (
+CREATE TABLE IF NOT EXISTS `oc_order_total` (
   `order_total_id` int(10) NOT NULL AUTO_INCREMENT,
   `order_id` int(11) NOT NULL,
   `code` varchar(32) COLLATE utf8_bin NOT NULL,
@@ -1923,7 +1879,7 @@ CREATE TABLE `oc_order_total` (
 -- Estrutura da tabela `oc_order_voucher`
 --
 
-CREATE TABLE `oc_order_voucher` (
+CREATE TABLE IF NOT EXISTS `oc_order_voucher` (
   `order_voucher_id` int(11) NOT NULL AUTO_INCREMENT,
   `order_id` int(11) NOT NULL,
   `voucher_id` int(11) NOT NULL,
@@ -1950,7 +1906,7 @@ CREATE TABLE `oc_order_voucher` (
 -- Estrutura da tabela `oc_product`
 --
 
-CREATE TABLE `oc_product` (
+CREATE TABLE IF NOT EXISTS `oc_product` (
   `product_id` int(11) NOT NULL AUTO_INCREMENT,
   `model` varchar(64) COLLATE utf8_bin NOT NULL,
   `sku` varchar(64) COLLATE utf8_bin NOT NULL,
@@ -1982,6 +1938,7 @@ CREATE TABLE `oc_product` (
   `date_added` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   `date_modified` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   `viewed` int(5) NOT NULL DEFAULT '0',
+  `has_option` tinyint(1) NOT NULL,
   PRIMARY KEY (`product_id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=50 ;
 
@@ -1989,8 +1946,8 @@ CREATE TABLE `oc_product` (
 -- Extraindo dados da tabela `oc_product`
 --
 
-INSERT INTO `oc_product` (`product_id`, `model`, `sku`, `upc`, `ean`, `jan`, `isbn`, `mpn`, `location`, `quantity`, `stock_status_id`, `image`, `manufacturer_id`, `shipping`, `price`, `points`, `tax_class_id`, `date_available`, `weight`, `weight_class_id`, `length`, `width`, `height`, `length_class_id`, `subtract`, `minimum`, `sort_order`, `status`, `date_added`, `date_modified`, `viewed`) VALUES
-(42, 'Product 15', '', '', '', '', '', '', '', 990, 5, 'data/demo/apple_cinema_30.jpg', 8, 1, 100.0000, 400, 11, '2009-02-04', 12.50000000, 1, 1.00000000, 2.00000000, 3.00000000, 1, 1, 2, 0, 1, '2009-02-03 21:07:37', '2012-10-17 09:51:22', 0);
+INSERT INTO `oc_product` (`product_id`, `model`, `sku`, `upc`, `ean`, `jan`, `isbn`, `mpn`, `location`, `quantity`, `stock_status_id`, `image`, `manufacturer_id`, `shipping`, `price`, `points`, `tax_class_id`, `date_available`, `weight`, `weight_class_id`, `length`, `width`, `height`, `length_class_id`, `subtract`, `minimum`, `sort_order`, `status`, `date_added`, `date_modified`, `viewed`, `has_option`) VALUES
+(42, 'Product 15', '', '', '', '', '', '', '', 990, 5, 'data/demo/apple_cinema_30.jpg', 8, 1, 10.0000, 400, 11, '2009-02-04', 12.50000000, 1, 1.00000000, 2.00000000, 3.00000000, 1, 1, 2, 0, 1, '2009-02-03 21:07:37', '2012-10-18 15:58:21', 95, 1);
 
 -- --------------------------------------------------------
 
@@ -1998,7 +1955,7 @@ INSERT INTO `oc_product` (`product_id`, `model`, `sku`, `upc`, `ean`, `jan`, `is
 -- Estrutura da tabela `oc_product_attribute`
 --
 
-CREATE TABLE `oc_product_attribute` (
+CREATE TABLE IF NOT EXISTS `oc_product_attribute` (
   `product_id` int(11) NOT NULL,
   `attribute_id` int(11) NOT NULL,
   `language_id` int(11) NOT NULL,
@@ -2020,7 +1977,7 @@ INSERT INTO `oc_product_attribute` (`product_id`, `attribute_id`, `language_id`,
 -- Estrutura da tabela `oc_product_description`
 --
 
-CREATE TABLE `oc_product_description` (
+CREATE TABLE IF NOT EXISTS `oc_product_description` (
   `product_id` int(11) NOT NULL AUTO_INCREMENT,
   `language_id` int(11) NOT NULL,
   `name` varchar(255) COLLATE utf8_bin NOT NULL,
@@ -2048,7 +2005,7 @@ INSERT INTO `oc_product_description` (`product_id`, `language_id`, `name`, `desc
 -- Estrutura da tabela `oc_product_discount`
 --
 
-CREATE TABLE `oc_product_discount` (
+CREATE TABLE IF NOT EXISTS `oc_product_discount` (
   `product_discount_id` int(11) NOT NULL AUTO_INCREMENT,
   `product_id` int(11) NOT NULL,
   `customer_group_id` int(11) NOT NULL,
@@ -2059,16 +2016,12 @@ CREATE TABLE `oc_product_discount` (
   `date_end` date NOT NULL DEFAULT '0000-00-00',
   PRIMARY KEY (`product_discount_id`),
   KEY `product_id` (`product_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=444 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=461 ;
 
 --
 -- Extraindo dados da tabela `oc_product_discount`
 --
 
-INSERT INTO `oc_product_discount` (`product_discount_id`, `product_id`, `customer_group_id`, `quantity`, `priority`, `price`, `date_start`, `date_end`) VALUES
-(443, 42, 1, 30, 1, 66.0000, '0000-00-00', '0000-00-00'),
-(442, 42, 1, 20, 1, 77.0000, '0000-00-00', '0000-00-00'),
-(441, 42, 1, 10, 1, 88.0000, '0000-00-00', '0000-00-00');
 
 -- --------------------------------------------------------
 
@@ -2076,24 +2029,24 @@ INSERT INTO `oc_product_discount` (`product_discount_id`, `product_id`, `custome
 -- Estrutura da tabela `oc_product_image`
 --
 
-CREATE TABLE `oc_product_image` (
+CREATE TABLE IF NOT EXISTS `oc_product_image` (
   `product_image_id` int(11) NOT NULL AUTO_INCREMENT,
   `product_id` int(11) NOT NULL,
   `image` varchar(255) COLLATE utf8_bin DEFAULT NULL,
   `sort_order` int(3) NOT NULL DEFAULT '0',
   PRIMARY KEY (`product_image_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=2357 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=2397 ;
 
 --
 -- Extraindo dados da tabela `oc_product_image`
 --
 
 INSERT INTO `oc_product_image` (`product_image_id`, `product_id`, `image`, `sort_order`) VALUES
-(2356, 42, 'data/demo/canon_eos_5d_2.jpg', 0),
-(2355, 42, 'data/demo/canon_eos_5d_1.jpg', 0),
-(2354, 42, 'data/demo/compaq_presario.jpg', 0),
-(2353, 42, 'data/demo/hp_1.jpg', 0),
-(2352, 42, 'data/demo/canon_logo.jpg', 0);
+(2396, 42, 'data/demo/canon_logo.jpg', 0),
+(2395, 42, 'data/demo/canon_eos_5d_2.jpg', 0),
+(2394, 42, 'data/demo/canon_eos_5d_1.jpg', 0),
+(2393, 42, 'data/demo/compaq_presario.jpg', 0),
+(2392, 42, 'data/demo/hp_1.jpg', 0);
 
 -- --------------------------------------------------------
 
@@ -2101,29 +2054,79 @@ INSERT INTO `oc_product_image` (`product_image_id`, `product_id`, `image`, `sort
 -- Estrutura da tabela `oc_product_option`
 --
 
-CREATE TABLE `oc_product_option` (
+CREATE TABLE IF NOT EXISTS `oc_product_option` (
   `product_option_id` int(11) NOT NULL AUTO_INCREMENT,
   `product_id` int(11) NOT NULL,
   `option_id` int(11) NOT NULL,
   `option_value` text COLLATE utf8_bin NOT NULL,
   `required` tinyint(1) NOT NULL,
   PRIMARY KEY (`product_option_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=227 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=242 ;
 
 --
 -- Extraindo dados da tabela `oc_product_option`
 --
 
 INSERT INTO `oc_product_option` (`product_option_id`, `product_id`, `option_id`, `option_value`, `required`) VALUES
-(221, 42, 9, 0x32323a3235, 1),
-(219, 42, 8, 0x323031312d30322d3230, 1),
-(222, 42, 7, '', 1),
-(209, 42, 6, '', 1),
-(208, 42, 4, 0x74657374, 1),
-(223, 42, 2, '', 1),
-(218, 42, 1, '', 1),
-(217, 42, 5, '', 1),
-(220, 42, 10, 0x323031312d30322d32302032323a3235, 1);
+(241, 42, 14, '', 1),
+(240, 42, 13, '', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `oc_product_option_relation`
+--
+
+CREATE TABLE IF NOT EXISTS `oc_product_option_relation` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `product_id` int(11) NOT NULL,
+  `var` char(100) NOT NULL,
+  `sku` char(50) NOT NULL,
+  `stock` int(11) NOT NULL,
+  `active` tinyint(4) NOT NULL DEFAULT '1',
+  `subtract` tinyint(1) NOT NULL DEFAULT '0',
+  `price` decimal(10,4) NOT NULL DEFAULT '0.0000',
+  `image` text NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=85 ;
+
+--
+-- Extraindo dados da tabela `oc_product_option_relation`
+--
+
+INSERT INTO `oc_product_option_relation` (`id`, `product_id`, `var`, `sku`, `stock`, `active`, `subtract`, `price`, `image`) VALUES
+(84, 42, '20:23', '', 10, 1, 1, 0.0000, ''),
+(83, 42, '20:22', '', 10, 1, 1, 0.0000, ''),
+(82, 42, '20:21', '', 10, 1, 1, 0.0000, ''),
+(81, 42, '19:23', '', 10, 1, 1, 0.0000, ''),
+(80, 42, '19:22', '', 10, 1, 1, 0.0000, ''),
+(79, 42, '19:21', '', 10, 1, 1, 0.0000, ''),
+(78, 42, '18:23', '', 10, 1, 1, 0.0000, ''),
+(77, 42, '18:22', '', 0, 1, 1, 0.0000, ''),
+(76, 42, '18:21', '', 10, 1, 1, 0.0000, ''),
+(75, 42, '17:23', '', 10, 1, 1, 0.0000, ''),
+(74, 42, '17:22', '', 10, 1, 1, 0.0000, ''),
+(73, 42, '17:21', '', 10, 1, 1, 0.0000, '');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `oc_product_option_relation_group_price`
+--
+
+CREATE TABLE IF NOT EXISTS `oc_product_option_relation_group_price` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `product_option_relation_id` int(11) NOT NULL,
+  `customer_group_id` int(11) NOT NULL,
+  `product_id` int(11) NOT NULL,
+  `price` decimal(10,4) NOT NULL DEFAULT '0.0000',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+--
+-- Extraindo dados da tabela `oc_product_option_relation_group_price`
+--
+
 
 -- --------------------------------------------------------
 
@@ -2131,7 +2134,7 @@ INSERT INTO `oc_product_option` (`product_option_id`, `product_id`, `option_id`,
 -- Estrutura da tabela `oc_product_option_value`
 --
 
-CREATE TABLE `oc_product_option_value` (
+CREATE TABLE IF NOT EXISTS `oc_product_option_value` (
   `product_option_value_id` int(11) NOT NULL AUTO_INCREMENT,
   `product_option_id` int(11) NOT NULL,
   `product_id` int(11) NOT NULL,
@@ -2146,24 +2149,20 @@ CREATE TABLE `oc_product_option_value` (
   `weight` decimal(15,8) NOT NULL,
   `weight_prefix` varchar(1) COLLATE utf8_bin NOT NULL,
   PRIMARY KEY (`product_option_value_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=17 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=24 ;
 
 --
 -- Extraindo dados da tabela `oc_product_option_value`
 --
 
 INSERT INTO `oc_product_option_value` (`product_option_value_id`, `product_option_id`, `product_id`, `option_id`, `option_value_id`, `quantity`, `subtract`, `price`, `price_prefix`, `points`, `points_prefix`, `weight`, `weight_prefix`) VALUES
-(10, 223, 42, 2, 44, 2696, 1, 30.0000, '+', 0, '+', 30.00000000, '+'),
-(9, 223, 42, 2, 24, 194, 1, 20.0000, '+', 0, '+', 20.00000000, '+'),
-(8, 223, 42, 2, 23, 48, 1, 10.0000, '+', 0, '+', 10.00000000, '+'),
-(7, 218, 42, 1, 43, 300, 1, 30.0000, '+', 3, '+', 30.00000000, '+'),
-(6, 218, 42, 1, 31, 146, 1, 20.0000, '+', 2, '-', 20.00000000, '+'),
-(5, 218, 42, 1, 32, 96, 1, 10.0000, '+', 1, '+', 10.00000000, '+'),
-(2, 217, 42, 5, 42, 200, 1, 2.0000, '+', 0, '+', 2.00000000, '+'),
-(1, 217, 42, 5, 41, 100, 0, 1.0000, '+', 0, '+', 1.00000000, '+'),
-(4, 217, 42, 5, 39, 92, 1, 4.0000, '+', 0, '+', 4.00000000, '+'),
-(3, 217, 42, 5, 40, 300, 0, 3.0000, '+', 0, '+', 3.00000000, '+'),
-(11, 223, 42, 2, 45, 3998, 1, 40.0000, '+', 0, '+', 40.00000000, '+');
+(22, 241, 42, 14, 55, 0, 0, 0.0000, '', 0, '+', 0.00000000, '+'),
+(21, 241, 42, 14, 54, 0, 0, 0.0000, '', 0, '+', 0.00000000, '+'),
+(23, 241, 42, 14, 53, 0, 0, 0.0000, '', 0, '+', 0.00000000, '+'),
+(20, 240, 42, 13, 52, 0, 0, 0.0000, '', 0, '+', 0.00000000, '+'),
+(19, 240, 42, 13, 51, 0, 0, 0.0000, '', 0, '+', 0.00000000, '+'),
+(18, 240, 42, 13, 50, 0, 0, 0.0000, '', 0, '+', 0.00000000, '+'),
+(17, 240, 42, 13, 49, 0, 0, 0.0000, '', 0, '+', 0.00000000, '+');
 
 -- --------------------------------------------------------
 
@@ -2171,7 +2170,7 @@ INSERT INTO `oc_product_option_value` (`product_option_value_id`, `product_optio
 -- Estrutura da tabela `oc_product_related`
 --
 
-CREATE TABLE `oc_product_related` (
+CREATE TABLE IF NOT EXISTS `oc_product_related` (
   `product_id` int(11) NOT NULL,
   `related_id` int(11) NOT NULL,
   PRIMARY KEY (`product_id`,`related_id`)
@@ -2188,20 +2187,20 @@ CREATE TABLE `oc_product_related` (
 -- Estrutura da tabela `oc_product_reward`
 --
 
-CREATE TABLE `oc_product_reward` (
+CREATE TABLE IF NOT EXISTS `oc_product_reward` (
   `product_reward_id` int(11) NOT NULL AUTO_INCREMENT,
   `product_id` int(11) NOT NULL DEFAULT '0',
   `customer_group_id` int(11) NOT NULL DEFAULT '0',
   `points` int(8) NOT NULL DEFAULT '0',
   PRIMARY KEY (`product_reward_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=547 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=555 ;
 
 --
 -- Extraindo dados da tabela `oc_product_reward`
 --
 
 INSERT INTO `oc_product_reward` (`product_reward_id`, `product_id`, `customer_group_id`, `points`) VALUES
-(546, 42, 1, 100);
+(554, 42, 1, 100);
 
 -- --------------------------------------------------------
 
@@ -2209,7 +2208,7 @@ INSERT INTO `oc_product_reward` (`product_reward_id`, `product_id`, `customer_gr
 -- Estrutura da tabela `oc_product_special`
 --
 
-CREATE TABLE `oc_product_special` (
+CREATE TABLE IF NOT EXISTS `oc_product_special` (
   `product_special_id` int(11) NOT NULL AUTO_INCREMENT,
   `product_id` int(11) NOT NULL,
   `customer_group_id` int(11) NOT NULL,
@@ -2219,14 +2218,12 @@ CREATE TABLE `oc_product_special` (
   `date_end` date NOT NULL DEFAULT '0000-00-00',
   PRIMARY KEY (`product_special_id`),
   KEY `product_id` (`product_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=441 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=446 ;
 
 --
 -- Extraindo dados da tabela `oc_product_special`
 --
 
-INSERT INTO `oc_product_special` (`product_special_id`, `product_id`, `customer_group_id`, `priority`, `price`, `date_start`, `date_end`) VALUES
-(440, 42, 1, 1, 90.0000, '0000-00-00', '0000-00-00');
 
 -- --------------------------------------------------------
 
@@ -2234,7 +2231,7 @@ INSERT INTO `oc_product_special` (`product_special_id`, `product_id`, `customer_
 -- Estrutura da tabela `oc_product_to_category`
 --
 
-CREATE TABLE `oc_product_to_category` (
+CREATE TABLE IF NOT EXISTS `oc_product_to_category` (
   `product_id` int(11) NOT NULL,
   `category_id` int(11) NOT NULL,
   PRIMARY KEY (`product_id`,`category_id`)
@@ -2254,7 +2251,7 @@ INSERT INTO `oc_product_to_category` (`product_id`, `category_id`) VALUES
 -- Estrutura da tabela `oc_product_to_download`
 --
 
-CREATE TABLE `oc_product_to_download` (
+CREATE TABLE IF NOT EXISTS `oc_product_to_download` (
   `product_id` int(11) NOT NULL,
   `download_id` int(11) NOT NULL,
   PRIMARY KEY (`product_id`,`download_id`)
@@ -2271,7 +2268,7 @@ CREATE TABLE `oc_product_to_download` (
 -- Estrutura da tabela `oc_product_to_layout`
 --
 
-CREATE TABLE `oc_product_to_layout` (
+CREATE TABLE IF NOT EXISTS `oc_product_to_layout` (
   `product_id` int(11) NOT NULL,
   `store_id` int(11) NOT NULL,
   `layout_id` int(11) NOT NULL,
@@ -2289,7 +2286,7 @@ CREATE TABLE `oc_product_to_layout` (
 -- Estrutura da tabela `oc_product_to_store`
 --
 
-CREATE TABLE `oc_product_to_store` (
+CREATE TABLE IF NOT EXISTS `oc_product_to_store` (
   `product_id` int(11) NOT NULL,
   `store_id` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`product_id`,`store_id`)
@@ -2308,7 +2305,7 @@ INSERT INTO `oc_product_to_store` (`product_id`, `store_id`) VALUES
 -- Estrutura da tabela `oc_return`
 --
 
-CREATE TABLE `oc_return` (
+CREATE TABLE IF NOT EXISTS `oc_return` (
   `return_id` int(11) NOT NULL AUTO_INCREMENT,
   `order_id` int(11) NOT NULL,
   `product_id` int(11) NOT NULL,
@@ -2342,7 +2339,7 @@ CREATE TABLE `oc_return` (
 -- Estrutura da tabela `oc_return_action`
 --
 
-CREATE TABLE `oc_return_action` (
+CREATE TABLE IF NOT EXISTS `oc_return_action` (
   `return_action_id` int(11) NOT NULL AUTO_INCREMENT,
   `language_id` int(11) NOT NULL DEFAULT '0',
   `name` varchar(64) COLLATE utf8_bin NOT NULL DEFAULT '',
@@ -2367,7 +2364,7 @@ INSERT INTO `oc_return_action` (`return_action_id`, `language_id`, `name`) VALUE
 -- Estrutura da tabela `oc_return_history`
 --
 
-CREATE TABLE `oc_return_history` (
+CREATE TABLE IF NOT EXISTS `oc_return_history` (
   `return_history_id` int(11) NOT NULL AUTO_INCREMENT,
   `return_id` int(11) NOT NULL,
   `return_status_id` int(11) NOT NULL,
@@ -2388,7 +2385,7 @@ CREATE TABLE `oc_return_history` (
 -- Estrutura da tabela `oc_return_reason`
 --
 
-CREATE TABLE `oc_return_reason` (
+CREATE TABLE IF NOT EXISTS `oc_return_reason` (
   `return_reason_id` int(11) NOT NULL AUTO_INCREMENT,
   `language_id` int(11) NOT NULL DEFAULT '0',
   `name` varchar(128) COLLATE utf8_bin NOT NULL DEFAULT '',
@@ -2417,7 +2414,7 @@ INSERT INTO `oc_return_reason` (`return_reason_id`, `language_id`, `name`) VALUE
 -- Estrutura da tabela `oc_return_status`
 --
 
-CREATE TABLE `oc_return_status` (
+CREATE TABLE IF NOT EXISTS `oc_return_status` (
   `return_status_id` int(11) NOT NULL AUTO_INCREMENT,
   `language_id` int(11) NOT NULL DEFAULT '0',
   `name` varchar(32) COLLATE utf8_bin NOT NULL DEFAULT '',
@@ -2442,7 +2439,7 @@ INSERT INTO `oc_return_status` (`return_status_id`, `language_id`, `name`) VALUE
 -- Estrutura da tabela `oc_review`
 --
 
-CREATE TABLE `oc_review` (
+CREATE TABLE IF NOT EXISTS `oc_review` (
   `review_id` int(11) NOT NULL AUTO_INCREMENT,
   `product_id` int(11) NOT NULL,
   `customer_id` int(11) NOT NULL,
@@ -2467,7 +2464,7 @@ CREATE TABLE `oc_review` (
 -- Estrutura da tabela `oc_setting`
 --
 
-CREATE TABLE `oc_setting` (
+CREATE TABLE IF NOT EXISTS `oc_setting` (
   `setting_id` int(11) NOT NULL AUTO_INCREMENT,
   `store_id` int(11) NOT NULL DEFAULT '0',
   `group` varchar(32) COLLATE utf8_bin NOT NULL,
@@ -2475,7 +2472,7 @@ CREATE TABLE `oc_setting` (
   `value` text COLLATE utf8_bin NOT NULL,
   `serialized` tinyint(1) NOT NULL,
   PRIMARY KEY (`setting_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=497 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=1842 ;
 
 --
 -- Extraindo dados da tabela `oc_setting`
@@ -2489,22 +2486,17 @@ INSERT INTO `oc_setting` (`setting_id`, `store_id`, `group`, `key`, `value`, `se
 (5, 0, 'total', 'total_sort_order', 0x39, 0),
 (6, 0, 'total', 'total_status', 0x31, 0),
 (7, 0, 'tax', 'tax_sort_order', 0x35, 0),
-(491, 0, 'config', 'config_encryption', 0x6164623139656133303563333032303732353531643262613634346265363630, 0),
-(489, 0, 'config', 'config_seo_url', 0x30, 0),
-(490, 0, 'config', 'config_maintenance', 0x30, 0),
+(1829, 0, 'config', 'config_google_analytics', '', 0),
+(1827, 0, 'config', 'config_error_log', 0x31, 0),
+(1828, 0, 'config', 'config_error_filename', 0x6572726f722e747874, 0),
 (14, 0, 'shipping', 'shipping_status', 0x31, 0),
 (15, 0, 'shipping', 'shipping_estimator', 0x31, 0),
-(488, 0, 'config', 'config_use_ssl', 0x30, 0),
-(487, 0, 'config', 'config_fraud_status_id', 0x37, 0),
-(485, 0, 'config', 'config_fraud_key', '', 0),
-(486, 0, 'config', 'config_fraud_score', '', 0),
-(484, 0, 'config', 'config_fraud_detection', 0x30, 0),
-(483, 0, 'config', 'config_alert_emails', '', 0),
-(482, 0, 'config', 'config_account_mail', 0x30, 0),
+(1826, 0, 'config', 'config_error_display', 0x31, 0),
+(1825, 0, 'config', 'config_compression', 0x30, 0),
+(1824, 0, 'config', 'config_encryption', 0x3064643332626134393261326530643662393731666163343961363539393330, 0),
 (27, 0, 'coupon', 'coupon_sort_order', 0x34, 0),
 (28, 0, 'coupon', 'coupon_status', 0x31, 0),
-(481, 0, 'config', 'config_alert_mail', 0x30, 0),
-(480, 0, 'config', 'config_smtp_timeout', 0x35, 0),
+(1823, 0, 'config', 'config_maintenance', 0x30, 0),
 (34, 0, 'flat', 'flat_sort_order', 0x31, 0),
 (35, 0, 'flat', 'flat_status', 0x31, 0),
 (36, 0, 'flat', 'flat_geo_zone_id', 0x30, 0),
@@ -2515,95 +2507,127 @@ INSERT INTO `oc_setting` (`setting_id`, `store_id`, `group`, `key`, `value`, `se
 (41, 0, 'flat', 'flat_cost', 0x352e3030, 0),
 (42, 0, 'credit', 'credit_sort_order', 0x37, 0),
 (43, 0, 'credit', 'credit_status', 0x31, 0),
-(478, 0, 'config', 'config_smtp_password', '', 0),
-(479, 0, 'config', 'config_smtp_port', 0x3235, 0),
-(477, 0, 'config', 'config_smtp_username', '', 0),
-(476, 0, 'config', 'config_smtp_host', '', 0),
-(475, 0, 'config', 'config_mail_parameter', '', 0),
-(474, 0, 'config', 'config_mail_protocol', 0x6d61696c, 0),
-(473, 0, 'config', 'config_image_cart_height', 0x3437, 0),
+(1822, 0, 'config', 'config_seo_url', 0x30, 0),
+(1821, 0, 'config', 'config_use_ssl', 0x30, 0),
+(1820, 0, 'config', 'config_fraud_status_id', 0x37, 0),
+(1819, 0, 'config', 'config_fraud_score', '', 0),
 (53, 0, 'reward', 'reward_sort_order', 0x32, 0),
 (54, 0, 'reward', 'reward_status', 0x31, 0),
-(472, 0, 'config', 'config_image_cart_width', 0x3437, 0),
+(1818, 0, 'config', 'config_fraud_key', '', 0),
 (56, 0, 'affiliate', 'affiliate_module', 0x613a313a7b693a303b613a343a7b733a393a226c61796f75745f6964223b733a323a223130223b733a383a22706f736974696f6e223b733a31323a22636f6c756d6e5f7269676874223b733a363a22737461747573223b733a313a2231223b733a31303a22736f72745f6f72646572223b733a313a2231223b7d7d, 1),
 (57, 0, 'category', 'category_module', 0x613a323a7b693a303b613a353a7b733a393a226c61796f75745f6964223b733a313a2233223b733a383a22706f736974696f6e223b733a31313a22636f6c756d6e5f6c656674223b733a353a22636f756e74223b733a313a2230223b733a363a22737461747573223b733a313a2231223b733a31303a22736f72745f6f72646572223b733a313a2231223b7d693a313b613a353a7b733a393a226c61796f75745f6964223b733a313a2232223b733a383a22706f736974696f6e223b733a31313a22636f6c756d6e5f6c656674223b733a353a22636f756e74223b733a313a2230223b733a363a22737461747573223b733a313a2231223b733a31303a22736f72745f6f72646572223b733a313a2231223b7d7d, 1),
-(471, 0, 'config', 'config_image_wishlist_height', 0x3437, 0),
-(470, 0, 'config', 'config_image_wishlist_width', 0x3437, 0),
+(1817, 0, 'config', 'config_fraud_detection', 0x30, 0),
+(1816, 0, 'config', 'config_alert_emails', '', 0),
 (60, 0, 'account', 'account_module', 0x613a313a7b693a303b613a343a7b733a393a226c61796f75745f6964223b733a313a2236223b733a383a22706f736974696f6e223b733a31323a22636f6c756d6e5f7269676874223b733a363a22737461747573223b733a313a2231223b733a31303a22736f72745f6f72646572223b733a313a2231223b7d7d, 1),
-(469, 0, 'config', 'config_image_compare_height', 0x3930, 0),
-(468, 0, 'config', 'config_image_compare_width', 0x3930, 0),
-(466, 0, 'config', 'config_image_related_width', 0x3830, 0),
-(467, 0, 'config', 'config_image_related_height', 0x3830, 0),
-(465, 0, 'config', 'config_image_additional_height', 0x3734, 0),
-(464, 0, 'config', 'config_image_additional_width', 0x3734, 0),
-(463, 0, 'config', 'config_image_product_height', 0x3830, 0),
-(462, 0, 'config', 'config_image_product_width', 0x3830, 0),
-(461, 0, 'config', 'config_image_popup_height', 0x353030, 0),
-(460, 0, 'config', 'config_image_popup_width', 0x353030, 0),
-(459, 0, 'config', 'config_image_thumb_height', 0x323238, 0),
-(458, 0, 'config', 'config_image_thumb_width', 0x323238, 0),
-(457, 0, 'config', 'config_image_category_height', 0x3830, 0),
-(456, 0, 'config', 'config_image_category_width', 0x3830, 0),
-(455, 0, 'config', 'config_icon', 0x646174612f636172742e706e67, 0),
-(454, 0, 'config', 'config_logo', 0x646174612f6c6f676f2e706e67, 0),
-(451, 0, 'config', 'config_affiliate_id', 0x34, 0),
-(452, 0, 'config', 'config_commission', 0x35, 0),
-(453, 0, 'config', 'config_return_status_id', 0x32, 0),
-(450, 0, 'config', 'config_stock_status_id', 0x35, 0),
-(449, 0, 'config', 'config_stock_checkout', 0x30, 0),
+(1815, 0, 'config', 'config_account_mail', 0x30, 0),
+(1814, 0, 'config', 'config_alert_mail', 0x30, 0),
+(1813, 0, 'config', 'config_smtp_timeout', 0x35, 0),
+(1812, 0, 'config', 'config_smtp_port', 0x3235, 0),
+(1811, 0, 'config', 'config_smtp_password', '', 0),
+(1810, 0, 'config', 'config_smtp_username', '', 0),
+(1809, 0, 'config', 'config_smtp_host', '', 0),
+(1808, 0, 'config', 'config_mail_parameter', '', 0),
+(1807, 0, 'config', 'config_mail_protocol', 0x6d61696c, 0),
+(1806, 0, 'config', 'config_image_cart_height', 0x3437, 0),
+(1805, 0, 'config', 'config_image_cart_width', 0x3437, 0),
+(1804, 0, 'config', 'config_image_wishlist_height', 0x3437, 0),
+(1803, 0, 'config', 'config_image_wishlist_width', 0x3437, 0),
+(1802, 0, 'config', 'config_image_compare_height', 0x3930, 0),
+(1801, 0, 'config', 'config_image_compare_width', 0x3930, 0),
+(1800, 0, 'config', 'config_image_related_height', 0x3830, 0),
+(1799, 0, 'config', 'config_image_related_width', 0x3830, 0),
 (93, 0, 'voucher', 'voucher_sort_order', 0x38, 0),
 (94, 0, 'voucher', 'voucher_status', 0x31, 0),
-(448, 0, 'config', 'config_stock_warning', 0x30, 0),
-(447, 0, 'config', 'config_stock_display', 0x30, 0),
-(446, 0, 'config', 'config_complete_status_id', 0x35, 0),
-(445, 0, 'config', 'config_order_status_id', 0x31, 0),
-(444, 0, 'config', 'config_invoice_prefix', 0x494e562d323031322d3030, 0),
-(443, 0, 'config', 'config_order_edit', 0x313030, 0),
-(442, 0, 'config', 'config_checkout_id', 0x35, 0),
-(441, 0, 'config', 'config_guest_checkout', 0x31, 0),
-(440, 0, 'config', 'config_cart_weight', 0x31, 0),
+(1798, 0, 'config', 'config_image_additional_height', 0x3734, 0),
+(1797, 0, 'config', 'config_image_additional_width', 0x3734, 0),
+(1796, 0, 'config', 'config_image_product_height', 0x3830, 0),
+(1795, 0, 'config', 'config_image_product_width', 0x3830, 0),
+(1794, 0, 'config', 'config_image_popup_height', 0x353030, 0),
 (107, 0, 'slideshow', 'slideshow_module', 0x613a313a7b693a303b613a373a7b733a393a2262616e6e65725f6964223b733a313a2237223b733a353a227769647468223b733a333a22393830223b733a363a22686569676874223b733a333a22323830223b733a393a226c61796f75745f6964223b733a313a2231223b733a383a22706f736974696f6e223b733a31313a22636f6e74656e745f746f70223b733a363a22737461747573223b733a313a2231223b733a31303a22736f72745f6f72646572223b733a313a2231223b7d7d, 1),
 (108, 0, 'banner', 'banner_module', 0x613a313a7b693a303b613a373a7b733a393a2262616e6e65725f6964223b733a313a2236223b733a353a227769647468223b733a333a22313832223b733a363a22686569676874223b733a333a22313832223b733a393a226c61796f75745f6964223b733a313a2233223b733a383a22706f736974696f6e223b733a31313a22636f6c756d6e5f6c656674223b733a363a22737461747573223b733a313a2231223b733a31303a22736f72745f6f72646572223b733a313a2233223b7d7d, 1),
-(438, 0, 'config', 'config_customer_price', 0x30, 0),
-(439, 0, 'config', 'config_account_id', 0x33, 0),
-(437, 0, 'config', 'config_customer_group_display', 0x613a313a7b693a303b733a313a2231223b7d, 1),
-(434, 0, 'config', 'config_tax_customer', 0x7368697070696e67, 0),
-(435, 0, 'config', 'config_customer_online', 0x30, 0),
-(436, 0, 'config', 'config_customer_group_id', 0x31, 0),
-(433, 0, 'config', 'config_tax_default', 0x7368697070696e67, 0),
-(432, 0, 'config', 'config_vat', 0x30, 0),
-(430, 0, 'config', 'config_voucher_max', 0x31303030, 0),
-(431, 0, 'config', 'config_tax', 0x31, 0),
-(429, 0, 'config', 'config_voucher_min', 0x31, 0),
-(428, 0, 'config', 'config_upload_allowed', 0x6a70672c204a50472c206a7065672c206769662c20706e672c20747874, 0),
-(426, 0, 'config', 'config_review_status', 0x31, 0),
-(427, 0, 'config', 'config_download', 0x31, 0),
-(425, 0, 'config', 'config_product_count', 0x30, 0),
-(424, 0, 'config', 'config_admin_limit', 0x3230, 0),
-(423, 0, 'config', 'config_catalog_limit', 0x3135, 0),
-(422, 0, 'config', 'config_weight_class_id', 0x31, 0),
-(421, 0, 'config', 'config_length_class_id', 0x31, 0),
-(419, 0, 'config', 'config_currency', 0x42524c, 0),
-(420, 0, 'config', 'config_currency_auto', 0x31, 0),
-(418, 0, 'config', 'config_admin_language', 0x70742d6272, 0),
-(417, 0, 'config', 'config_language', 0x70742d6272, 0),
-(416, 0, 'config', 'config_zone_id', 0x343634, 0),
-(414, 0, 'config', 'config_layout_id', 0x34, 0),
-(415, 0, 'config', 'config_country_id', 0x3330, 0),
-(413, 0, 'config', 'config_template', 0x64656661756c74, 0),
-(412, 0, 'config', 'config_meta_description', 0x4d792053746f7265, 0),
-(410, 0, 'config', 'config_fax', '', 0),
-(411, 0, 'config', 'config_title', 0x596f75722053746f7265, 0),
-(409, 0, 'config', 'config_telephone', 0x313233343536373839, 0),
-(408, 0, 'config', 'config_email', 0x6b6c656265722e6f6c697665697261406c6976652e636f6d, 0),
-(407, 0, 'config', 'config_address', 0x416464726573732031, 0),
-(406, 0, 'config', 'config_owner', 0x596f7572204e616d65, 0),
-(405, 0, 'config', 'config_name', 0x596f75722053746f7265, 0),
-(492, 0, 'config', 'config_compression', 0x30, 0),
-(493, 0, 'config', 'config_error_display', 0x31, 0),
-(494, 0, 'config', 'config_error_log', 0x31, 0),
-(495, 0, 'config', 'config_error_filename', 0x6572726f722e747874, 0),
-(496, 0, 'config', 'config_google_analytics', '', 0);
+(1793, 0, 'config', 'config_image_popup_width', 0x353030, 0),
+(1792, 0, 'config', 'config_image_thumb_height', 0x323238, 0),
+(1791, 0, 'config', 'config_image_thumb_width', 0x323238, 0),
+(1790, 0, 'config', 'config_image_category_height', 0x3830, 0),
+(1789, 0, 'config', 'config_image_category_width', 0x3830, 0),
+(1788, 0, 'config', 'config_icon', 0x646174612f636172742e706e67, 0),
+(1787, 0, 'config', 'config_logo', 0x646174612f6c6f676f2e706e67, 0),
+(1785, 0, 'config', 'config_commission', 0x35, 0),
+(1786, 0, 'config', 'config_return_status_id', 0x32, 0),
+(1784, 0, 'config', 'config_affiliate_id', 0x34, 0),
+(1783, 0, 'config', 'config_stock_status_id', 0x35, 0),
+(1782, 0, 'config', 'config_stock_checkout', 0x30, 0),
+(1781, 0, 'config', 'config_stock_warning', 0x30, 0),
+(1780, 0, 'config', 'config_stock_display', 0x30, 0),
+(1779, 0, 'config', 'config_complete_status_id', 0x35, 0),
+(1778, 0, 'config', 'config_order_status_id', 0x31, 0),
+(1777, 0, 'config', 'config_invoice_prefix', 0x494e562d323031322d3030, 0),
+(1776, 0, 'config', 'config_order_edit', 0x313030, 0),
+(1775, 0, 'config', 'config_checkout_id', 0x35, 0),
+(1774, 0, 'config', 'config_guest_checkout', 0x31, 0),
+(1773, 0, 'config', 'config_cart_weight', 0x31, 0),
+(1772, 0, 'config', 'config_account_id', 0x33, 0),
+(1771, 0, 'config', 'config_customer_price', 0x30, 0),
+(1770, 0, 'config', 'config_customer_group_display', 0x613a313a7b693a303b733a313a2231223b7d, 1),
+(1769, 0, 'config', 'config_customer_group_id', 0x31, 0),
+(1768, 0, 'config', 'config_customer_online', 0x30, 0),
+(1767, 0, 'config', 'config_tax_customer', 0x7368697070696e67, 0),
+(1766, 0, 'config', 'config_tax_default', 0x7368697070696e67, 0),
+(1765, 0, 'config', 'config_vat', 0x30, 0),
+(1764, 0, 'config', 'config_tax', 0x31, 0),
+(1763, 0, 'config', 'config_voucher_max', 0x31303030, 0),
+(1762, 0, 'config', 'config_voucher_min', 0x31, 0),
+(1761, 0, 'config', 'config_upload_allowed', 0x6a70672c204a50472c206a7065672c206769662c20706e672c20747874, 0),
+(1760, 0, 'config', 'config_download', 0x31, 0),
+(1759, 0, 'config', 'config_review_status', 0x31, 0),
+(1758, 0, 'config', 'config_product_count', 0x30, 0),
+(1757, 0, 'config', 'config_admin_limit', 0x3230, 0),
+(1756, 0, 'config', 'config_catalog_limit', 0x3135, 0),
+(1755, 0, 'config', 'config_weight_class_id', 0x31, 0),
+(1754, 0, 'config', 'config_length_class_id', 0x31, 0),
+(1753, 0, 'config', 'config_currency_auto', 0x31, 0),
+(1752, 0, 'config', 'config_currency', 0x42524c, 0),
+(1751, 0, 'config', 'config_admin_language', 0x70742d6272, 0),
+(1750, 0, 'config', 'config_language', 0x70742d6272, 0),
+(1749, 0, 'config', 'config_zone_id', 0x343634, 0),
+(1748, 0, 'config', 'config_country_id', 0x3330, 0),
+(1747, 0, 'config', 'config_layout_id', 0x34, 0),
+(1746, 0, 'config', 'config_template', 0x64656661756c74, 0),
+(1745, 0, 'config', 'config_meta_description', 0x4d792053746f7265, 0),
+(1744, 0, 'config', 'config_title', 0x596f75722053746f7265, 0),
+(1742, 0, 'config', 'config_fax', '', 0),
+(1743, 0, 'config', 'config_option_store', 0x30, 0),
+(1739, 0, 'config', 'config_address', 0x416464726573732031, 0),
+(1740, 0, 'config', 'config_email', 0x6b6c656265722e6f6c697665697261406c6976652e636f6d, 0),
+(1741, 0, 'config', 'config_telephone', 0x313233343536373839, 0),
+(1081, 0, 'correios', 'correios_prazo_adicional', '', 0),
+(1080, 0, 'correios', 'correios_adicional', '', 0),
+(1079, 0, 'correios', 'correios_declarar_valor', 0x6e, 0),
+(1078, 0, 'correios', 'correios_aviso_recebimento', 0x6e, 0),
+(1077, 0, 'correios', 'correios_mao_propria', 0x6e, 0),
+(1076, 0, 'correios', 'correios_contrato_senha', '', 0),
+(1075, 0, 'correios', 'correios_contrato_codigo', '', 0),
+(1074, 0, 'correios', 'correios_41106', 0x31, 0),
+(1073, 0, 'correios', 'correios_40010', 0x31, 0),
+(1072, 0, 'correios', 'correios_postcode', 0x3037303933303230, 0),
+(1082, 0, 'correios', 'correios_tax_class_id', 0x30, 0),
+(1083, 0, 'correios', 'correios_geo_zone_id', 0x30, 0),
+(1084, 0, 'correios', 'correios_status', 0x31, 0),
+(1085, 0, 'correios', 'correios_sort_order', '', 0),
+(1738, 0, 'config', 'config_owner', 0x596f7572204e616d65, 0),
+(1737, 0, 'config', 'config_name', 0x596f75722053746f7265, 0),
+(1830, 0, 'quickcheckout', 'quickcheckout_status', 0x31, 0),
+(1831, 0, 'quickcheckout', 'quickcheckout_newsletter', 0x31, 0),
+(1832, 0, 'quickcheckout', 'quickcheckout_survey', 0x30, 0),
+(1833, 0, 'quickcheckout', 'quickcheckout_company', 0x31, 0),
+(1834, 0, 'quickcheckout', 'quickcheckout_address_2', 0x31, 0),
+(1835, 0, 'quickcheckout', 'quickcheckout_fax', 0x31, 0),
+(1836, 0, 'quickcheckout', 'quickcheckout_city', 0x31, 0),
+(1837, 0, 'quickcheckout', 'quickcheckout_postcode', 0x31, 0),
+(1838, 0, 'quickcheckout', 'quickcheckout_country', 0x31, 0),
+(1839, 0, 'quickcheckout', 'quickcheckout_zone', 0x31, 0),
+(1840, 0, 'quickcheckout', 'quickcheckout_shipping', 0x31, 0),
+(1841, 0, 'quickcheckout', 'quickcheckout_payment', 0x31, 0);
 
 -- --------------------------------------------------------
 
@@ -2611,7 +2635,7 @@ INSERT INTO `oc_setting` (`setting_id`, `store_id`, `group`, `key`, `value`, `se
 -- Estrutura da tabela `oc_stock_status`
 --
 
-CREATE TABLE `oc_stock_status` (
+CREATE TABLE IF NOT EXISTS `oc_stock_status` (
   `stock_status_id` int(11) NOT NULL AUTO_INCREMENT,
   `language_id` int(11) NOT NULL,
   `name` varchar(32) COLLATE utf8_bin NOT NULL,
@@ -2638,7 +2662,7 @@ INSERT INTO `oc_stock_status` (`stock_status_id`, `language_id`, `name`) VALUES
 -- Estrutura da tabela `oc_store`
 --
 
-CREATE TABLE `oc_store` (
+CREATE TABLE IF NOT EXISTS `oc_store` (
   `store_id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(64) COLLATE utf8_bin NOT NULL,
   `url` varchar(255) COLLATE utf8_bin NOT NULL,
@@ -2657,7 +2681,7 @@ CREATE TABLE `oc_store` (
 -- Estrutura da tabela `oc_tax_class`
 --
 
-CREATE TABLE `oc_tax_class` (
+CREATE TABLE IF NOT EXISTS `oc_tax_class` (
   `tax_class_id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(32) COLLATE utf8_bin NOT NULL DEFAULT '',
   `description` varchar(255) COLLATE utf8_bin NOT NULL DEFAULT '',
@@ -2679,7 +2703,7 @@ INSERT INTO `oc_tax_class` (`tax_class_id`, `title`, `description`, `date_added`
 -- Estrutura da tabela `oc_tax_rate`
 --
 
-CREATE TABLE `oc_tax_rate` (
+CREATE TABLE IF NOT EXISTS `oc_tax_rate` (
   `tax_rate_id` int(11) NOT NULL AUTO_INCREMENT,
   `geo_zone_id` int(11) NOT NULL DEFAULT '0',
   `name` varchar(32) COLLATE utf8_bin NOT NULL,
@@ -2703,7 +2727,7 @@ INSERT INTO `oc_tax_rate` (`tax_rate_id`, `geo_zone_id`, `name`, `rate`, `type`,
 -- Estrutura da tabela `oc_tax_rate_to_customer_group`
 --
 
-CREATE TABLE `oc_tax_rate_to_customer_group` (
+CREATE TABLE IF NOT EXISTS `oc_tax_rate_to_customer_group` (
   `tax_rate_id` int(11) NOT NULL,
   `customer_group_id` int(11) NOT NULL,
   PRIMARY KEY (`tax_rate_id`,`customer_group_id`)
@@ -2720,7 +2744,7 @@ CREATE TABLE `oc_tax_rate_to_customer_group` (
 -- Estrutura da tabela `oc_tax_rule`
 --
 
-CREATE TABLE `oc_tax_rule` (
+CREATE TABLE IF NOT EXISTS `oc_tax_rule` (
   `tax_rule_id` int(11) NOT NULL AUTO_INCREMENT,
   `tax_class_id` int(11) NOT NULL,
   `tax_rate_id` int(11) NOT NULL,
@@ -2742,12 +2766,12 @@ INSERT INTO `oc_tax_rule` (`tax_rule_id`, `tax_class_id`, `tax_rate_id`, `based`
 -- Estrutura da tabela `oc_url_alias`
 --
 
-CREATE TABLE `oc_url_alias` (
+CREATE TABLE IF NOT EXISTS `oc_url_alias` (
   `url_alias_id` int(11) NOT NULL AUTO_INCREMENT,
   `query` varchar(255) COLLATE utf8_bin NOT NULL,
   `keyword` varchar(255) COLLATE utf8_bin NOT NULL,
   PRIMARY KEY (`url_alias_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=776 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=784 ;
 
 --
 -- Extraindo dados da tabela `oc_url_alias`
@@ -2759,7 +2783,7 @@ INSERT INTO `oc_url_alias` (`url_alias_id`, `query`, `keyword`) VALUES
 (505, 'category_id=27', 'mac'),
 (730, 'manufacturer_id=8', 'apple'),
 (775, 'information_id=4', 'about_us'),
-(774, 'product_id=42', 'test'),
+(783, 'product_id=42', 'test'),
 (767, 'category_id=34', 'mp3-players'),
 (536, 'category_id=36', 'Normal');
 
@@ -2769,7 +2793,7 @@ INSERT INTO `oc_url_alias` (`url_alias_id`, `query`, `keyword`) VALUES
 -- Estrutura da tabela `oc_user`
 --
 
-CREATE TABLE `oc_user` (
+CREATE TABLE IF NOT EXISTS `oc_user` (
   `user_id` int(11) NOT NULL AUTO_INCREMENT,
   `user_group_id` int(11) NOT NULL,
   `username` varchar(20) COLLATE utf8_bin NOT NULL DEFAULT '',
@@ -2791,7 +2815,7 @@ CREATE TABLE `oc_user` (
 -- Estrutura da tabela `oc_user_group`
 --
 
-CREATE TABLE `oc_user_group` (
+CREATE TABLE IF NOT EXISTS `oc_user_group` (
   `user_group_id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(64) COLLATE utf8_bin NOT NULL,
   `permission` text COLLATE utf8_bin NOT NULL,
@@ -2803,7 +2827,7 @@ CREATE TABLE `oc_user_group` (
 --
 
 INSERT INTO `oc_user_group` (`user_group_id`, `name`, `permission`) VALUES
-(1, 'Administrador', 0x613a323a7b733a363a22616363657373223b613a3132303a7b693a303b733a31373a22636174616c6f672f617474726962757465223b693a313b733a32333a22636174616c6f672f6174747269627574655f67726f7570223b693a323b733a31363a22636174616c6f672f63617465676f7279223b693a333b733a31363a22636174616c6f672f646f776e6c6f6164223b693a343b733a31393a22636174616c6f672f696e666f726d6174696f6e223b693a353b733a32303a22636174616c6f672f6d616e756661637475726572223b693a363b733a31343a22636174616c6f672f6f7074696f6e223b693a373b733a31353a22636174616c6f672f70726f64756374223b693a383b733a31343a22636174616c6f672f726576696577223b693a393b733a31383a22636f6d6d6f6e2f66696c656d616e61676572223b693a31303b733a31333a2264657369676e2f62616e6e6572223b693a31313b733a31333a2264657369676e2f6c61796f7574223b693a31323b733a31343a22657874656e73696f6e2f66656564223b693a31333b733a31363a22657874656e73696f6e2f6d6f64756c65223b693a31343b733a31373a22657874656e73696f6e2f7061796d656e74223b693a31353b733a31383a22657874656e73696f6e2f7368697070696e67223b693a31363b733a31353a22657874656e73696f6e2f746f74616c223b693a31373b733a31363a22666565642f676f6f676c655f62617365223b693a31383b733a31393a22666565642f676f6f676c655f736974656d6170223b693a31393b733a32303a226c6f63616c69736174696f6e2f636f756e747279223b693a32303b733a32313a226c6f63616c69736174696f6e2f63757272656e6379223b693a32313b733a32313a226c6f63616c69736174696f6e2f67656f5f7a6f6e65223b693a32323b733a32313a226c6f63616c69736174696f6e2f6c616e6775616765223b693a32333b733a32353a226c6f63616c69736174696f6e2f6c656e6774685f636c617373223b693a32343b733a32353a226c6f63616c69736174696f6e2f6f726465725f737461747573223b693a32353b733a32363a226c6f63616c69736174696f6e2f72657475726e5f616374696f6e223b693a32363b733a32363a226c6f63616c69736174696f6e2f72657475726e5f726561736f6e223b693a32373b733a32363a226c6f63616c69736174696f6e2f72657475726e5f737461747573223b693a32383b733a32353a226c6f63616c69736174696f6e2f73746f636b5f737461747573223b693a32393b733a32323a226c6f63616c69736174696f6e2f7461785f636c617373223b693a33303b733a32313a226c6f63616c69736174696f6e2f7461785f72617465223b693a33313b733a32353a226c6f63616c69736174696f6e2f7765696768745f636c617373223b693a33323b733a31373a226c6f63616c69736174696f6e2f7a6f6e65223b693a33333b733a31343a226d6f64756c652f6163636f756e74223b693a33343b733a31363a226d6f64756c652f616666696c69617465223b693a33353b733a31333a226d6f64756c652f62616e6e6572223b693a33363b733a31373a226d6f64756c652f6265737473656c6c6572223b693a33373b733a31353a226d6f64756c652f6361726f7573656c223b693a33383b733a31353a226d6f64756c652f63617465676f7279223b693a33393b733a31353a226d6f64756c652f6665617475726564223b693a34303b733a31383a226d6f64756c652f676f6f676c655f74616c6b223b693a34313b733a31383a226d6f64756c652f696e666f726d6174696f6e223b693a34323b733a31333a226d6f64756c652f6c6174657374223b693a34333b733a31363a226d6f64756c652f736c69646573686f77223b693a34343b733a31343a226d6f64756c652f7370656369616c223b693a34353b733a31323a226d6f64756c652f73746f7265223b693a34363b733a31343a226d6f64756c652f77656c636f6d65223b693a34373b733a32343a227061796d656e742f617574686f72697a656e65745f61696d223b693a34383b733a32313a227061796d656e742f62616e6b5f7472616e73666572223b693a34393b733a31343a227061796d656e742f636865717565223b693a35303b733a31313a227061796d656e742f636f64223b693a35313b733a32313a227061796d656e742f667265655f636865636b6f7574223b693a35323b733a31343a227061796d656e742f6c6971706179223b693a35333b733a32303a227061796d656e742f6d6f6e6579626f6f6b657273223b693a35343b733a31343a227061796d656e742f6e6f63686578223b693a35353b733a31373a227061796d656e742f70616773656775726f223b693a35363b733a31353a227061796d656e742f7061796d617465223b693a35373b733a31363a227061796d656e742f706179706f696e74223b693a35383b733a31333a227061796d656e742f7061797a61223b693a35393b733a32363a227061796d656e742f70657270657475616c5f7061796d656e7473223b693a36303b733a31343a227061796d656e742f70705f70726f223b693a36313b733a31373a227061796d656e742f70705f70726f5f756b223b693a36323b733a31393a227061796d656e742f70705f7374616e64617264223b693a36333b733a31353a227061796d656e742f73616765706179223b693a36343b733a32323a227061796d656e742f736167657061795f646972656374223b693a36353b733a31383a227061796d656e742f736167657061795f7573223b693a36363b733a31393a227061796d656e742f74776f636865636b6f7574223b693a36373b733a32383a227061796d656e742f7765625f7061796d656e745f736f667477617265223b693a36383b733a31363a227061796d656e742f776f726c64706179223b693a36393b733a32373a227265706f72742f616666696c696174655f636f6d6d697373696f6e223b693a37303b733a32323a227265706f72742f637573746f6d65725f637265646974223b693a37313b733a32323a227265706f72742f637573746f6d65725f6f6e6c696e65223b693a37323b733a32313a227265706f72742f637573746f6d65725f6f72646572223b693a37333b733a32323a227265706f72742f637573746f6d65725f726577617264223b693a37343b733a32343a227265706f72742f70726f647563745f707572636861736564223b693a37353b733a32313a227265706f72742f70726f647563745f766965776564223b693a37363b733a31383a227265706f72742f73616c655f636f75706f6e223b693a37373b733a31373a227265706f72742f73616c655f6f72646572223b693a37383b733a31383a227265706f72742f73616c655f72657475726e223b693a37393b733a32303a227265706f72742f73616c655f7368697070696e67223b693a38303b733a31353a227265706f72742f73616c655f746178223b693a38313b733a31343a2273616c652f616666696c69617465223b693a38323b733a31323a2273616c652f636f6e74616374223b693a38333b733a31313a2273616c652f636f75706f6e223b693a38343b733a31333a2273616c652f637573746f6d6572223b693a38353b733a32333a2273616c652f637573746f6d65725f626c61636b6c697374223b693a38363b733a31393a2273616c652f637573746f6d65725f67726f7570223b693a38373b733a31303a2273616c652f6f72646572223b693a38383b733a31313a2273616c652f72657475726e223b693a38393b733a31323a2273616c652f766f7563686572223b693a39303b733a31383a2273616c652f766f75636865725f7468656d65223b693a39313b733a31353a2273657474696e672f73657474696e67223b693a39323b733a31333a2273657474696e672f73746f7265223b693a39333b733a31363a227368697070696e672f617573706f7374223b693a39343b733a31373a227368697070696e672f636974796c696e6b223b693a39353b733a31343a227368697070696e672f6665646578223b693a39363b733a31333a227368697070696e672f666c6174223b693a39373b733a31333a227368697070696e672f66726565223b693a39383b733a31333a227368697070696e672f6974656d223b693a39393b733a32333a227368697070696e672f70617263656c666f7263655f3438223b693a3130303b733a31353a227368697070696e672f7069636b7570223b693a3130313b733a31393a227368697070696e672f726f79616c5f6d61696c223b693a3130323b733a31323a227368697070696e672f757073223b693a3130333b733a31333a227368697070696e672f75737073223b693a3130343b733a31353a227368697070696e672f776569676874223b693a3130353b733a31313a22746f6f6c2f6261636b7570223b693a3130363b733a31343a22746f6f6c2f6572726f725f6c6f67223b693a3130373b733a31323a22746f74616c2f636f75706f6e223b693a3130383b733a31323a22746f74616c2f637265646974223b693a3130393b733a31343a22746f74616c2f68616e646c696e67223b693a3131303b733a31363a22746f74616c2f6b6c61726e615f666565223b693a3131313b733a31393a22746f74616c2f6c6f775f6f726465725f666565223b693a3131323b733a31323a22746f74616c2f726577617264223b693a3131333b733a31343a22746f74616c2f7368697070696e67223b693a3131343b733a31353a22746f74616c2f7375625f746f74616c223b693a3131353b733a393a22746f74616c2f746178223b693a3131363b733a31313a22746f74616c2f746f74616c223b693a3131373b733a31333a22746f74616c2f766f7563686572223b693a3131383b733a393a22757365722f75736572223b693a3131393b733a32303a22757365722f757365725f7065726d697373696f6e223b7d733a363a226d6f64696679223b613a3132303a7b693a303b733a31373a22636174616c6f672f617474726962757465223b693a313b733a32333a22636174616c6f672f6174747269627574655f67726f7570223b693a323b733a31363a22636174616c6f672f63617465676f7279223b693a333b733a31363a22636174616c6f672f646f776e6c6f6164223b693a343b733a31393a22636174616c6f672f696e666f726d6174696f6e223b693a353b733a32303a22636174616c6f672f6d616e756661637475726572223b693a363b733a31343a22636174616c6f672f6f7074696f6e223b693a373b733a31353a22636174616c6f672f70726f64756374223b693a383b733a31343a22636174616c6f672f726576696577223b693a393b733a31383a22636f6d6d6f6e2f66696c656d616e61676572223b693a31303b733a31333a2264657369676e2f62616e6e6572223b693a31313b733a31333a2264657369676e2f6c61796f7574223b693a31323b733a31343a22657874656e73696f6e2f66656564223b693a31333b733a31363a22657874656e73696f6e2f6d6f64756c65223b693a31343b733a31373a22657874656e73696f6e2f7061796d656e74223b693a31353b733a31383a22657874656e73696f6e2f7368697070696e67223b693a31363b733a31353a22657874656e73696f6e2f746f74616c223b693a31373b733a31363a22666565642f676f6f676c655f62617365223b693a31383b733a31393a22666565642f676f6f676c655f736974656d6170223b693a31393b733a32303a226c6f63616c69736174696f6e2f636f756e747279223b693a32303b733a32313a226c6f63616c69736174696f6e2f63757272656e6379223b693a32313b733a32313a226c6f63616c69736174696f6e2f67656f5f7a6f6e65223b693a32323b733a32313a226c6f63616c69736174696f6e2f6c616e6775616765223b693a32333b733a32353a226c6f63616c69736174696f6e2f6c656e6774685f636c617373223b693a32343b733a32353a226c6f63616c69736174696f6e2f6f726465725f737461747573223b693a32353b733a32363a226c6f63616c69736174696f6e2f72657475726e5f616374696f6e223b693a32363b733a32363a226c6f63616c69736174696f6e2f72657475726e5f726561736f6e223b693a32373b733a32363a226c6f63616c69736174696f6e2f72657475726e5f737461747573223b693a32383b733a32353a226c6f63616c69736174696f6e2f73746f636b5f737461747573223b693a32393b733a32323a226c6f63616c69736174696f6e2f7461785f636c617373223b693a33303b733a32313a226c6f63616c69736174696f6e2f7461785f72617465223b693a33313b733a32353a226c6f63616c69736174696f6e2f7765696768745f636c617373223b693a33323b733a31373a226c6f63616c69736174696f6e2f7a6f6e65223b693a33333b733a31343a226d6f64756c652f6163636f756e74223b693a33343b733a31363a226d6f64756c652f616666696c69617465223b693a33353b733a31333a226d6f64756c652f62616e6e6572223b693a33363b733a31373a226d6f64756c652f6265737473656c6c6572223b693a33373b733a31353a226d6f64756c652f6361726f7573656c223b693a33383b733a31353a226d6f64756c652f63617465676f7279223b693a33393b733a31353a226d6f64756c652f6665617475726564223b693a34303b733a31383a226d6f64756c652f676f6f676c655f74616c6b223b693a34313b733a31383a226d6f64756c652f696e666f726d6174696f6e223b693a34323b733a31333a226d6f64756c652f6c6174657374223b693a34333b733a31363a226d6f64756c652f736c69646573686f77223b693a34343b733a31343a226d6f64756c652f7370656369616c223b693a34353b733a31323a226d6f64756c652f73746f7265223b693a34363b733a31343a226d6f64756c652f77656c636f6d65223b693a34373b733a32343a227061796d656e742f617574686f72697a656e65745f61696d223b693a34383b733a32313a227061796d656e742f62616e6b5f7472616e73666572223b693a34393b733a31343a227061796d656e742f636865717565223b693a35303b733a31313a227061796d656e742f636f64223b693a35313b733a32313a227061796d656e742f667265655f636865636b6f7574223b693a35323b733a31343a227061796d656e742f6c6971706179223b693a35333b733a32303a227061796d656e742f6d6f6e6579626f6f6b657273223b693a35343b733a31343a227061796d656e742f6e6f63686578223b693a35353b733a31373a227061796d656e742f70616773656775726f223b693a35363b733a31353a227061796d656e742f7061796d617465223b693a35373b733a31363a227061796d656e742f706179706f696e74223b693a35383b733a31333a227061796d656e742f7061797a61223b693a35393b733a32363a227061796d656e742f70657270657475616c5f7061796d656e7473223b693a36303b733a31343a227061796d656e742f70705f70726f223b693a36313b733a31373a227061796d656e742f70705f70726f5f756b223b693a36323b733a31393a227061796d656e742f70705f7374616e64617264223b693a36333b733a31353a227061796d656e742f73616765706179223b693a36343b733a32323a227061796d656e742f736167657061795f646972656374223b693a36353b733a31383a227061796d656e742f736167657061795f7573223b693a36363b733a31393a227061796d656e742f74776f636865636b6f7574223b693a36373b733a32383a227061796d656e742f7765625f7061796d656e745f736f667477617265223b693a36383b733a31363a227061796d656e742f776f726c64706179223b693a36393b733a32373a227265706f72742f616666696c696174655f636f6d6d697373696f6e223b693a37303b733a32323a227265706f72742f637573746f6d65725f637265646974223b693a37313b733a32323a227265706f72742f637573746f6d65725f6f6e6c696e65223b693a37323b733a32313a227265706f72742f637573746f6d65725f6f72646572223b693a37333b733a32323a227265706f72742f637573746f6d65725f726577617264223b693a37343b733a32343a227265706f72742f70726f647563745f707572636861736564223b693a37353b733a32313a227265706f72742f70726f647563745f766965776564223b693a37363b733a31383a227265706f72742f73616c655f636f75706f6e223b693a37373b733a31373a227265706f72742f73616c655f6f72646572223b693a37383b733a31383a227265706f72742f73616c655f72657475726e223b693a37393b733a32303a227265706f72742f73616c655f7368697070696e67223b693a38303b733a31353a227265706f72742f73616c655f746178223b693a38313b733a31343a2273616c652f616666696c69617465223b693a38323b733a31323a2273616c652f636f6e74616374223b693a38333b733a31313a2273616c652f636f75706f6e223b693a38343b733a31333a2273616c652f637573746f6d6572223b693a38353b733a32333a2273616c652f637573746f6d65725f626c61636b6c697374223b693a38363b733a31393a2273616c652f637573746f6d65725f67726f7570223b693a38373b733a31303a2273616c652f6f72646572223b693a38383b733a31313a2273616c652f72657475726e223b693a38393b733a31323a2273616c652f766f7563686572223b693a39303b733a31383a2273616c652f766f75636865725f7468656d65223b693a39313b733a31353a2273657474696e672f73657474696e67223b693a39323b733a31333a2273657474696e672f73746f7265223b693a39333b733a31363a227368697070696e672f617573706f7374223b693a39343b733a31373a227368697070696e672f636974796c696e6b223b693a39353b733a31343a227368697070696e672f6665646578223b693a39363b733a31333a227368697070696e672f666c6174223b693a39373b733a31333a227368697070696e672f66726565223b693a39383b733a31333a227368697070696e672f6974656d223b693a39393b733a32333a227368697070696e672f70617263656c666f7263655f3438223b693a3130303b733a31353a227368697070696e672f7069636b7570223b693a3130313b733a31393a227368697070696e672f726f79616c5f6d61696c223b693a3130323b733a31323a227368697070696e672f757073223b693a3130333b733a31333a227368697070696e672f75737073223b693a3130343b733a31353a227368697070696e672f776569676874223b693a3130353b733a31313a22746f6f6c2f6261636b7570223b693a3130363b733a31343a22746f6f6c2f6572726f725f6c6f67223b693a3130373b733a31323a22746f74616c2f636f75706f6e223b693a3130383b733a31323a22746f74616c2f637265646974223b693a3130393b733a31343a22746f74616c2f68616e646c696e67223b693a3131303b733a31363a22746f74616c2f6b6c61726e615f666565223b693a3131313b733a31393a22746f74616c2f6c6f775f6f726465725f666565223b693a3131323b733a31323a22746f74616c2f726577617264223b693a3131333b733a31343a22746f74616c2f7368697070696e67223b693a3131343b733a31353a22746f74616c2f7375625f746f74616c223b693a3131353b733a393a22746f74616c2f746178223b693a3131363b733a31313a22746f74616c2f746f74616c223b693a3131373b733a31333a22746f74616c2f766f7563686572223b693a3131383b733a393a22757365722f75736572223b693a3131393b733a32303a22757365722f757365725f7065726d697373696f6e223b7d7d),
+(1, 'Administrador', 0x613a323a7b733a363a22616363657373223b613a3132333a7b693a303b733a31373a22636174616c6f672f617474726962757465223b693a313b733a32333a22636174616c6f672f6174747269627574655f67726f7570223b693a323b733a31363a22636174616c6f672f63617465676f7279223b693a333b733a31363a22636174616c6f672f646f776e6c6f6164223b693a343b733a31393a22636174616c6f672f696e666f726d6174696f6e223b693a353b733a32303a22636174616c6f672f6d616e756661637475726572223b693a363b733a31343a22636174616c6f672f6f7074696f6e223b693a373b733a31353a22636174616c6f672f70726f64756374223b693a383b733a31343a22636174616c6f672f726576696577223b693a393b733a31383a22636f6d6d6f6e2f66696c656d616e61676572223b693a31303b733a31333a2264657369676e2f62616e6e6572223b693a31313b733a31333a2264657369676e2f6c61796f7574223b693a31323b733a31343a22657874656e73696f6e2f66656564223b693a31333b733a31363a22657874656e73696f6e2f6d6f64756c65223b693a31343b733a31373a22657874656e73696f6e2f7061796d656e74223b693a31353b733a31383a22657874656e73696f6e2f7368697070696e67223b693a31363b733a31353a22657874656e73696f6e2f746f74616c223b693a31373b733a31363a22666565642f676f6f676c655f62617365223b693a31383b733a31393a22666565642f676f6f676c655f736974656d6170223b693a31393b733a32303a226c6f63616c69736174696f6e2f636f756e747279223b693a32303b733a32313a226c6f63616c69736174696f6e2f63757272656e6379223b693a32313b733a32313a226c6f63616c69736174696f6e2f67656f5f7a6f6e65223b693a32323b733a32313a226c6f63616c69736174696f6e2f6c616e6775616765223b693a32333b733a32353a226c6f63616c69736174696f6e2f6c656e6774685f636c617373223b693a32343b733a32353a226c6f63616c69736174696f6e2f6f726465725f737461747573223b693a32353b733a32363a226c6f63616c69736174696f6e2f72657475726e5f616374696f6e223b693a32363b733a32363a226c6f63616c69736174696f6e2f72657475726e5f726561736f6e223b693a32373b733a32363a226c6f63616c69736174696f6e2f72657475726e5f737461747573223b693a32383b733a32353a226c6f63616c69736174696f6e2f73746f636b5f737461747573223b693a32393b733a32323a226c6f63616c69736174696f6e2f7461785f636c617373223b693a33303b733a32313a226c6f63616c69736174696f6e2f7461785f72617465223b693a33313b733a32353a226c6f63616c69736174696f6e2f7765696768745f636c617373223b693a33323b733a31373a226c6f63616c69736174696f6e2f7a6f6e65223b693a33333b733a31343a226d6f64756c652f6163636f756e74223b693a33343b733a31363a226d6f64756c652f616666696c69617465223b693a33353b733a31333a226d6f64756c652f62616e6e6572223b693a33363b733a31373a226d6f64756c652f6265737473656c6c6572223b693a33373b733a31353a226d6f64756c652f6361726f7573656c223b693a33383b733a31353a226d6f64756c652f63617465676f7279223b693a33393b733a31353a226d6f64756c652f6665617475726564223b693a34303b733a31383a226d6f64756c652f676f6f676c655f74616c6b223b693a34313b733a31383a226d6f64756c652f696e666f726d6174696f6e223b693a34323b733a31333a226d6f64756c652f6c6174657374223b693a34333b733a31363a226d6f64756c652f736c69646573686f77223b693a34343b733a31343a226d6f64756c652f7370656369616c223b693a34353b733a31323a226d6f64756c652f73746f7265223b693a34363b733a31343a226d6f64756c652f77656c636f6d65223b693a34373b733a32343a227061796d656e742f617574686f72697a656e65745f61696d223b693a34383b733a32313a227061796d656e742f62616e6b5f7472616e73666572223b693a34393b733a31343a227061796d656e742f636865717565223b693a35303b733a31313a227061796d656e742f636f64223b693a35313b733a32313a227061796d656e742f667265655f636865636b6f7574223b693a35323b733a31343a227061796d656e742f6c6971706179223b693a35333b733a32303a227061796d656e742f6d6f6e6579626f6f6b657273223b693a35343b733a31343a227061796d656e742f6e6f63686578223b693a35353b733a31373a227061796d656e742f70616773656775726f223b693a35363b733a31353a227061796d656e742f7061796d617465223b693a35373b733a31363a227061796d656e742f706179706f696e74223b693a35383b733a31333a227061796d656e742f7061797a61223b693a35393b733a32363a227061796d656e742f70657270657475616c5f7061796d656e7473223b693a36303b733a31343a227061796d656e742f70705f70726f223b693a36313b733a31373a227061796d656e742f70705f70726f5f756b223b693a36323b733a31393a227061796d656e742f70705f7374616e64617264223b693a36333b733a31353a227061796d656e742f73616765706179223b693a36343b733a32323a227061796d656e742f736167657061795f646972656374223b693a36353b733a31383a227061796d656e742f736167657061795f7573223b693a36363b733a31393a227061796d656e742f74776f636865636b6f7574223b693a36373b733a32383a227061796d656e742f7765625f7061796d656e745f736f667477617265223b693a36383b733a31363a227061796d656e742f776f726c64706179223b693a36393b733a32373a227265706f72742f616666696c696174655f636f6d6d697373696f6e223b693a37303b733a32323a227265706f72742f637573746f6d65725f637265646974223b693a37313b733a32323a227265706f72742f637573746f6d65725f6f6e6c696e65223b693a37323b733a32313a227265706f72742f637573746f6d65725f6f72646572223b693a37333b733a32323a227265706f72742f637573746f6d65725f726577617264223b693a37343b733a32343a227265706f72742f70726f647563745f707572636861736564223b693a37353b733a32313a227265706f72742f70726f647563745f766965776564223b693a37363b733a31383a227265706f72742f73616c655f636f75706f6e223b693a37373b733a31373a227265706f72742f73616c655f6f72646572223b693a37383b733a31383a227265706f72742f73616c655f72657475726e223b693a37393b733a32303a227265706f72742f73616c655f7368697070696e67223b693a38303b733a31353a227265706f72742f73616c655f746178223b693a38313b733a31343a2273616c652f616666696c69617465223b693a38323b733a31323a2273616c652f636f6e74616374223b693a38333b733a31313a2273616c652f636f75706f6e223b693a38343b733a31333a2273616c652f637573746f6d6572223b693a38353b733a32333a2273616c652f637573746f6d65725f626c61636b6c697374223b693a38363b733a31393a2273616c652f637573746f6d65725f67726f7570223b693a38373b733a31303a2273616c652f6f72646572223b693a38383b733a31313a2273616c652f72657475726e223b693a38393b733a31323a2273616c652f766f7563686572223b693a39303b733a31383a2273616c652f766f75636865725f7468656d65223b693a39313b733a31353a2273657474696e672f73657474696e67223b693a39323b733a31333a2273657474696e672f73746f7265223b693a39333b733a31363a227368697070696e672f617573706f7374223b693a39343b733a31373a227368697070696e672f636974796c696e6b223b693a39353b733a31343a227368697070696e672f6665646578223b693a39363b733a31333a227368697070696e672f666c6174223b693a39373b733a31333a227368697070696e672f66726565223b693a39383b733a31333a227368697070696e672f6974656d223b693a39393b733a32333a227368697070696e672f70617263656c666f7263655f3438223b693a3130303b733a31353a227368697070696e672f7069636b7570223b693a3130313b733a31393a227368697070696e672f726f79616c5f6d61696c223b693a3130323b733a31323a227368697070696e672f757073223b693a3130333b733a31333a227368697070696e672f75737073223b693a3130343b733a31353a227368697070696e672f776569676874223b693a3130353b733a31313a22746f6f6c2f6261636b7570223b693a3130363b733a31343a22746f6f6c2f6572726f725f6c6f67223b693a3130373b733a31323a22746f74616c2f636f75706f6e223b693a3130383b733a31323a22746f74616c2f637265646974223b693a3130393b733a31343a22746f74616c2f68616e646c696e67223b693a3131303b733a31363a22746f74616c2f6b6c61726e615f666565223b693a3131313b733a31393a22746f74616c2f6c6f775f6f726465725f666565223b693a3131323b733a31323a22746f74616c2f726577617264223b693a3131333b733a31343a22746f74616c2f7368697070696e67223b693a3131343b733a31353a22746f74616c2f7375625f746f74616c223b693a3131353b733a393a22746f74616c2f746178223b693a3131363b733a31313a22746f74616c2f746f74616c223b693a3131373b733a31333a22746f74616c2f766f7563686572223b693a3131383b733a393a22757365722f75736572223b693a3131393b733a32303a22757365722f757365725f7065726d697373696f6e223b693a3132303b733a32303a226d6f64756c652f717569636b636865636b6f7574223b693a3132313b733a31363a226d6f64756c652f6f70656e73746f636b223b693a3132323b733a31373a227368697070696e672f636f727265696f73223b7d733a363a226d6f64696679223b613a3132333a7b693a303b733a31373a22636174616c6f672f617474726962757465223b693a313b733a32333a22636174616c6f672f6174747269627574655f67726f7570223b693a323b733a31363a22636174616c6f672f63617465676f7279223b693a333b733a31363a22636174616c6f672f646f776e6c6f6164223b693a343b733a31393a22636174616c6f672f696e666f726d6174696f6e223b693a353b733a32303a22636174616c6f672f6d616e756661637475726572223b693a363b733a31343a22636174616c6f672f6f7074696f6e223b693a373b733a31353a22636174616c6f672f70726f64756374223b693a383b733a31343a22636174616c6f672f726576696577223b693a393b733a31383a22636f6d6d6f6e2f66696c656d616e61676572223b693a31303b733a31333a2264657369676e2f62616e6e6572223b693a31313b733a31333a2264657369676e2f6c61796f7574223b693a31323b733a31343a22657874656e73696f6e2f66656564223b693a31333b733a31363a22657874656e73696f6e2f6d6f64756c65223b693a31343b733a31373a22657874656e73696f6e2f7061796d656e74223b693a31353b733a31383a22657874656e73696f6e2f7368697070696e67223b693a31363b733a31353a22657874656e73696f6e2f746f74616c223b693a31373b733a31363a22666565642f676f6f676c655f62617365223b693a31383b733a31393a22666565642f676f6f676c655f736974656d6170223b693a31393b733a32303a226c6f63616c69736174696f6e2f636f756e747279223b693a32303b733a32313a226c6f63616c69736174696f6e2f63757272656e6379223b693a32313b733a32313a226c6f63616c69736174696f6e2f67656f5f7a6f6e65223b693a32323b733a32313a226c6f63616c69736174696f6e2f6c616e6775616765223b693a32333b733a32353a226c6f63616c69736174696f6e2f6c656e6774685f636c617373223b693a32343b733a32353a226c6f63616c69736174696f6e2f6f726465725f737461747573223b693a32353b733a32363a226c6f63616c69736174696f6e2f72657475726e5f616374696f6e223b693a32363b733a32363a226c6f63616c69736174696f6e2f72657475726e5f726561736f6e223b693a32373b733a32363a226c6f63616c69736174696f6e2f72657475726e5f737461747573223b693a32383b733a32353a226c6f63616c69736174696f6e2f73746f636b5f737461747573223b693a32393b733a32323a226c6f63616c69736174696f6e2f7461785f636c617373223b693a33303b733a32313a226c6f63616c69736174696f6e2f7461785f72617465223b693a33313b733a32353a226c6f63616c69736174696f6e2f7765696768745f636c617373223b693a33323b733a31373a226c6f63616c69736174696f6e2f7a6f6e65223b693a33333b733a31343a226d6f64756c652f6163636f756e74223b693a33343b733a31363a226d6f64756c652f616666696c69617465223b693a33353b733a31333a226d6f64756c652f62616e6e6572223b693a33363b733a31373a226d6f64756c652f6265737473656c6c6572223b693a33373b733a31353a226d6f64756c652f6361726f7573656c223b693a33383b733a31353a226d6f64756c652f63617465676f7279223b693a33393b733a31353a226d6f64756c652f6665617475726564223b693a34303b733a31383a226d6f64756c652f676f6f676c655f74616c6b223b693a34313b733a31383a226d6f64756c652f696e666f726d6174696f6e223b693a34323b733a31333a226d6f64756c652f6c6174657374223b693a34333b733a31363a226d6f64756c652f736c69646573686f77223b693a34343b733a31343a226d6f64756c652f7370656369616c223b693a34353b733a31323a226d6f64756c652f73746f7265223b693a34363b733a31343a226d6f64756c652f77656c636f6d65223b693a34373b733a32343a227061796d656e742f617574686f72697a656e65745f61696d223b693a34383b733a32313a227061796d656e742f62616e6b5f7472616e73666572223b693a34393b733a31343a227061796d656e742f636865717565223b693a35303b733a31313a227061796d656e742f636f64223b693a35313b733a32313a227061796d656e742f667265655f636865636b6f7574223b693a35323b733a31343a227061796d656e742f6c6971706179223b693a35333b733a32303a227061796d656e742f6d6f6e6579626f6f6b657273223b693a35343b733a31343a227061796d656e742f6e6f63686578223b693a35353b733a31373a227061796d656e742f70616773656775726f223b693a35363b733a31353a227061796d656e742f7061796d617465223b693a35373b733a31363a227061796d656e742f706179706f696e74223b693a35383b733a31333a227061796d656e742f7061797a61223b693a35393b733a32363a227061796d656e742f70657270657475616c5f7061796d656e7473223b693a36303b733a31343a227061796d656e742f70705f70726f223b693a36313b733a31373a227061796d656e742f70705f70726f5f756b223b693a36323b733a31393a227061796d656e742f70705f7374616e64617264223b693a36333b733a31353a227061796d656e742f73616765706179223b693a36343b733a32323a227061796d656e742f736167657061795f646972656374223b693a36353b733a31383a227061796d656e742f736167657061795f7573223b693a36363b733a31393a227061796d656e742f74776f636865636b6f7574223b693a36373b733a32383a227061796d656e742f7765625f7061796d656e745f736f667477617265223b693a36383b733a31363a227061796d656e742f776f726c64706179223b693a36393b733a32373a227265706f72742f616666696c696174655f636f6d6d697373696f6e223b693a37303b733a32323a227265706f72742f637573746f6d65725f637265646974223b693a37313b733a32323a227265706f72742f637573746f6d65725f6f6e6c696e65223b693a37323b733a32313a227265706f72742f637573746f6d65725f6f72646572223b693a37333b733a32323a227265706f72742f637573746f6d65725f726577617264223b693a37343b733a32343a227265706f72742f70726f647563745f707572636861736564223b693a37353b733a32313a227265706f72742f70726f647563745f766965776564223b693a37363b733a31383a227265706f72742f73616c655f636f75706f6e223b693a37373b733a31373a227265706f72742f73616c655f6f72646572223b693a37383b733a31383a227265706f72742f73616c655f72657475726e223b693a37393b733a32303a227265706f72742f73616c655f7368697070696e67223b693a38303b733a31353a227265706f72742f73616c655f746178223b693a38313b733a31343a2273616c652f616666696c69617465223b693a38323b733a31323a2273616c652f636f6e74616374223b693a38333b733a31313a2273616c652f636f75706f6e223b693a38343b733a31333a2273616c652f637573746f6d6572223b693a38353b733a32333a2273616c652f637573746f6d65725f626c61636b6c697374223b693a38363b733a31393a2273616c652f637573746f6d65725f67726f7570223b693a38373b733a31303a2273616c652f6f72646572223b693a38383b733a31313a2273616c652f72657475726e223b693a38393b733a31323a2273616c652f766f7563686572223b693a39303b733a31383a2273616c652f766f75636865725f7468656d65223b693a39313b733a31353a2273657474696e672f73657474696e67223b693a39323b733a31333a2273657474696e672f73746f7265223b693a39333b733a31363a227368697070696e672f617573706f7374223b693a39343b733a31373a227368697070696e672f636974796c696e6b223b693a39353b733a31343a227368697070696e672f6665646578223b693a39363b733a31333a227368697070696e672f666c6174223b693a39373b733a31333a227368697070696e672f66726565223b693a39383b733a31333a227368697070696e672f6974656d223b693a39393b733a32333a227368697070696e672f70617263656c666f7263655f3438223b693a3130303b733a31353a227368697070696e672f7069636b7570223b693a3130313b733a31393a227368697070696e672f726f79616c5f6d61696c223b693a3130323b733a31323a227368697070696e672f757073223b693a3130333b733a31333a227368697070696e672f75737073223b693a3130343b733a31353a227368697070696e672f776569676874223b693a3130353b733a31313a22746f6f6c2f6261636b7570223b693a3130363b733a31343a22746f6f6c2f6572726f725f6c6f67223b693a3130373b733a31323a22746f74616c2f636f75706f6e223b693a3130383b733a31323a22746f74616c2f637265646974223b693a3130393b733a31343a22746f74616c2f68616e646c696e67223b693a3131303b733a31363a22746f74616c2f6b6c61726e615f666565223b693a3131313b733a31393a22746f74616c2f6c6f775f6f726465725f666565223b693a3131323b733a31323a22746f74616c2f726577617264223b693a3131333b733a31343a22746f74616c2f7368697070696e67223b693a3131343b733a31353a22746f74616c2f7375625f746f74616c223b693a3131353b733a393a22746f74616c2f746178223b693a3131363b733a31313a22746f74616c2f746f74616c223b693a3131373b733a31333a22746f74616c2f766f7563686572223b693a3131383b733a393a22757365722f75736572223b693a3131393b733a32303a22757365722f757365725f7065726d697373696f6e223b693a3132303b733a32303a226d6f64756c652f717569636b636865636b6f7574223b693a3132313b733a31363a226d6f64756c652f6f70656e73746f636b223b693a3132323b733a31373a227368697070696e672f636f727265696f73223b7d7d),
 (10, 'Demonstração', '');
 
 -- --------------------------------------------------------
@@ -2812,7 +2836,7 @@ INSERT INTO `oc_user_group` (`user_group_id`, `name`, `permission`) VALUES
 -- Estrutura da tabela `oc_voucher`
 --
 
-CREATE TABLE `oc_voucher` (
+CREATE TABLE IF NOT EXISTS `oc_voucher` (
   `voucher_id` int(11) NOT NULL AUTO_INCREMENT,
   `order_id` int(11) NOT NULL,
   `code` varchar(10) COLLATE utf8_bin NOT NULL,
@@ -2839,7 +2863,7 @@ CREATE TABLE `oc_voucher` (
 -- Estrutura da tabela `oc_voucher_history`
 --
 
-CREATE TABLE `oc_voucher_history` (
+CREATE TABLE IF NOT EXISTS `oc_voucher_history` (
   `voucher_history_id` int(11) NOT NULL AUTO_INCREMENT,
   `voucher_id` int(11) NOT NULL,
   `order_id` int(11) NOT NULL,
@@ -2859,7 +2883,7 @@ CREATE TABLE `oc_voucher_history` (
 -- Estrutura da tabela `oc_voucher_theme`
 --
 
-CREATE TABLE `oc_voucher_theme` (
+CREATE TABLE IF NOT EXISTS `oc_voucher_theme` (
   `voucher_theme_id` int(11) NOT NULL AUTO_INCREMENT,
   `image` varchar(255) COLLATE utf8_bin NOT NULL,
   PRIMARY KEY (`voucher_theme_id`)
@@ -2880,7 +2904,7 @@ INSERT INTO `oc_voucher_theme` (`voucher_theme_id`, `image`) VALUES
 -- Estrutura da tabela `oc_voucher_theme_description`
 --
 
-CREATE TABLE `oc_voucher_theme_description` (
+CREATE TABLE IF NOT EXISTS `oc_voucher_theme_description` (
   `voucher_theme_id` int(11) NOT NULL,
   `language_id` int(11) NOT NULL,
   `name` varchar(32) COLLATE utf8_bin NOT NULL,
@@ -2905,7 +2929,7 @@ INSERT INTO `oc_voucher_theme_description` (`voucher_theme_id`, `language_id`, `
 -- Estrutura da tabela `oc_weight_class`
 --
 
-CREATE TABLE `oc_weight_class` (
+CREATE TABLE IF NOT EXISTS `oc_weight_class` (
   `weight_class_id` int(11) NOT NULL AUTO_INCREMENT,
   `value` decimal(15,8) NOT NULL DEFAULT '0.00000000',
   PRIMARY KEY (`weight_class_id`)
@@ -2927,7 +2951,7 @@ INSERT INTO `oc_weight_class` (`weight_class_id`, `value`) VALUES
 -- Estrutura da tabela `oc_weight_class_description`
 --
 
-CREATE TABLE `oc_weight_class_description` (
+CREATE TABLE IF NOT EXISTS `oc_weight_class_description` (
   `weight_class_id` int(11) NOT NULL AUTO_INCREMENT,
   `language_id` int(11) NOT NULL,
   `title` varchar(32) COLLATE utf8_bin NOT NULL,
@@ -2955,7 +2979,7 @@ INSERT INTO `oc_weight_class_description` (`weight_class_id`, `language_id`, `ti
 -- Estrutura da tabela `oc_zone`
 --
 
-CREATE TABLE `oc_zone` (
+CREATE TABLE IF NOT EXISTS `oc_zone` (
   `zone_id` int(11) NOT NULL AUTO_INCREMENT,
   `country_id` int(11) NOT NULL,
   `name` varchar(128) COLLATE utf8_bin NOT NULL,
@@ -6927,7 +6951,7 @@ INSERT INTO `oc_zone` (`zone_id`, `country_id`, `name`, `code`, `status`) VALUES
 -- Estrutura da tabela `oc_zone_to_geo_zone`
 --
 
-CREATE TABLE `oc_zone_to_geo_zone` (
+CREATE TABLE IF NOT EXISTS `oc_zone_to_geo_zone` (
   `zone_to_geo_zone_id` int(11) NOT NULL AUTO_INCREMENT,
   `country_id` int(11) NOT NULL,
   `zone_id` int(11) NOT NULL DEFAULT '0',

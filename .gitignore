@@ -3,3 +3,4 @@ config.php
 nbproject
 *.log
 *.DS_Store
+*.txt
