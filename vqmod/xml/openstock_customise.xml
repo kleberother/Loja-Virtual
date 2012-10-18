@@ -24,7 +24,7 @@
 			<add><![CDATA[<input type="radio" name="option[<?php echo $option['product_option_id']; ?>]" value="<?php echo $option_value['product_option_value_id']; ?>" id="option-value-<?php echo $option_value['product_option_value_id']; ?>" class="optionChoice" />]]></add>
 		</operation>
 		<operation>
-                	<search position="before" offset="2"><![CDATA[<div class="cart">]]></search>
+                	<search position="before"><![CDATA[<?php echo $text_qty; ?>]]></search>
 			<add><![CDATA[<input type="hidden" name="optionNumbers" value="<?php echo $i; ?>" id="optionNumbers" />]]></add>
 		</operation>
 		<operation>
@@ -35,6 +35,10 @@
 			<search position="after"><![CDATA[<?php echo $text_or; ?>&nbsp;&nbsp;&nbsp;</span></div>]]></search>
 			<add><![CDATA[</div>]]></add>
 		</operation>
+            
+                
+               
+                
                 <!-- FOR TEMPLATE CUSTOMISATION YOU SHOULD NOT NEED TO MODIFY BELOW HERE -->
 		<operation>
 			<search position="replace"><![CDATA[foreach ($options as $option) { ?>]]></search>
@@ -54,24 +58,44 @@
 		</operation>
 		<operation>
 			<search position="before"><![CDATA[<?php echo $footer; ?>]]></search>
-			<add><![CDATA[<script type="text/javascript"><!--
-$('.optionChoice').change(function(){
+			<add><![CDATA[
+<script type="text/javascript"><!--
+$('.optionChoice, .grade input').bind("change blur",function(){
     var optionStr = '';
     var i = parseInt(0);
     var optionNumbers = $('#optionNumbers').val();
     var imgThumbOriginal = '<?php echo $thumb; ?>';
     var imgPopOriginal = '<?php echo $popup; ?>';
     var stringPrice = ''; var stringDiscount = '';
+    var input = $(this);
+    var quantity_now = parseFloat($(this).val());
+    var grid = false;
 
-    $(".optionChoice option:selected, input:radio[class=optionChoice]:checked").each(function(){
-        if($(this).val() != '')
-        {
-            if(i != 0){optionStr = optionStr +':'+ $(this).val();}else{optionStr = $(this).val();}
-            i++;
+    
+    if($(this).attr("data-id")){
+        grid = true;
+        if(parseInt($(this).val()) > 0){
+            optionStr = $(this).attr("data-id");
         }
-    });
+    
+    }else{
 
-    if(i == optionNumbers)
+        $(".optionChoice option:selected, input:radio[class=optionChoice]:checked").each(function(){
+
+            if($(this).val() != '')
+            {
+                if(i != 0){optionStr = optionStr +':'+ $(this).val();}else{optionStr = $(this).val();}
+                i++;
+            }
+
+        });
+    }
+    
+    
+    
+    
+    
+    if(i == optionNumbers || grid)
     {
 	$.ajax({
             type: 'POST',
@@ -79,78 +103,103 @@ $('.optionChoice').change(function(){
             dataType: 'json',
             data: 'var=' + optionStr + '&product_id=<?php echo $product_id; ?>',
             beforeSend: function() {
-                $('.success, .warning').remove();
-                $('.options').before('<div class="loading"><?php echo $text_checking_options; ?></div>');
-                $('.product-info .price').html('').hide();
+                if(grid){
+                    $('.success, .warning, .loading').remove();
+                    $(".grade").after('<div class="loading"><?php echo $text_checking_options; ?></div>');
+                }else{
+                    $('.success, .warning').remove();
+                    $('.options').after('<div class="loading"><?php echo $text_checking_options; ?></div>');
+                    //$('.product-info .price').html('').hide();
+                }
             },
             complete: function() {},
             success: function(data) {
 
-                setTimeout(function(){
-                
-                    stringPrice = '<?php echo $text_price; ?> '+data.data.pricetax+'<br /><?php if ($tax) { ?><span class="price-tax"><?php echo $text_tax; ?> '+data.data.price+'</span><?php } ?>';
-                
-                    stringDiscount = '';
-                    if(data.data.discount){
-                        stringDiscount = '<br /><div class="discount">';
-                        
-                        $.each(data.data.discount, function(discountKey, discountAmt) { 
-                            stringDiscount += discountAmt+'<br />';
-                        });
-                        
-                        stringDiscount += '</div>';
-                    }
-                    
-                    if(data.data.nodiscount){
-                        stringDiscount = '<br /><div class="discount">'+data.data.nodiscount+'</div>';
-                    }
-                    
-                    if (data.error) {
-                        $('.loading').removeClass('loading').addClass('warning').empty().text(data.error);
-                        $('#product-cart').hide();
-                    }
+               
+                if (!data.error) {
+                    setTimeout(function(){
 
-                    if (data.success) {
-                        $('.loading').removeClass('loading').addClass('success').empty().text(data.success);
-                        $('.product-info .price').html(stringPrice).append(stringDiscount).show();
-                        $('#product-cart').show();
-                    }
+                        stringPrice = '<?php echo $text_price; ?> '+data.data.pricetax+'<br /><?php if ($tax) { ?><span class="price-tax"><?php echo $text_tax; ?> '+data.data.price+'</span><?php } ?>';
 
-                    if (data.nostock) {
-                        $('.loading').removeClass('loading').addClass('warning').empty().text(data.nostock);
-                        $('.product-info .price').html(stringPrice).append(stringDiscount).show();
+                        stringDiscount = '';
+                        if(data.data.discount){
+                            stringDiscount = '<br /><div class="discount">';
 
-                        if(data.nostockcheckout == 1)
-                        {
-                            $('#product-cart').show();
-                        }else{
+                            $.each(data.data.discount, function(discountKey, discountAmt) { 
+                                stringDiscount += discountAmt+'<br />';
+                            });
+
+                            stringDiscount += '</div>';
+                        }
+
+                        if(data.data.nodiscount){
+                            stringDiscount = '<br /><div class="discount">'+data.data.nodiscount+'</div>';
+                        }
+
+                        if (data.error) {
+                            $('.loading').removeClass('loading').addClass('warning').empty().text(data.error);
+                            //$('#product-cart').hide();
+                        }
+
+                        if (data.success) {
+                            var mensagem = $('.loading');
+                            
+                            console.log(quantity_now)
+                            
+                            if(quantity_now > parseInt(data.data.stock)){
+                                mensagem.removeClass("loading").addClass('success').empty().text(data.success);
+                                updatePrice(stringPrice,stringDiscount);
+                                
+                                //$('#product-cart').show();
+                                                        
+                                input.val(data.data.stock);
+                            }else{
+                                mensagem.remove();
+                            }
+                        }
+
+                        if (data.nostock) {
+                            $('.loading').removeClass('loading').addClass('warning').empty().text(data.nostock);
+                            updatePrice(stringPrice,stringDiscount);
+
+                            if(data.nostockcheckout == 1)
+                            {
+                               // $('#product-cart').show();
+                            }else{
+                                //$('#product-cart').hide();
+                            }
+                        }
+
+                        if (data.notactive) {
+                            $('.loading').removeClass('loading').addClass('warning').empty().text(data.notactive);
+                            updatePrice(stringPrice,stringDiscount);
                             $('#product-cart').hide();
                         }
-                    }
 
-                    if (data.notactive) {
-                        $('.loading').removeClass('loading').addClass('warning').empty().text(data.notactive);
-                        $('.product-info .price').html(stringPrice).append(stringDiscount).show();
-                        $('#product-cart').hide();
-                    }
-                    
-                    /* Image swapping for variant */
-                    if(data.data.image !='')
-                    {
-                        $('#image').attr('src', data.data.thumb);
-                        $('.image a').attr('href', data.data.pop);
-                    }else{
-                        $('#image').attr('src', imgThumbOriginal);
-                        $('.image a').attr('href', imgPopOriginal);
-                    }
-                }, 500);
+                        /* Image swapping for variant */
+                        if(data.data.image !='')
+                        {
+                            $('#image').attr('src', data.data.thumb);
+                            $('.image a').attr('href', data.data.pop);
+                        }else{
+                            $('#image').attr('src', imgThumbOriginal);
+                            $('.image a').attr('href', imgPopOriginal);
+                        }
+                        
+                        
+                        function updatePrice(stringPrice,stringDiscount){
+                            if(!grid)
+                                $('.product-info .price').html(stringPrice).append(stringDiscount).show();
+                        }
+                        
+                    }, 500);
+                }else{
+                    $('.success, .warning, .loading').remove();
+                }
             }
 	});
     }
 });
-
-<?php if($has_option == 1){ ?> $(function() { $('.product-info .price').html('').hide(); }); <?php } ?>
-
 //--></script>]]></add>
 		</operation>
 	</file>

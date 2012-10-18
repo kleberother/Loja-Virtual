@@ -55,6 +55,9 @@
         <?php } ?>
       </div>
       <?php } ?>
+
+                            <?php if($config_option_store){ ?>
+                        
       <?php if ($options) { ?>
       <div class="options">
         <h2><?php echo $text_option; ?></h2>
@@ -199,16 +202,92 @@
         <br />
         <?php } ?>
         <?php } ?>
-<input type="hidden" name="optionNumbers" value="<?php echo $i; ?>" id="optionNumbers" />
       </div>
       <?php } ?>
+
+                            <?php }else{ ?>
+                            
+                            
+                                <?php if($options){ 
+
+                                    // Define as opções, Tamanhos e Cores, da grade.
+                                    $i=0 ; foreach ($options as $option){
+                                        switch(strtoupper($option["name"])){
+                                            case "CORES":
+                                                $i++;
+                                                $cores = $option;
+                                            break;
+                                            case "TAMANHOS":
+                                                $i++;
+                                                $tamanhos = $option;
+                                            break;
+                                        }
+                                    }
+
+
+                                ?>
+                                <div class="cart grade">
+                                    <div>
+                                        <table id="grade" cellpadding="2" cellspacing="0" border="0">
+                                            <tr>
+                                                <td></td>
+                                                <td></td>
+                                                <?php foreach ($tamanhos["option_value"] as $tamanho){ ?>
+                                                    <td align="center"><?php echo $tamanho["name"]; ?></td>
+                                                <?php } ?>
+                                            </tr>
+                                            <?php foreach ($cores["option_value"] as $cor){ ?>                
+                                            <tr>
+                                                
+                                                <td>
+                                                <?php if($cor['image_big']){?>
+                                                    <a href="<?php echo $cor['image_big']; ?>" rel="expand"><img src="<?php echo $cor['image']; ?>" alt="<?php echo $cor['name']; ?>" /></a>
+                                                <?php } ?>
+                                                </td>
+                                                
+                                                <td align="right">
+                                                    <?php echo $cor["name"]; ?>
+                                                </td>
+                                                <?php foreach ($tamanhos["option_value"] as $tamanho){ ?>
+                                                    <td>
+                                                        <input type="text" name="cor_<?php echo $cores['product_option_id']; ?>_<?php echo $cor['product_option_value_id']; ?>xtamanho_<?php echo $tamanhos['product_option_id']; ?>_<?php echo $tamanho['product_option_value_id']; ?>" size="2" value="0" data-id="<?php echo $tamanho['product_option_value_id']; ?>:<?php echo $cor['product_option_value_id']; ?>" />
+                                                    </td>
+                                                <?php } ?>                    
+                                            </tr>
+                                            <?php } ?>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="cart quantity-button">
+                                    <div>
+                                        <input type="hidden" name="product_id" size="2" value="<?php echo $product_id; ?>" />
+                                        <a id="button-cart" class="button" /><?php echo $button_cart; ?></a>
+                                        <input type="button" onclick="location.href='<?php echo $checkout; ?>'" value="Ver carrinho completo" class="button carrinho" style="margin:7px 0 10px 7px;" />
+                                    </div>
+                                </div>
+                                <?php } ?>                            
+                            
+                            
+                            <?php } ?>
+                        
       <div class="cart">
+<input type="hidden" name="optionNumbers" value="<?php echo $i; ?>" id="optionNumbers" />
 <div id="product-cart">
+
+                            <?php if(!$config_option_store){ ?>
+                                <div style="display:none">
+                            <?php } ?>
+                        
         <div><?php echo $text_qty; ?>
           <input type="text" name="quantity" size="2" value="<?php echo $minimum; ?>" />
           <input type="hidden" name="product_id" size="2" value="<?php echo $product_id; ?>" />
           &nbsp;
           <input type="button" value="<?php echo $button_cart; ?>" id="button-cart" class="button" />
+
+                            <?php if(!$config_option_store){ ?>
+                                </div>
+                            <?php } ?>
+                        
         </div>
         <div><span>&nbsp;&nbsp;&nbsp;<?php echo $text_or; ?>&nbsp;&nbsp;&nbsp;</span></div>
 </div>
@@ -343,6 +422,107 @@ $('.colorbox').colorbox({
 //--></script> 
 <script type="text/javascript"><!--
 $('#button-cart').bind('click', function() {
+
+                        
+                                if($("#grade").get().length){
+
+
+                                    $(this).empty().append("Carregando...");
+
+                                    var inputs = $("#grade input");
+                                    var soma = 0;
+
+                                    $.each(inputs,function(key,object){
+                                        soma += parseInt($(object).val());                
+                                    });
+
+
+                                    if(soma < <?php echo $minimum; ?>){
+                                        alert("Quantidade minima de <?php echo $minimum; ?>");
+                                        return false;
+                                    }
+
+                                    document.activeAjaxConnections = 0;
+
+
+                                    $.each(inputs,function(key,object){
+
+                                        var opcoes = $(object).attr("name").split("x");
+
+                                        var cores = opcoes[0].split("_");
+                                        var tamanhos = opcoes[1].split("_");         
+
+                                        title_tamanho = "option[" + tamanhos[1] + "]";
+                                        title_cor = "option[" + cores[1] + "]";
+
+
+
+                                        var options =  title_tamanho +"="+ tamanhos[2] +"&"+ title_cor +"="+ cores[2] +"&"+ "quantity" +"="+ $(object).val() +"&"+ "product_id" +"="+ $('.product-info input[NAME=\'product_id\']').val();
+
+
+
+
+                                        if(parseInt($(object).val()) > 0){
+
+                                            $.ajax({
+                                                url: 'index.php?route=checkout/cart/add',
+                                                type: 'post',
+                                                data: options,
+                                                dataType: 'json',
+                                                beforeSend: function() {
+                                                    document.activeAjaxConnections++;
+                                                },                        
+                                                success: function(json) {
+                                                    document.activeAjaxConnections--;
+                                                    if (0 == document.activeAjaxConnections) {
+
+                                                        $('.success, .warning, .attention, information, .error').remove();
+
+                                                        if (json['error']) {
+                                                            if (json['error']['option']) {
+                                                                for (i in json['error']['option']) {
+                                                                        $('#option-' + i).after('<span class="error">' + json['error']['option'][i] + '</span>');
+                                                                }
+                                                            }
+                                                        } 
+
+                                                        if (json['success']) {
+
+
+                                                            location.href = "index.php?route=checkout/cart";
+                                                            /*
+
+                                }
+                        
+                                                            $('#button-cart').empty().append("<?php echo $button_cart; ?>");
+
+
+                                                            $('#notification').html('<div class="success" style="display: none;">' + json['success'] + '</div>');   
+                                                            $('.success').dialog({
+                                                                title: "<?php echo $button_cart; ?>",
+                                                                modal: true,
+                                                                zIndex: 999999
+                                                            });
+                                                            $('.success').fadeIn('slow');
+                                                            $('#cart-total').html(json['total']);
+                                                            $('html, body').animate({ scrollTop: 0 }, 'slow'); 
+                                                            */
+                                                        }	
+                                                    }
+                                                },
+                                                error :function(){
+                                                    document.activeAjaxConnections--;
+                                                }
+                                            });
+
+                                            $(object).val("0");
+                                        }
+
+                                    });
+
+
+                                }else{
+                        
 	$.ajax({
 		url: 'index.php?route=checkout/cart/add',
 		type: 'post',
@@ -370,6 +550,9 @@ $('#button-cart').bind('click', function() {
 			}	
 		}
 	});
+
+                                }
+                        
 });
 //--></script>
 <?php if ($options) { ?>
@@ -469,24 +652,44 @@ $('.datetime').datetimepicker({
 });
 $('.time').timepicker({timeFormat: 'h:m'});
 //--></script> 
+
 <script type="text/javascript"><!--
-$('.optionChoice').change(function(){
+$('.optionChoice, .grade input').bind("change blur",function(){
     var optionStr = '';
     var i = parseInt(0);
     var optionNumbers = $('#optionNumbers').val();
     var imgThumbOriginal = '<?php echo $thumb; ?>';
     var imgPopOriginal = '<?php echo $popup; ?>';
     var stringPrice = ''; var stringDiscount = '';
+    var input = $(this);
+    var quantity_now = parseFloat($(this).val());
+    var grid = false;
 
-    $(".optionChoice option:selected, input:radio[class=optionChoice]:checked").each(function(){
-        if($(this).val() != '')
-        {
-            if(i != 0){optionStr = optionStr +':'+ $(this).val();}else{optionStr = $(this).val();}
-            i++;
+    
+    if($(this).attr("data-id")){
+        grid = true;
+        if(parseInt($(this).val()) > 0){
+            optionStr = $(this).attr("data-id");
         }
-    });
+    
+    }else{
 
-    if(i == optionNumbers)
+        $(".optionChoice option:selected, input:radio[class=optionChoice]:checked").each(function(){
+
+            if($(this).val() != '')
+            {
+                if(i != 0){optionStr = optionStr +':'+ $(this).val();}else{optionStr = $(this).val();}
+                i++;
+            }
+
+        });
+    }
+    
+    
+    
+    
+    
+    if(i == optionNumbers || grid)
     {
 	$.ajax({
             type: 'POST',
@@ -494,77 +697,102 @@ $('.optionChoice').change(function(){
             dataType: 'json',
             data: 'var=' + optionStr + '&product_id=<?php echo $product_id; ?>',
             beforeSend: function() {
-                $('.success, .warning').remove();
-                $('.options').before('<div class="loading"><?php echo $text_checking_options; ?></div>');
-                $('.product-info .price').html('').hide();
+                if(grid){
+                    $('.success, .warning, .loading').remove();
+                    $(".grade").after('<div class="loading"><?php echo $text_checking_options; ?></div>');
+                }else{
+                    $('.success, .warning').remove();
+                    $('.options').after('<div class="loading"><?php echo $text_checking_options; ?></div>');
+                    //$('.product-info .price').html('').hide();
+                }
             },
             complete: function() {},
             success: function(data) {
 
-                setTimeout(function(){
-                
-                    stringPrice = '<?php echo $text_price; ?> '+data.data.pricetax+'<br /><?php if ($tax) { ?><span class="price-tax"><?php echo $text_tax; ?> '+data.data.price+'</span><?php } ?>';
-                
-                    stringDiscount = '';
-                    if(data.data.discount){
-                        stringDiscount = '<br /><div class="discount">';
-                        
-                        $.each(data.data.discount, function(discountKey, discountAmt) { 
-                            stringDiscount += discountAmt+'<br />';
-                        });
-                        
-                        stringDiscount += '</div>';
-                    }
-                    
-                    if(data.data.nodiscount){
-                        stringDiscount = '<br /><div class="discount">'+data.data.nodiscount+'</div>';
-                    }
-                    
-                    if (data.error) {
-                        $('.loading').removeClass('loading').addClass('warning').empty().text(data.error);
-                        $('#product-cart').hide();
-                    }
+               
+                if (!data.error) {
+                    setTimeout(function(){
 
-                    if (data.success) {
-                        $('.loading').removeClass('loading').addClass('success').empty().text(data.success);
-                        $('.product-info .price').html(stringPrice).append(stringDiscount).show();
-                        $('#product-cart').show();
-                    }
+                        stringPrice = '<?php echo $text_price; ?> '+data.data.pricetax+'<br /><?php if ($tax) { ?><span class="price-tax"><?php echo $text_tax; ?> '+data.data.price+'</span><?php } ?>';
 
-                    if (data.nostock) {
-                        $('.loading').removeClass('loading').addClass('warning').empty().text(data.nostock);
-                        $('.product-info .price').html(stringPrice).append(stringDiscount).show();
+                        stringDiscount = '';
+                        if(data.data.discount){
+                            stringDiscount = '<br /><div class="discount">';
 
-                        if(data.nostockcheckout == 1)
-                        {
-                            $('#product-cart').show();
-                        }else{
+                            $.each(data.data.discount, function(discountKey, discountAmt) { 
+                                stringDiscount += discountAmt+'<br />';
+                            });
+
+                            stringDiscount += '</div>';
+                        }
+
+                        if(data.data.nodiscount){
+                            stringDiscount = '<br /><div class="discount">'+data.data.nodiscount+'</div>';
+                        }
+
+                        if (data.error) {
+                            $('.loading').removeClass('loading').addClass('warning').empty().text(data.error);
+                            //$('#product-cart').hide();
+                        }
+
+                        if (data.success) {
+                            var mensagem = $('.loading');
+                            
+                            console.log(quantity_now)
+                            
+                            if(quantity_now > parseInt(data.data.stock)){
+                                mensagem.removeClass("loading").addClass('success').empty().text(data.success);
+                                updatePrice(stringPrice,stringDiscount);
+                                
+                                //$('#product-cart').show();
+                                                        
+                                input.val(data.data.stock);
+                            }else{
+                                mensagem.remove();
+                            }
+                        }
+
+                        if (data.nostock) {
+                            $('.loading').removeClass('loading').addClass('warning').empty().text(data.nostock);
+                            updatePrice(stringPrice,stringDiscount);
+
+                            if(data.nostockcheckout == 1)
+                            {
+                               // $('#product-cart').show();
+                            }else{
+                                //$('#product-cart').hide();
+                            }
+                        }
+
+                        if (data.notactive) {
+                            $('.loading').removeClass('loading').addClass('warning').empty().text(data.notactive);
+                            updatePrice(stringPrice,stringDiscount);
                             $('#product-cart').hide();
                         }
-                    }
 
-                    if (data.notactive) {
-                        $('.loading').removeClass('loading').addClass('warning').empty().text(data.notactive);
-                        $('.product-info .price').html(stringPrice).append(stringDiscount).show();
-                        $('#product-cart').hide();
-                    }
-                    
-                    /* Image swapping for variant */
-                    if(data.data.image !='')
-                    {
-                        $('#image').attr('src', data.data.thumb);
-                        $('.image a').attr('href', data.data.pop);
-                    }else{
-                        $('#image').attr('src', imgThumbOriginal);
-                        $('.image a').attr('href', imgPopOriginal);
-                    }
-                }, 500);
+                        /* Image swapping for variant */
+                        if(data.data.image !='')
+                        {
+                            $('#image').attr('src', data.data.thumb);
+                            $('.image a').attr('href', data.data.pop);
+                        }else{
+                            $('#image').attr('src', imgThumbOriginal);
+                            $('.image a').attr('href', imgPopOriginal);
+                        }
+                        
+                        
+                        function updatePrice(stringPrice,stringDiscount){
+                            if(!grid)
+                                $('.product-info .price').html(stringPrice).append(stringDiscount).show();
+                        }
+                        
+                    }, 500);
+                }else{
+                    $('.success, .warning, .loading').remove();
+                }
             }
 	});
     }
 });
-
-<?php if($has_option == 1){ ?> $(function() { $('.product-info .price').html('').hide(); }); <?php } ?>
-
 //--></script>
 <?php echo $footer; ?>

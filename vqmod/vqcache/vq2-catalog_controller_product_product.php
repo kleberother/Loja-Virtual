@@ -170,6 +170,9 @@ class ControllerProductProduct extends Controller {
 			$this->data['button_upload'] = $this->language->get('button_upload');
 			$this->data['button_continue'] = $this->language->get('button_continue');
 			
+
+                            $this->data['config_option_store'] = $this->config->get('config_option_store');
+                        
 			$this->load->model('catalog/review');
 
 			$this->data['tab_description'] = $this->language->get('tab_description');
@@ -265,6 +268,9 @@ class ControllerProductProduct extends Controller {
 							}
 							
 							$option_value_data[] = array(
+
+                            'image_big' => $this->model_tool_image->resize($option_value['image'], 150, 150),
+                        
 								'product_option_value_id' => $option_value['product_option_value_id'],
 								'option_value_id'         => $option_value['option_value_id'],
 								'name'                    => $option_value['name'],
@@ -442,6 +448,9 @@ class ControllerProductProduct extends Controller {
 	public function review() {
     	$this->language->load('product/product');
 		
+
+                            $this->data['config_option_store'] = $this->config->get('config_option_store');
+                        
 		$this->load->model('catalog/review');
 
 		$this->data['text_on'] = $this->language->get('text_on');
@@ -490,6 +499,9 @@ class ControllerProductProduct extends Controller {
 	public function write() {
 		$this->language->load('product/product');
 		
+
+                            $this->data['config_option_store'] = $this->config->get('config_option_store');
+                        
 		$this->load->model('catalog/review');
 		
 		$json = array();

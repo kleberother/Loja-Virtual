@@ -17,7 +17,7 @@ final class VQMod {
 	public $vqCachePath = 'vqmod/vqcache/';
 	public $protectedFilelist = 'vqmod/vqprotect.txt';
 	public $logging = true;
-	public $cacheTime = 60; //seconds
+	public $cacheTime = 1; //seconds
 	public $log;
 
 	/**

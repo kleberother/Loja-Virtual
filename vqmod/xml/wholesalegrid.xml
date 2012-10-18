@@ -1,0 +1,279 @@
+<!-- Created using vQmod XML Generator by UKSB - http://www.opencart-extensions.co.uk //-->
+<modification>
+	<id>Whole Sale Grid</id>
+	<version>For OpenCart 1.5.x</version>
+	<vqmver>1.2.3</vqmver>
+	<author><![CDATA[Kleber Oliveira]]></author>
+        <!-- admin -->
+	<file name="admin/controller/setting/setting.php">
+		<operation>
+			<search position="after"><![CDATA[$this->load->language('setting/setting');]]></search>
+			<add><![CDATA[
+                            $this->load->language('module/wholesalegrid');
+                        ]]></add>
+		</operation> 
+                <operation>
+			<search position="before"><![CDATA[$this->data['text_no'] = $this->language->get('text_no');]]></search>
+			<add><![CDATA[
+                                $this->data['text_retail'] = $this->language->get('text_retail');
+                                $this->data['text_wholesale'] = $this->language->get('text_wholesale');
+                        ]]></add>
+		</operation>              
+		<operation>
+			<search position="before"><![CDATA[if (isset($this->request->post['config_meta_description'])) {]]></search>
+			<add><![CDATA[
+                                if (isset($this->request->post['config_option_store'])) {
+                                    $this->data['config_option_store'] = $this->request->post['config_option_store'];
+                                } else {
+                                    $this->data['config_option_store'] = $this->config->get('config_option_store');
+                                }
+                        ]]></add>
+		</operation>
+		<operation>
+			<search position="before"><![CDATA[$this->data['entry_name'] = $this->language->get('entry_name');]]></search>
+			<add><![CDATA[
+                            $this->data['entry_option_store'] = $this->language->get('entry_option_store');
+                        ]]></add>
+		</operation>                
+                
+               
+	</file>
+        <file name="admin/view/template/setting/setting.tpl">
+		<operation>
+			<search position="after" offset="1"><![CDATA[<div id="tab-store">]]></search>
+			<add><![CDATA[ <tr>
+                            <td><?php echo $entry_option_store; ?></td>
+                            <td><?php if ($config_option_store) { ?>
+                                <input type="radio" name="config_option_store" value="1" checked="checked" />
+                                <?php echo $text_retail; ?>
+                                <input type="radio" name="config_option_store" value="0" />
+                                <?php echo $text_wholesale; ?>
+                                <?php } else { ?>
+                                <input type="radio" name="config_option_store" value="1" />
+                                <?php echo $text_retail; ?>
+                                <input type="radio" name="config_option_store" value="0" checked="checked" />
+                                <?php echo $text_wholesale ?>
+                                <?php } ?>
+                            </td>
+                        </tr>]]></add>
+		</operation>
+	</file>
+        <!-- Catalog -->
+        <file name="catalog/controller/product/product.php">
+		<operation>
+			<search position="before"><![CDATA[$this->load->model('catalog/review');]]></search>
+			<add><![CDATA[
+                            $this->data['config_option_store'] = $this->config->get('config_option_store');
+                        ]]></add>
+		</operation>      
+                <operation>
+			<search position="after"><![CDATA[$option_value_data[] = array(]]></search>
+			<add><![CDATA[
+                            'image_big' => $this->model_tool_image->resize($option_value['image'], 150, 150),
+                        ]]></add>
+		</operation>
+        </file>        
+        <file name="catalog/view/theme/*/template/product/product.tpl">
+		<operation>
+			<search position="before" offset="1"><![CDATA[<div class="options">]]></search>
+			<add><![CDATA[
+                            <?php if($config_option_store){ ?>
+                        ]]></add>
+		</operation>
+		<operation>
+			<search position="before"><![CDATA[<div class="cart">]]></search>
+			<add><![CDATA[
+                            <?php }else{ ?>
+                            
+                            
+                                <?php if($options){ 
+
+                                    // Define as opções, Tamanhos e Cores, da grade.
+                                    $i=0 ; foreach ($options as $option){
+                                        switch(strtoupper($option["name"])){
+                                            case "CORES":
+                                                $i++;
+                                                $cores = $option;
+                                            break;
+                                            case "TAMANHOS":
+                                                $i++;
+                                                $tamanhos = $option;
+                                            break;
+                                        }
+                                    }
+
+
+                                ?>
+                                <div class="cart grade">
+                                    <div>
+                                        <table id="grade" cellpadding="2" cellspacing="0" border="0">
+                                            <tr>
+                                                <td></td>
+                                                <td></td>
+                                                <?php foreach ($tamanhos["option_value"] as $tamanho){ ?>
+                                                    <td align="center"><?php echo $tamanho["name"]; ?></td>
+                                                <?php } ?>
+                                            </tr>
+                                            <?php foreach ($cores["option_value"] as $cor){ ?>                
+                                            <tr>
+                                                
+                                                <td>
+                                                <?php if($cor['image_big']){?>
+                                                    <a href="<?php echo $cor['image_big']; ?>" rel="expand"><img src="<?php echo $cor['image']; ?>" alt="<?php echo $cor['name']; ?>" /></a>
+                                                <?php } ?>
+                                                </td>
+                                                
+                                                <td align="right">
+                                                    <?php echo $cor["name"]; ?>
+                                                </td>
+                                                <?php foreach ($tamanhos["option_value"] as $tamanho){ ?>
+                                                    <td>
+                                                        <input type="text" name="cor_<?php echo $cores['product_option_id']; ?>_<?php echo $cor['product_option_value_id']; ?>xtamanho_<?php echo $tamanhos['product_option_id']; ?>_<?php echo $tamanho['product_option_value_id']; ?>" size="2" value="0" data-id="<?php echo $tamanho['product_option_value_id']; ?>:<?php echo $cor['product_option_value_id']; ?>" />
+                                                    </td>
+                                                <?php } ?>                    
+                                            </tr>
+                                            <?php } ?>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="cart quantity-button">
+                                    <div>
+                                        <input type="hidden" name="product_id" size="2" value="<?php echo $product_id; ?>" />
+                                        <a id="button-cart" class="button" /><?php echo $button_cart; ?></a>
+                                        <input type="button" onclick="location.href='<?php echo $checkout; ?>'" value="Ver carrinho completo" class="button carrinho" style="margin:7px 0 10px 7px;" />
+                                    </div>
+                                </div>
+                                <?php } ?>                            
+                            
+                            
+                            <?php } ?>
+                        ]]></add>
+		</operation>    
+
+                <operation>
+			<search position="before"><![CDATA[<?php echo $text_qty; ?>]]></search>
+                        <add><![CDATA[
+                            <?php if(!$config_option_store){ ?>
+                                <div style="display:none">
+                            <?php } ?>
+                        ]]></add>
+                </operation>
+              
+		<operation>
+			<search position="after"><![CDATA[<input type="button" value="<?php echo $button_cart; ?>" id="button-cart" class="button" />]]></search>
+                        <add><![CDATA[
+                            <?php if(!$config_option_store){ ?>
+                                </div>
+                            <?php } ?>
+                        ]]></add>
+                </operation>  
+                
+		<operation>
+			<search position="after"><![CDATA[$('#button-cart').bind('click', function() {]]></search>
+                        <add><![CDATA[
+                        
+                                if($("#grade").get().length){
+
+
+                                    $(this).empty().append("Carregando...");
+
+                                    var inputs = $("#grade input");
+                                    var soma = 0;
+
+                                    $.each(inputs,function(key,object){
+                                        soma += parseInt($(object).val());                
+                                    });
+
+
+                                    if(soma < <?php echo $minimum; ?>){
+                                        alert("Quantidade minima de <?php echo $minimum; ?>");
+                                        return false;
+                                    }
+
+                                    document.activeAjaxConnections = 0;
+
+
+                                    $.each(inputs,function(key,object){
+
+                                        var opcoes = $(object).attr("name").split("x");
+
+                                        var cores = opcoes[0].split("_");
+                                        var tamanhos = opcoes[1].split("_");         
+
+                                        title_tamanho = "option[" + tamanhos[1] + "]";
+                                        title_cor = "option[" + cores[1] + "]";
+
+
+
+                                        var options =  title_tamanho +"="+ tamanhos[2] +"&"+ title_cor +"="+ cores[2] +"&"+ "quantity" +"="+ $(object).val() +"&"+ "product_id" +"="+ $('.product-info input[NAME=\'product_id\']').val();
+
+
+
+
+                                        if(parseInt($(object).val()) > 0){
+
+                                            $.ajax({
+                                                url: 'index.php?route=checkout/cart/add',
+                                                type: 'post',
+                                                data: options,
+                                                dataType: 'json',
+                                                beforeSend: function() {
+                                                    document.activeAjaxConnections++;
+                                                },                        
+                                                success: function(json) {
+                                                    document.activeAjaxConnections--;
+                                                    if (0 == document.activeAjaxConnections) {
+
+                                                        $('.success, .warning, .attention, information, .error').remove();
+
+                                                        if (json['error']) {
+                                                            if (json['error']['option']) {
+                                                                for (i in json['error']['option']) {
+                                                                        $('#option-' + i).after('<span class="error">' + json['error']['option'][i] + '</span>');
+                                                                }
+                                                            }
+                                                        } 
+
+                                                        if (json['success']) {
+
+
+                                                            location.href = "index.php?route=checkout/cart";
+                                                            /*
+                                                            $('#button-cart').empty().append("<?php echo $button_cart; ?>");
+
+
+                                                            $('#notification').html('<div class="success" style="display: none;">' + json['success'] + '</div>');   
+                                                            $('.success').dialog({
+                                                                title: "<?php echo $button_cart; ?>",
+                                                                modal: true,
+                                                                zIndex: 999999
+                                                            });
+                                                            $('.success').fadeIn('slow');
+                                                            $('#cart-total').html(json['total']);
+                                                            $('html, body').animate({ scrollTop: 0 }, 'slow'); 
+                                                            */
+                                                        }	
+                                                    }
+                                                },
+                                                error :function(){
+                                                    document.activeAjaxConnections--;
+                                                }
+                                            });
+
+                                            $(object).val("0");
+                                        }
+
+                                    });
+
+
+                                }else{
+                        ]]></add>
+                </operation>
+		<operation>
+			<search position="after" offset="25"><![CDATA[url: 'index.php?route=checkout/cart/add',]]></search>
+                        <add><![CDATA[
+                                }
+                        ]]></add>
+                </operation>
+        </file>
+</modification>
