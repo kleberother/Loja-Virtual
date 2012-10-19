@@ -1,0 +1,226 @@
+<!-- Created using vQmod XML Generator by UKSB - http://www.opencart-extensions.co.uk //-->
+<modification>
+	<id>Whole Sale View</id>
+	<version>For OpenCart 1.5.x</version>
+	<vqmver>1.2.3</vqmver>
+	<author><![CDATA[Kleber Oliveira]]></author>
+        <!-- Admin -->
+        <file name="admin/controller/catalog/category.php">
+		<operation>
+			<search position="after" offset="1"><![CDATA[private function getForm() {]]></search>
+			<add><![CDATA[
+                            $this->load->language('module/wholesaleview');
+                            
+                            $this->data['entry_wholesaleview'] = $this->language->get('entry_wholesaleview');
+                            
+                        ]]></add>                    
+                </operation>
+		<operation>
+			<search position="before" offset="1"><![CDATA[if (isset($this->request->post['status'])) {]]></search>
+			<add><![CDATA[
+                            if (isset($this->request->post['wholesaleview'])) {
+                                    $this->data['wholesaleview'] = $this->request->post['wholesaleview'];
+                            } elseif (!empty($category_info)) {
+                                    $this->data['wholesaleview'] = $category_info['wholesaleview'];
+                            } else {
+                                    $this->data['wholesaleview'] = 0;
+                            }
+                            
+                        ]]></add>                    
+                </operation>                
+        </file>        
+        <file name="admin/model/catalog/category.php">
+		<operation>
+			<search position="after" offset="3"><![CDATA[if (isset($data['image'])) {]]></search>
+			<add><![CDATA[
+                            if (isset($data['wholesaleview'])) {
+                                    $this->db->query("UPDATE " . DB_PREFIX . "category SET wholesaleview = '" . $this->db->escape(html_entity_decode($data['wholesaleview'], ENT_QUOTES, 'UTF-8')) . "' WHERE category_id = '" . (int)$category_id . "'");
+                            }            
+                        ]]></add>                    
+                </operation>
+        </file>        
+        <file name="admin/view/template/catalog/category_form.tpl">
+		<operation>
+			<search position="before" offset="1"><![CDATA[<td><?php echo $entry_status; ?></td>]]></search>
+			<add><![CDATA[
+                            <tr>
+                            <td><?php echo $entry_wholesaleview; ?></td>
+                            <td><select name="wholesaleview">
+                                <?php if ($wholesaleview) { ?>
+                                <option value="1" selected="selected"><?php echo $text_enabled; ?></option>
+                                <option value="0"><?php echo $text_disabled; ?></option>
+                                <?php } else { ?>
+                                <option value="1"><?php echo $text_enabled; ?></option>
+                                <option value="0" selected="selected"><?php echo $text_disabled; ?></option>
+                                <?php } ?>
+                                </select></td>
+                            </tr>                        
+                        ]]></add>                    
+                </operation>
+        </file>
+        <file name="admin/view/template/catalog/category_form.tpl">
+		<operation>
+			<search position="before" offset="1"><![CDATA[<td><?php echo $entry_status; ?></td>]]></search>
+			<add><![CDATA[
+                            <tr>
+                            <td><?php echo $entry_status; ?></td>
+                            <td><select name="status">
+                                <?php if ($status) { ?>
+                                <option value="1" selected="selected"><?php echo $text_enabled; ?></option>
+                                <option value="0"><?php echo $text_disabled; ?></option>
+                                <?php } else { ?>
+                                <option value="1"><?php echo $text_enabled; ?></option>
+                                <option value="0" selected="selected"><?php echo $text_disabled; ?></option>
+                                <?php } ?>
+                                </select></td>
+                            </tr>                        
+                        ]]></add>                    
+                </operation>
+        </file>
+        <!-- Catalog -->
+        <file name="catalog/controller/common/header.php">
+		<operation>
+			<search position="replace" offset="5"><![CDATA[$this->data['categories'][] = array(]]></search>
+			<add><![CDATA[
+                            if($category['wholesaleview']){
+                                $this->data['categories'][] = array(
+                                    'name' => $category['name'],
+                                    'children' => $children_data,
+                                    'column' => $category['column'] ? $category['column'] : 1,
+                                    'href' => $this->url->link('product/wholesale', 'path=' . $category['category_id'])
+                                );                                                   
+                            }else{
+                                $this->data['categories'][] = array(
+                                    'name' => $category['name'],
+                                    'children' => $children_data,
+                                    'column' => $category['column'] ? $category['column'] : 1,
+                                    'href' => $this->url->link('product/category', 'path=' . $category['category_id'])
+                                );                 
+                            }
+                        ]]></add>
+                </operation>
+                <operation>
+			<search position="replace" offset="3"><![CDATA[$children_data[] = array(]]></search>
+			<add><![CDATA[
+                            if($child['wholesaleview']){
+                                $children_data[] = array(
+                                    'name' => $child['name'] . ($this->config->get('config_product_count') ? ' (' . $product_total . ')' : ''),
+                                    'href' => $this->url->link('product/wholesale', 'path=' . $category['category_id'] . '_' . $child['category_id'])
+                                );                                                    
+                            }else{
+                                $children_data[] = array(
+                                    'name' => $child['name'] . ($this->config->get('config_product_count') ? ' (' . $product_total . ')' : ''),
+                                    'href' => $this->url->link('product/category', 'path=' . $category['category_id'] . '_' . $child['category_id'])
+                                );                        
+                            }
+                        ]]></add>
+                </operation>
+        </file>
+        <file name="catalog/controller/checkout/cart.php">
+		<operation>
+			<search position="before"><![CDATA[public function quote() {]]></search>
+			<add><![CDATA[
+
+                            public function update() {
+
+                                $this->language->load('checkout/cart');
+                                $json = array();
+
+                                if (isset($this->request->post['product_id'])) {
+                                    $product_id = $this->request->post['product_id'];
+                                } else {
+                                    $product_id = 0;
+                                }
+
+                                $this->load->model('catalog/product');
+
+                                $product_info = $this->model_catalog_product->getProduct($product_id);
+
+                                if ($product_info) {
+                                    if (isset($this->request->post['quantity'])) {
+                                        $quantity = $this->request->post['quantity'];
+                                    } else {
+                                        $quantity = 0;
+                                    }
+
+                                    if (isset($this->request->post['option'])) {
+                                        $option = array_filter($this->request->post['option']);
+                                    } else {
+                                        $option = array();
+                                    }
+
+                                    $product_options = $this->model_catalog_product->getProductOptions($this->request->post['product_id']);
+
+                                    foreach ($product_options as $product_option) {
+                                        if ($product_option['required'] && empty($option[$product_option['product_option_id']])) {
+                                            $json['error']['option'][$product_option['product_option_id']] = sprintf($this->language->get('error_required'), $product_option['name']);
+                                        }
+                                    }
+
+                                    if (!$json) {
+
+                                                        $key = (int) $this->request->post['product_id'] . ':' . base64_encode(serialize($option));
+
+                                                        if( (int) $quantity != 0){
+                                                                $this->cart->update($key, $quantity);
+                                                        }else{
+                                                                $this->cart->remove($key);					
+                                                        }
+
+                                        $json['success'] = sprintf($this->language->get('text_success'), $this->url->link('product/product', 'product_id=' . $this->request->post['product_id']), $product_info['name'], $this->url->link('checkout/cart'));
+
+                                        unset($this->session->data['shipping_method']);
+                                        unset($this->session->data['shipping_methods']);
+                                        unset($this->session->data['payment_method']);
+                                        unset($this->session->data['payment_methods']);
+
+                                        // Totals
+                                        $this->load->model('setting/extension');
+
+                                        $total_data = array();
+                                        $total = 0;
+                                        $taxes = $this->cart->getTaxes();
+
+                                        $sort_order = array();
+
+                                        $results = $this->model_setting_extension->getExtensions('total');
+
+                                        foreach ($results as $key => $value) {
+                                            $sort_order[$key] = $this->config->get($value['code'] . '_sort_order');
+                                        }
+
+                                        array_multisort($sort_order, SORT_ASC, $results);
+
+                                        foreach ($results as $result) {
+                                            if ($this->config->get($result['code'] . '_status')) {
+                                                $this->load->model('total/' . $result['code']);
+
+                                                $this->{'model_total_' . $result['code']}->getTotal($total_data, $total, $taxes);
+                                            }
+
+                                            $sort_order = array();
+
+                                            foreach ($total_data as $key => $value) {
+                                                $sort_order[$key] = $value['sort_order'];
+                                            }
+
+                                            array_multisort($sort_order, SORT_ASC, $total_data);
+                                        }
+
+                                        if (($this->config->get('config_customer_price') && $this->customer->isLogged()) || !$this->config->get('config_customer_price')) {
+                                            $json['total'] = sprintf($this->language->get('text_items'), $this->cart->countProducts() + (isset($this->session->data['vouchers']) ? count($this->session->data['vouchers']) : 0), $this->currency->format($total));
+                                        } else {
+                                            $json['total'] = sprintf($this->language->get('text_items'), $this->cart->countProducts() + (isset($this->session->data['vouchers']) ? count($this->session->data['vouchers']) : 0), "");
+                                        }
+                                    } else {
+                                        $json['redirect'] = str_replace('&amp;', '&', $this->url->link('product/product', 'product_id=' . $this->request->post['product_id']));
+                                    }
+                                }
+
+                                $this->response->setOutput(json_encode($json));
+                            } 
+
+                        ]]></add>
+		</operation>      
+        </file>
+</modification>
