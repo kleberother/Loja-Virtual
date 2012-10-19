@@ -1,0 +1,38 @@
+<!-- Created using vQmod XML Generator by UKSB - http://www.opencart-extensions.co.uk //-->
+<modification>
+	<id>Cloud Zoom</id>
+	<version>For OpenCart 1.5.x</version>
+	<vqmver>1.2.3</vqmver>
+	<author><![CDATA[Kleber Oliveira]]></author>
+        <!-- catalog -->        
+        <file name="catalog/controller/product/product.php">
+		<operation>
+			<search position="after"><![CDATA[$this->language->load('product/product');]]></search>
+			<add><![CDATA[
+                            $this->document->addStyle('catalog/view/javascript/jquery/cloud-zoom/cloud-zoom.css');
+                            $this->document->addScript('catalog/view/javascript/jquery/cloud-zoom/cloud-zoom.1.0.2.min.js');
+                        ]]></add>
+		</operation>
+		<operation>
+			<search position="after"><![CDATA['popup' => $this->model_tool_image->resize($result['image'], $this->config->get('config_image_popup_width'), $this->config->get('config_image_popup_height')),]]></search>
+			<add><![CDATA[
+                            'small' => $this->model_tool_image->resize($result['image'], $this->config->get('config_image_thumb_width'), $this->config->get('config_image_thumb_height')),
+                        ]]></add>
+		</operation>                
+        </file>
+        <file name="catalog/view/theme/*/template/product/product.tpl">
+		<operation>
+			<search position="replace"><![CDATA[<div class="image"><a href="<?php echo $popup; ?>" title="<?php echo $heading_title; ?>" class="colorbox" rel="colorbox"><img src="<?php echo $thumb; ?>" title="<?php echo $heading_title; ?>" alt="<?php echo $heading_title; ?>" id="image" /></a></div>]]></search>
+			<add><![CDATA[<div class="image"><a href="<?php echo $popup; ?>" class="cloud-zoom" id="zoom1" rel="position:'inside', showTitle: false"  title="<?php echo $heading_title; ?>" ><img src="<?php echo $thumb; ?>" title="<?php echo $heading_title; ?>" alt="<?php echo $heading_title; ?>" id="image" /></a></div>]]></add>
+		</operation>
+		<operation>
+			<search position="replace"><![CDATA[<a href="<?php echo $image['popup']; ?>" title="<?php echo $heading_title; ?>" class="colorbox" rel="colorbox"><img src="<?php echo $image['thumb']; ?>" title="<?php echo $heading_title; ?>" alt="<?php echo $heading_title; ?>" /></a>]]></search>
+			<add><![CDATA[<a href="<?php echo $image['popup']; ?>" class='cloud-zoom-gallery' rel="useZoom: 'zoom1', smallImage: '<?php echo $image['small']; ?>'" title="<?php echo $heading_title; ?>" ><img src="<?php echo $image['thumb']; ?>" title="<?php echo $heading_title; ?>" alt="<?php echo $heading_title; ?>" /></a>]]></add>
+		</operation>
+		<operation>
+			<search position="replace" offset="3"><![CDATA[$('.colorbox').colorbox({]]></search>
+			<add><![CDATA[]]></add>
+		</operation>                
+                
+        </file>        
+</modification>
