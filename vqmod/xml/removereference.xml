@@ -1,0 +1,38 @@
+<!-- Created using vQmod XML Generator by UKSB - http://www.opencart-extensions.co.uk //-->
+<modification>
+	<id>Remove Reference</id>
+	<version>For OpenCart 1.5.x</version>
+	<vqmver>1.2.3</vqmver>
+	<author><![CDATA[Kleber Oliveira]]></author>
+        <!-- admin -->        
+        <file name="admin/view/template/common/header.tpl">
+		<operation>
+			<search position="replace"><![CDATA[<img src="view/image/logo.png" title="<?php echo $heading_title; ?>" onclick="location = '<?php echo $home; ?>'" />]]></search>
+			<add><![CDATA[]]></add>
+		</operation>
+		<operation>
+			<search position="replace" offset="6"><![CDATA[<li id="help"><a class="top"><?php echo $text_help; ?></a>]]></search>
+			<add><![CDATA[]]></add>
+		</operation>                
+        </file>
+        <file name="admin/view/template/common/footer.tpl">
+		<operation>
+			<search position="replace"><![CDATA[<?php echo $text_footer; ?>]]></search>
+			<add><![CDATA[]]></add>
+		</operation>
+        </file>
+        <!-- Catalog -->
+        <file name="catalog/view/theme/*/template/common/footer.tpl">
+		<operation>
+			<search position="replace"><![CDATA[<?php echo $powered; ?>]]></search>
+			<add><![CDATA[]]></add>
+		</operation>
+        </file>  
+        <file name="catalog/view/theme/*/template/mail/order.tpl">
+		<operation>
+			<search position="replace"><![CDATA[<?php echo $text_powered; ?>]]></search>
+			<add><![CDATA[]]></add>
+		</operation>
+        </file>          
+        
+</modification>
