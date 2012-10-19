@@ -369,3 +369,48 @@
 2012-10-19 13:41:13 - PHP Notice:  Undefined variable: checkout in /Applications/XAMPP/xamppfiles/htdocs/Loja-Virtual/vqmod/vqcache/vq2-catalog_view_theme_default_template_product_product.tpl on line 265
 2012-10-19 13:41:18 - PHP Notice:  Undefined variable: checkout in /Applications/XAMPP/xamppfiles/htdocs/Loja-Virtual/vqmod/vqcache/vq2-catalog_view_theme_default_template_product_product.tpl on line 265
 2012-10-19 13:50:10 - PHP Notice:  Undefined variable: checkout in /Applications/XAMPP/xamppfiles/htdocs/Loja-Virtual/vqmod/vqcache/vq2-catalog_view_theme_default_template_product_product.tpl on line 265
+2012-10-19 14:28:59 - PAC: CEP de destino invalido.
+2012-10-19 14:28:59 - SEDEX: CEP de destino invalido.
+2012-10-19 14:29:01 - PAC: CEP de destino invalido.
+2012-10-19 14:29:01 - SEDEX: CEP de destino invalido.
+2012-10-19 14:30:19 - PAC: CEP de destino invalido.
+2012-10-19 14:30:19 - SEDEX: CEP de destino invalido.
+2012-10-19 14:30:20 - PAC: CEP de destino invalido.
+2012-10-19 14:30:20 - SEDEX: CEP de destino invalido.
+2012-10-19 14:30:21 - PAC: CEP de destino invalido.
+2012-10-19 14:30:21 - SEDEX: CEP de destino invalido.
+2012-10-19 14:30:24 - PAC: CEP de destino invalido.
+2012-10-19 14:30:24 - SEDEX: CEP de destino invalido.
+2012-10-19 14:31:28 - PAC: CEP de destino invalido.
+2012-10-19 14:31:28 - SEDEX: CEP de destino invalido.
+2012-10-19 14:31:29 - PAC: CEP de destino invalido.
+2012-10-19 14:31:29 - SEDEX: CEP de destino invalido.
+2012-10-19 14:31:30 - PAC: CEP de destino invalido.
+2012-10-19 14:31:30 - SEDEX: CEP de destino invalido.
+2012-10-19 14:31:30 - PAC: CEP de destino invalido.
+2012-10-19 14:31:30 - SEDEX: CEP de destino invalido.
+2012-10-19 14:32:46 - PHP Notice:  Undefined variable: checkout in /Applications/XAMPP/xamppfiles/htdocs/Loja-Virtual/vqmod/vqcache/vq2-catalog_view_theme_default_template_product_product.tpl on line 265
+2012-10-19 14:32:55 - PAC: CEP de destino invalido.
+2012-10-19 14:32:55 - SEDEX: CEP de destino invalido.
+2012-10-19 14:32:56 - PAC: CEP de destino invalido.
+2012-10-19 14:32:56 - SEDEX: CEP de destino invalido.
+2012-10-19 14:32:58 - PAC: CEP de destino invalido.
+2012-10-19 14:32:58 - SEDEX: CEP de destino invalido.
+2012-10-19 14:32:59 - PAC: CEP de destino invalido.
+2012-10-19 14:32:59 - SEDEX: CEP de destino invalido.
+2012-10-19 14:33:58 - PAC: CEP de destino invalido.
+2012-10-19 14:33:58 - SEDEX: CEP de destino invalido.
+2012-10-19 14:33:58 - PAC: CEP de destino invalido.
+2012-10-19 14:33:58 - SEDEX: CEP de destino invalido.
+2012-10-19 14:33:59 - PAC: CEP de destino invalido.
+2012-10-19 14:33:59 - SEDEX: CEP de destino invalido.
+2012-10-19 14:34:01 - PAC: CEP de destino invalido.
+2012-10-19 14:34:01 - SEDEX: CEP de destino invalido.
+2012-10-19 14:39:59 - PAC: CEP de destino invalido.
+2012-10-19 14:39:59 - SEDEX: CEP de destino invalido.
+2012-10-19 14:40:01 - PAC: CEP de destino invalido.
+2012-10-19 14:40:01 - SEDEX: CEP de destino invalido.
+2012-10-19 14:40:02 - PAC: CEP de destino invalido.
+2012-10-19 14:40:02 - SEDEX: CEP de destino invalido.
+2012-10-19 14:40:02 - PAC: CEP de destino invalido.
+2012-10-19 14:40:02 - SEDEX: CEP de destino invalido.

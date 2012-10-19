@@ -1,0 +1,223 @@
+<!-- Created using vQmod XML Generator by UKSB - http://www.opencart-extensions.co.uk //-->
+<modification>
+	<id>Limit Sales</id>
+	<version>For OpenCart 1.5.x</version>
+	<vqmver>1.2.3</vqmver>
+	<author><![CDATA[Kleber Oliveira]]></author>
+        <!-- admin -->
+	<file name="admin/controller/setting/setting.php">
+		<operation>
+			<search position="after"><![CDATA[$this->load->language('setting/setting');]]></search>
+			<add><![CDATA[
+                            $this->load->language('module/limitsales');
+                        ]]></add>
+		</operation> 
+		<operation>
+			<search position="after"><![CDATA[$this->data['entry_weight_class'] = $this->language->get('entry_weight_class');]]></search>
+			<add><![CDATA[
+                            $this->data['entry_minimum_amount'] = $this->language->get('entry_minimum_amount');
+                            $this->data['entry_minimum_value'] = $this->language->get('entry_minimum_value');
+                        ]]></add>
+		</operation> 
+		<operation>
+			<search position="after"><![CDATA[$this->load->model('localisation/weight_class');]]></search>
+			<add><![CDATA[
+                                if (isset($this->request->post['config_minimum_amount'])) {
+                                    $this->data['config_minimum_amount'] = $this->request->post['config_minimum_amount'];
+                                } else {
+                                    $this->data['config_minimum_amount'] = $this->config->get('config_minimum_amount');
+                                }
+
+
+
+                                if (isset($this->request->post['config_minimum_value'])) {
+                                    $this->data['config_minimum_value'] = $this->request->post['config_minimum_value'];
+                                } else {
+                                    $this->data['config_minimum_value'] = $this->config->get('config_minimum_value');
+                                }
+
+                        ]]></add>
+		</operation>                
+                
+	</file>
+        <file name="admin/view/template/setting/setting.tpl">
+		<operation>
+			<search position="after" offset="1"><![CDATA[<h2><?php echo $text_checkout; ?></h2>]]></search>
+			<add><![CDATA[ <tr>
+                            <tr>
+                                <td><?php echo $entry_minimum_amount; ?></td>
+                                <td><input type="text" name="config_minimum_amount" value="<?php echo $config_minimum_amount; ?>" size="3" />
+                            </tr>
+                            <tr>
+                                <td><?php echo $entry_minimum_value; ?></td>
+                                <td><input type="text" name="config_minimum_value" value="<?php echo $config_minimum_value; ?>" size="3" />
+                            </tr>   
+                        </tr>]]></add>
+		</operation>
+	</file>
+        <!-- catalog -->
+        <file name="catalog/controller/checkout/checkout.php">
+		<operation>
+			<search position="before"><![CDATA[$products = $this->cart->getProducts();]]></search>
+			<add><![CDATA[
+                            $this->language->load('module/limitsales');
+                        ]]></add>
+		</operation>     
+                <operation>
+			<search position="after" offset="15"><![CDATA[$products = $this->cart->getProducts();]]></search>
+			<add><![CDATA[
+		
+		
+                            $vouchers_total = count($this->session->data['vouchers']);
+                            $vouchers_total_value = 0;
+
+                            foreach($this->session->data['vouchers'] as $voucher){
+                                    $vouchers_total_value += (float) $voucher["amount"]; 
+                            }
+
+
+                            $products_total = 0;
+
+                            foreach ($products as $product) {
+                                $product_total = 0;
+
+                                foreach ($products as $product_2) {
+                                    if ($product_2['product_id'] == $product['product_id']) {
+                                        $product_total += $product_2['quantity'];
+                                    }
+                                }
+
+                                if ($product['minimum'] > $product_total) {
+                                    $this->redirect($this->url->link('checkout/cart'));
+                                }
+                                $products_total += $product['quantity'];    
+                            }
+
+
+
+
+
+                            if($this->config->get("config_minimum_amount")){
+
+
+                                if ($this->config->get("config_minimum_amount") > $products_total && $this->config->get("config_minimum_amount") > $vouchers_total) {
+                                    $this->session->data['warning'] = sprintf($this->language->get('error_minimum_amount'),$this->config->get("config_minimum_amount"));
+
+                                    $this->redirect($this->url->link('checkout/cart'));
+                                }
+
+                            }
+
+                            if($this->config->get("config_minimum_value")){
+
+
+
+
+
+                                if($this->config->get("config_minimum_value") > $this->cart->getTotal() && $this->config->get("config_minimum_value") > $vouchers_total_value){
+
+                                    $this->session->data['warning'] = sprintf($this->language->get('error_minimum_value'),$this->currency->format($this->config->get("config_minimum_value")));
+
+                                    $this->redirect($this->url->link('checkout/cart'));
+                                }
+                            }                        
+                        
+                        ]]></add>
+		</operation>
+	</file>        
+        <file name="catalog/controller/checkout/cart.php">
+		<operation>
+			<search position="after"><![CDATA[$this->language->load('checkout/cart');]]></search>
+			<add><![CDATA[
+                            $this->language->load('module/limitsales');
+                        ]]></add>
+		</operation>            
+		<operation>
+			<search position="replace" offset="6"><![CDATA[if (isset($this->error['warning'])) {]]></search>
+			<add><![CDATA[
+                            if (isset($this->error['warning'])) {
+                                $this->data['error_warning'] = $this->error['warning'];
+                            } elseif (!$this->cart->hasStock() && (!$this->config->get('config_stock_checkout') || $this->config->get('config_stock_warning'))) {
+                                $this->data['error_warning'] = $this->language->get('error_stock');
+                            } elseif (isset($this->session->data['warning'])) {
+                                $this->data['error_warning'] = $this->session->data['warning'];
+                                unset($this->session->data['warning']);
+                            } else {
+                                $this->data['error_warning'] = '';
+                            }
+                        ]]></add>
+		</operation>                 
+        </file>
+        <!-- quickcheckout -->
+        <file name="catalog/controller/quickcheckout/checkout.php">
+		<operation>
+			<search position="before"><![CDATA[$products = $this->cart->getProducts();]]></search>
+			<add><![CDATA[
+                            $this->language->load('module/limitsales');
+                        ]]></add>
+		</operation>     
+                <operation>
+			<search position="after" offset="15"><![CDATA[$products = $this->cart->getProducts();]]></search>
+			<add><![CDATA[
+		
+		
+                            $vouchers_total = count($this->session->data['vouchers']);
+                            $vouchers_total_value = 0;
+
+                            foreach($this->session->data['vouchers'] as $voucher){
+                                    $vouchers_total_value += (float) $voucher["amount"]; 
+                            }
+
+
+                            $products_total = 0;
+
+                            foreach ($products as $product) {
+                                $product_total = 0;
+
+                                foreach ($products as $product_2) {
+                                    if ($product_2['product_id'] == $product['product_id']) {
+                                        $product_total += $product_2['quantity'];
+                                    }
+                                }
+
+                                if ($product['minimum'] > $product_total) {
+                                    $this->redirect($this->url->link('checkout/cart'));
+                                }
+                                $products_total += $product['quantity'];    
+                            }
+
+
+
+
+
+                            if($this->config->get("config_minimum_amount")){
+
+
+                                if ($this->config->get("config_minimum_amount") > $products_total && $this->config->get("config_minimum_amount") > $vouchers_total) {
+                                    $this->session->data['warning'] = sprintf($this->language->get('error_minimum_amount'),$this->config->get("config_minimum_amount"));
+
+                                    $this->redirect($this->url->link('checkout/cart'));
+                                }
+
+                            }
+
+                            if($this->config->get("config_minimum_value")){
+
+
+
+
+
+                                if($this->config->get("config_minimum_value") > $this->cart->getTotal() && $this->config->get("config_minimum_value") > $vouchers_total_value){
+
+                                    $this->session->data['warning'] = sprintf($this->language->get('error_minimum_value'),$this->currency->format($this->config->get("config_minimum_value")));
+
+                                    $this->redirect($this->url->link('checkout/cart'));
+                                }
+                            }                        
+                        
+                        ]]></add>
+		</operation>
+	</file>         
+      
+      
+</modification>
