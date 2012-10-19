@@ -1,0 +1,180 @@
+<!-- Created using vQmod XML Generator by UKSB - http://www.opencart-extensions.co.uk //-->
+<modification>
+	<id>Whole Sale Grid</id>
+	<version>For OpenCart 1.5.x</version>
+	<vqmver>1.2.3</vqmver>
+	<author><![CDATA[Kleber Oliveira]]></author>
+        <!-- admin -->        
+        <file name="admin/model/sale/order.php">
+		<operation>
+			<search position="replace" offset="1"><![CDATA[public function getTotalSalesByYear($year) {]]></search>
+			<add><![CDATA[                        
+                            public function getTotalSalesByYear($year, $type = Null) {
+                                    if(is_null($type))
+                                        $query = $this->db->query("SELECT SUM(total) AS total FROM `" . DB_PREFIX . "order` WHERE order_status_id > '0' AND YEAR(date_added) = '" . (int) $year . "'");
+                                    else
+                                        $query = $this->db->query("SELECT SUM(total) AS total FROM `" . DB_PREFIX . "order` WHERE order_status_id = " . $type . " AND YEAR(date_added) = '" . (int) $year . "'");                        
+                        ]]></add>
+		</operation>
+		<operation>
+			<search position="replace" offset="1"><![CDATA[public function getTotalSales() {]]></search>
+			<add><![CDATA[                        
+                            public function getTotalSales($type = Null) {
+                                    if(is_null($type))
+                                        $query = $this->db->query("SELECT SUM(total) AS total FROM `" . DB_PREFIX . "order` WHERE order_status_id > '0'");
+                                    else
+                                        $query = $this->db->query("SELECT SUM(total) AS total FROM `" . DB_PREFIX . "order` WHERE order_status_id = " . $type );
+                        ]]></add>
+		</operation>
+        </file>
+      
+	<file name="admin/controller/common/home.php">
+		<operation>
+			<search position="after"><![CDATA[$this->load->language('common/home');]]></search>
+			<add><![CDATA[
+                            $this->load->language('module/filterdashboardresults');
+                        ]]></add>
+		</operation> 
+                <operation>
+			<search position="after"><![CDATA[$this->data['entry_range'] = $this->language->get('entry_range');]]></search>
+			<add><![CDATA[
+                            $this->data['entry_type'] = $this->language->get('entry_type');
+                        ]]></add>
+		</operation> 
+		<operation>
+			<search position="before"><![CDATA[$this->data['token'] = $this->session->data['token'];]]></search>
+			<add><![CDATA[
+                            $type = isset($this->request->get['type'])?$this->request->get['type']:Null;
+                            $this->data['type'] = $type;
+                        ]]></add>
+		</operation>  
+
+                <operation>
+			<search position="replace"><![CDATA[$this->data['total_order'] = $this->model_sale_order->getTotalOrders();]]></search>
+			<add><![CDATA[
+                            if(! is_null($type))
+                                $this->data['total_order'] = $this->model_sale_order->getTotalOrders(array("filter_order_status_id"=>$type));
+                            else
+                                $this->data['total_order'] = $this->model_sale_order->getTotalOrders();
+                        ]]></add>
+		</operation>                   
+                
+		<operation>
+			<search position="before"><![CDATA[$results = $this->model_sale_order->getOrders($data);]]></search>
+			<add><![CDATA[
+                            if(! is_null($type)) $data["filter_order_status_id"] = $type;
+                        ]]></add>
+		</operation>                  
+                
+		<operation>
+			<search position="before"><![CDATA[if ($this->config->get('config_currency_auto')) {]]></search>
+			<add><![CDATA[
+                            $this->load->model('localisation/order_status');
+                            $this->data['order_status'] = $this->model_localisation_order_status->getOrderStatuses();
+                        ]]></add>
+		</operation>            
+		<operation>
+			<search position="before"><![CDATA[switch ($range) {]]></search>
+			<add><![CDATA[
+                            if (isset($this->request->get['type'])) {
+                                $type = $this->request->get['type'];
+                            } else{
+                                $type = "0";
+                            }       
+
+                            $type_query = "order_status_id = " . $type;
+                        ]]></add>
+		</operation>
+		<operation>
+			<search position="replace"><![CDATA[$query = $this->db->query("SELECT COUNT(*) AS total FROM `" . DB_PREFIX . "order` WHERE order_status_id > '0' AND (DATE(date_added) = DATE(NOW()) AND HOUR(date_added) = '" . (int)$i . "') GROUP BY HOUR(date_added) ORDER BY date_added ASC");]]></search>
+			<add><![CDATA[$query = $this->db->query("SELECT COUNT(*) AS total FROM `" . DB_PREFIX . "order` WHERE " . $type_query . " AND (DATE(date_added) = DATE(NOW()) AND HOUR(date_added) = '" . (int) $i . "') GROUP BY HOUR(date_added) ORDER BY date_added ASC");]]></add>
+		</operation>                   
+	</file>
+        
+	<file name="admin/view/template/common/home.tpl">
+		<operation>
+			<search position="after"><![CDATA[<div class="overview">]]></search>
+			<add><![CDATA[
+                            <div class="range"><?php echo $entry_type; ?>
+                                <select onchange="openHome(this.value)">
+                                    <option value="">Todos</option>
+                                <?php foreach($order_status as $order){ ?>
+                                    <option value="<?php echo $order['order_status_id']; ?>" <?php if ($order['order_status_id'] == $type){ ?>selected<?php } ?>><?php echo $order['name']; ?></option>
+                                <?php } ?>
+                                </select>
+                            </div>  
+                        ]]></add>
+		</operation> 
+		<operation>
+			<search position="before" offset="1"><![CDATA[<td><?php echo $text_total_customer; ?></td>]]></search>
+			<add><![CDATA[
+                        <tr>
+                            <td colspan="2"><hr></td>
+                        </tr>
+                        ]]></add>
+		</operation>        
+		<operation>
+			<search position="after"><![CDATA[<div class="statistic">]]></search>
+			<add><![CDATA[
+                            <div class="range"><?php echo $entry_type; ?>
+                                <select id="type" onchange="getSalesChart()">
+                                    <option value="">Todos</option>
+                                <?php foreach($order_status as $order){ ?>
+                                    <option value="<?php echo $order['order_status_id']; ?>" <?php if ($order['order_status_id'] == $type){ ?>selected<?php } ?>><?php echo $order['name']; ?></option>
+                                <?php } ?>
+                                </select>
+                            </div>
+                        ]]></add>
+		</operation>
+		<operation>
+			<search position="before"><![CDATA[function getSalesChart(range) {]]></search>
+			<add><![CDATA[
+                            function openHome(value){
+                                if(value.length)
+                                    location.href =  "index.php?route=common/home&token=<?php echo $token; ?>&type=" + value;
+                                else
+                                    location.href =  "index.php?route=common/home&token=<?php echo $token; ?>";
+                            }
+                        ]]></add>
+		</operation>    
+		<operation>
+			<search position="replace" offset="27"><![CDATA[function getSalesChart(range) {]]></search>
+			<add><![CDATA[
+                            function getSalesChart() {
+
+
+                                var range = $("#range").val();
+                                var type  = $("#type").val();
+
+
+                                if(type.length){
+                                    filtro = '&type=' + type;
+                                }
+
+                                $.ajax({
+                                    type: 'GET',
+                                    url: 'index.php?route=common/home/chart&token=<?php echo $token; ?>&range=' + range + filtro,
+                                    dataType: 'json',
+                                    async: false,
+                                    success: function(json) {
+                                        var option = {	
+                                            shadowSize: 0,
+                                            lines: { 
+                                                show: true,
+                                                fill: true,
+                                                lineWidth: 1
+                                            },
+                                            grid: { backgroundColor: '#FFFFFF' },	
+                                            xaxis: { ticks: json.xaxis }
+                                        }
+
+                                        $.plot($('#report'), [json.order, json.customer], option);
+
+                                    }
+                                });
+                            }
+                            getSalesChart($('#range').val());
+                        ]]></add>
+		</operation>   
+	</file>        
+</modification>
