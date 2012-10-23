@@ -163,7 +163,7 @@ class ControllerProductWholesale extends Controller {
             $this->data['button_continue'] = $this->language->get('button_continue');
 
             if ($category_info['image']) {
-                $this->data['thumb'] = $this->model_tool_image->resize($category_info['image'], $this->config->get('config_image_category_width'), $this->config->get('config_image_category_height'));
+                $this->data['thumb'] = $this->model_tool_image->resize($category_info['image'], $this->config->get('config_image_product_width'), $this->config->get('config_image_product_height'));
             } else {
                 $this->data['thumb'] = '';
             }
@@ -220,7 +220,7 @@ class ControllerProductWholesale extends Controller {
             foreach ($results as $result) {
 				
                 if ($result['image']) {
-                    $image = $this->model_tool_image->resize($result['image'], $this->config->get('config_image_category_width'), $this->config->get('config_image_category_height'));
+                    $image = $this->model_tool_image->resize($result['image'], $this->config->get('config_image_product_width'), $this->config->get('config_image_product_height'));
                 } else {
                     $image = false;
                 }
@@ -234,7 +234,7 @@ class ControllerProductWholesale extends Controller {
 				$images = array();
 				foreach($this->model_catalog_product->getProductImages($result['product_id']) as $image_item){
 					$images[] = array(
-						"thumb" => $this->model_tool_image->resize($image_item['image'], $this->config->get('config_image_category_width'), $this->config->get('config_image_category_height')),
+						"thumb" => $this->model_tool_image->resize($image_item['image'], $this->config->get('config_image_product_width'), $this->config->get('config_image_product_height')),
 						"image" => $this->model_tool_image->resize($image_item['image'], $this->config->get('config_image_thumb_width'), $this->config->get('config_image_thumb_height'))
 					);
 									
