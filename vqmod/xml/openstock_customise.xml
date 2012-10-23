@@ -60,7 +60,7 @@
 			<search position="before"><![CDATA[<?php echo $footer; ?>]]></search>
 			<add><![CDATA[
 <script type="text/javascript"><!--
-$('.optionChoice, .grade input').bind("change blur",function(){
+$('.optionChoice, .grade input').bind("change keyup",function(){
     var optionStr = '';
     var i = parseInt(0);
     var optionNumbers = $('#optionNumbers').val();
