@@ -4,3 +4,6 @@ nbproject
 *.txt
 config.php
 admin/conifg.php
+catalog/controller/product/wholesale.php
+
+system/logs/error.txt
