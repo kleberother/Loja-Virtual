@@ -164,7 +164,11 @@ class ControllerProductWholesale extends Controller {
 
             if ($category_info['image']) {
 <<<<<<< HEAD
+<<<<<<< HEAD
                 $this->data['thumb'] = $this->model_tool_image->resize($category_info['image'], $this->config->get('config_image_product_width'), $this->config->get('config_image_product_height'));
+=======
+                $this->data['thumb'] = $this->model_tool_image->resize($category_info['image'], $this->config->get('config_image_category_width'), $this->config->get('config_image_category_height'));
+>>>>>>> dev
 =======
                 $this->data['thumb'] = $this->model_tool_image->resize($category_info['image'], $this->config->get('config_image_category_width'), $this->config->get('config_image_category_height'));
 >>>>>>> dev
@@ -225,7 +229,11 @@ class ControllerProductWholesale extends Controller {
 				
                 if ($result['image']) {
 <<<<<<< HEAD
+<<<<<<< HEAD
                     $image = $this->model_tool_image->resize($result['image'], $this->config->get('config_image_product_width'), $this->config->get('config_image_product_height'));
+=======
+                    $image = $this->model_tool_image->resize($result['image'], $this->config->get('config_image_category_width'), $this->config->get('config_image_category_height'));
+>>>>>>> dev
 =======
                     $image = $this->model_tool_image->resize($result['image'], $this->config->get('config_image_category_width'), $this->config->get('config_image_category_height'));
 >>>>>>> dev
@@ -243,7 +251,11 @@ class ControllerProductWholesale extends Controller {
 				foreach($this->model_catalog_product->getProductImages($result['product_id']) as $image_item){
 					$images[] = array(
 <<<<<<< HEAD
+<<<<<<< HEAD
 						"thumb" => $this->model_tool_image->resize($image_item['image'], $this->config->get('config_image_product_width'), $this->config->get('config_image_product_height')),
+=======
+						"thumb" => $this->model_tool_image->resize($image_item['image'], $this->config->get('config_image_category_width'), $this->config->get('config_image_category_height')),
+>>>>>>> dev
 =======
 						"thumb" => $this->model_tool_image->resize($image_item['image'], $this->config->get('config_image_category_width'), $this->config->get('config_image_category_height')),
 >>>>>>> dev
