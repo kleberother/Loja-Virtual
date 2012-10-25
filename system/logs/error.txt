@@ -414,6 +414,7 @@
 2012-10-19 14:40:02 - SEDEX: CEP de destino invalido.
 2012-10-19 14:40:02 - PAC: CEP de destino invalido.
 2012-10-19 14:40:02 - SEDEX: CEP de destino invalido.
+<<<<<<< HEAD
 2012-10-19 18:30:35 - PAC: CEP de destino invalido.
 2012-10-19 18:30:35 - SEDEX: CEP de destino invalido.
 2012-10-19 18:30:36 - PAC: CEP de destino invalido.
@@ -1214,3 +1215,158 @@
 2012-10-19 18:39:33 - SEDEX: CEP de destino invalido.
 2012-10-19 18:39:34 - PAC: CEP de destino invalido.
 2012-10-19 18:39:34 - SEDEX: CEP de destino invalido.
+=======
+2012-10-19 16:51:14 - PHP Notice:  Undefined index: customer_group_id in /Applications/XAMPP/xamppfiles/htdocs/Loja-Virtual/catalog/controller/product/wholesale.php on line 69
+2012-10-19 16:52:29 - PHP Notice:  Undefined variable: checkout in /Applications/XAMPP/xamppfiles/htdocs/Loja-Virtual/vqmod/vqcache/vq2-catalog_view_theme_default_template_product_product.tpl on line 265
+2012-10-19 16:52:56 - PHP Notice:  Undefined index: customer_group_id in /Applications/XAMPP/xamppfiles/htdocs/Loja-Virtual/catalog/controller/product/wholesale.php on line 247
+2012-10-19 16:52:56 - PHP Notice:  Undefined variable: product_info in /Applications/XAMPP/xamppfiles/htdocs/Loja-Virtual/catalog/controller/product/wholesale.php on line 321
+2012-10-19 16:52:56 - PHP Notice:  Undefined variable: large in /Applications/XAMPP/xamppfiles/htdocs/Loja-Virtual/catalog/view/theme/default/template/product/wholesale.tpl on line 12
+2012-10-19 16:52:56 - PHP Notice:  Undefined variable: config_option_store in /Applications/XAMPP/xamppfiles/htdocs/Loja-Virtual/catalog/view/theme/default/template/product/wholesale.tpl on line 30
+2012-10-19 16:54:47 - PHP Notice:  Undefined variable: product_info in /Applications/XAMPP/xamppfiles/htdocs/Loja-Virtual/catalog/controller/product/wholesale.php on line 310
+2012-10-19 16:54:48 - PHP Notice:  Undefined variable: large in /Applications/XAMPP/xamppfiles/htdocs/Loja-Virtual/catalog/view/theme/default/template/product/wholesale.tpl on line 12
+2012-10-19 16:54:48 - PHP Notice:  Undefined variable: config_option_store in /Applications/XAMPP/xamppfiles/htdocs/Loja-Virtual/catalog/view/theme/default/template/product/wholesale.tpl on line 30
+2012-10-19 16:55:14 - PHP Notice:  Undefined variable: large in /Applications/XAMPP/xamppfiles/htdocs/Loja-Virtual/catalog/view/theme/default/template/product/wholesale.tpl on line 12
+2012-10-19 16:55:14 - PHP Notice:  Undefined variable: config_option_store in /Applications/XAMPP/xamppfiles/htdocs/Loja-Virtual/catalog/view/theme/default/template/product/wholesale.tpl on line 30
+2012-10-19 16:55:49 - PHP Notice:  Undefined variable: large in /Applications/XAMPP/xamppfiles/htdocs/Loja-Virtual/catalog/view/theme/default/template/product/wholesale.tpl on line 12
+2012-10-19 16:55:49 - PHP Notice:  Undefined variable: config_option_store in /Applications/XAMPP/xamppfiles/htdocs/Loja-Virtual/catalog/view/theme/default/template/product/wholesale.tpl on line 30
+2012-10-19 16:57:46 - PHP Notice:  Undefined variable: large in /Applications/XAMPP/xamppfiles/htdocs/Loja-Virtual/catalog/view/theme/default/template/product/wholesale.tpl on line 12
+2012-10-19 16:57:46 - PHP Notice:  Undefined variable: config_option_store in /Applications/XAMPP/xamppfiles/htdocs/Loja-Virtual/catalog/view/theme/default/template/product/wholesale.tpl on line 30
+2012-10-19 16:59:36 - PHP Notice:  Undefined variable: large in /Applications/XAMPP/xamppfiles/htdocs/Loja-Virtual/catalog/view/theme/default/template/product/wholesale.tpl on line 12
+2012-10-19 16:59:36 - PHP Notice:  Undefined variable: config_option_store in /Applications/XAMPP/xamppfiles/htdocs/Loja-Virtual/catalog/view/theme/default/template/product/wholesale.tpl on line 30
+2012-10-19 17:01:11 - PHP Notice:  Undefined variable: large in /Applications/XAMPP/xamppfiles/htdocs/Loja-Virtual/catalog/view/theme/default/template/product/wholesale.tpl on line 13
+2012-10-19 17:01:11 - PHP Notice:  Undefined variable: config_option_store in /Applications/XAMPP/xamppfiles/htdocs/Loja-Virtual/catalog/view/theme/default/template/product/wholesale.tpl on line 31
+2012-10-19 17:01:49 - PHP Notice:  Undefined variable: large in /Applications/XAMPP/xamppfiles/htdocs/Loja-Virtual/catalog/view/theme/default/template/product/wholesale.tpl on line 13
+2012-10-19 17:02:37 - PHP Notice:  Undefined variable: large in /Applications/XAMPP/xamppfiles/htdocs/Loja-Virtual/catalog/view/theme/default/template/product/wholesale.tpl on line 13
+2012-10-19 17:03:02 - PHP Notice:  Undefined variable: large in /Applications/XAMPP/xamppfiles/htdocs/Loja-Virtual/catalog/view/theme/default/template/product/wholesale.tpl on line 13
+2012-10-19 17:03:13 - PHP Notice:  Undefined variable: large in /Applications/XAMPP/xamppfiles/htdocs/Loja-Virtual/catalog/view/theme/default/template/product/wholesale.tpl on line 13
+2012-10-19 17:09:19 - PHP Notice:  Undefined index: customer_group_id in /Applications/XAMPP/xamppfiles/htdocs/Loja-Virtual/vqmod/vqcache/vq2-catalog_controller_checkout_cart.php on line 707
+2012-10-19 17:39:41 - PHP Notice:  Error: Could not load language module/wholesaleview! in /Applications/XAMPP/xamppfiles/htdocs/Loja-Virtual/vqmod/vqcache/vq2-system_library_language.php on line 41
+2012-10-19 17:41:42 - WHOLESALEVIEW --> Starting install
+2012-10-19 17:41:42 - WHOLESALEVIEW --> Altered oc_category table
+2012-10-19 17:41:42 - WHOLESALEVIEW --> Completed install
+2012-10-19 17:43:02 - WHOLESALEVIEW --> Starting uninstall
+2012-10-19 17:43:02 - WHOLESALEVIEW --> Altered oc_category table
+2012-10-19 17:43:02 - WHOLESALEVIEW --> Completed uninstall
+2012-10-19 17:43:04 - WHOLESALEVIEW --> Starting install
+2012-10-19 17:43:04 - WHOLESALEVIEW --> Altered oc_category table
+2012-10-19 17:43:04 - WHOLESALEVIEW --> Completed install
+2012-10-19 17:50:24 - PHP Notice:  Undefined variable: checkout in /Applications/XAMPP/xamppfiles/htdocs/Loja-Virtual/vqmod/vqcache/vq2-catalog_view_theme_default_template_product_product.tpl on line 265
+2012-10-19 18:13:57 - PHP Notice:  Undefined index: wholesale in /Applications/XAMPP/xamppfiles/htdocs/Loja-Virtual/vqmod/vqcache/vq2-catalog_controller_common_header.php on line 135
+2012-10-19 18:13:57 - PHP Notice:  Undefined index: wholesale in /Applications/XAMPP/xamppfiles/htdocs/Loja-Virtual/vqmod/vqcache/vq2-catalog_controller_common_header.php on line 116
+2012-10-19 18:13:57 - PHP Notice:  Undefined index: wholesale in /Applications/XAMPP/xamppfiles/htdocs/Loja-Virtual/vqmod/vqcache/vq2-catalog_controller_common_header.php on line 116
+2012-10-19 18:13:57 - PHP Notice:  Undefined index: wholesale in /Applications/XAMPP/xamppfiles/htdocs/Loja-Virtual/vqmod/vqcache/vq2-catalog_controller_common_header.php on line 135
+2012-10-19 18:13:57 - PHP Notice:  Undefined index: wholesale in /Applications/XAMPP/xamppfiles/htdocs/Loja-Virtual/vqmod/vqcache/vq2-catalog_controller_common_header.php on line 116
+2012-10-19 18:13:57 - PHP Notice:  Undefined index: wholesale in /Applications/XAMPP/xamppfiles/htdocs/Loja-Virtual/vqmod/vqcache/vq2-catalog_controller_common_header.php on line 116
+2012-10-19 18:13:57 - PHP Notice:  Undefined index: wholesale in /Applications/XAMPP/xamppfiles/htdocs/Loja-Virtual/vqmod/vqcache/vq2-catalog_controller_common_header.php on line 135
+2012-10-19 18:13:57 - PHP Notice:  Undefined index: wholesale in /Applications/XAMPP/xamppfiles/htdocs/Loja-Virtual/vqmod/vqcache/vq2-catalog_controller_common_header.php on line 116
+2012-10-19 18:13:57 - PHP Notice:  Undefined index: wholesale in /Applications/XAMPP/xamppfiles/htdocs/Loja-Virtual/vqmod/vqcache/vq2-catalog_controller_common_header.php on line 116
+2012-10-19 18:13:57 - PHP Notice:  Undefined index: wholesale in /Applications/XAMPP/xamppfiles/htdocs/Loja-Virtual/vqmod/vqcache/vq2-catalog_controller_common_header.php on line 116
+2012-10-19 18:13:57 - PHP Notice:  Undefined index: wholesale in /Applications/XAMPP/xamppfiles/htdocs/Loja-Virtual/vqmod/vqcache/vq2-catalog_controller_common_header.php on line 116
+2012-10-19 18:13:57 - PHP Notice:  Undefined index: wholesale in /Applications/XAMPP/xamppfiles/htdocs/Loja-Virtual/vqmod/vqcache/vq2-catalog_controller_common_header.php on line 116
+2012-10-19 18:13:57 - PHP Notice:  Undefined index: wholesale in /Applications/XAMPP/xamppfiles/htdocs/Loja-Virtual/vqmod/vqcache/vq2-catalog_controller_common_header.php on line 135
+2012-10-19 18:13:57 - PHP Notice:  Undefined index: wholesale in /Applications/XAMPP/xamppfiles/htdocs/Loja-Virtual/vqmod/vqcache/vq2-catalog_controller_common_header.php on line 135
+2012-10-19 18:13:57 - PHP Notice:  Undefined index: wholesale in /Applications/XAMPP/xamppfiles/htdocs/Loja-Virtual/vqmod/vqcache/vq2-catalog_controller_common_header.php on line 135
+2012-10-19 18:13:57 - PHP Notice:  Undefined index: wholesale in /Applications/XAMPP/xamppfiles/htdocs/Loja-Virtual/vqmod/vqcache/vq2-catalog_controller_common_header.php on line 135
+2012-10-19 18:13:57 - PHP Notice:  Undefined index: wholesale in /Applications/XAMPP/xamppfiles/htdocs/Loja-Virtual/vqmod/vqcache/vq2-catalog_controller_common_header.php on line 135
+2012-10-19 18:13:57 - PHP Notice:  Undefined index: wholesale in /Applications/XAMPP/xamppfiles/htdocs/Loja-Virtual/vqmod/vqcache/vq2-catalog_controller_common_header.php on line 116
+2012-10-19 18:13:57 - PHP Notice:  Undefined index: wholesale in /Applications/XAMPP/xamppfiles/htdocs/Loja-Virtual/vqmod/vqcache/vq2-catalog_controller_common_header.php on line 116
+2012-10-19 18:13:57 - PHP Notice:  Undefined index: wholesale in /Applications/XAMPP/xamppfiles/htdocs/Loja-Virtual/vqmod/vqcache/vq2-catalog_controller_common_header.php on line 116
+2012-10-19 18:13:57 - PHP Notice:  Undefined index: wholesale in /Applications/XAMPP/xamppfiles/htdocs/Loja-Virtual/vqmod/vqcache/vq2-catalog_controller_common_header.php on line 116
+2012-10-19 18:13:57 - PHP Notice:  Undefined index: wholesale in /Applications/XAMPP/xamppfiles/htdocs/Loja-Virtual/vqmod/vqcache/vq2-catalog_controller_common_header.php on line 116
+2012-10-19 18:13:57 - PHP Notice:  Undefined index: wholesale in /Applications/XAMPP/xamppfiles/htdocs/Loja-Virtual/vqmod/vqcache/vq2-catalog_controller_common_header.php on line 116
+2012-10-19 18:13:57 - PHP Notice:  Undefined index: wholesale in /Applications/XAMPP/xamppfiles/htdocs/Loja-Virtual/vqmod/vqcache/vq2-catalog_controller_common_header.php on line 116
+2012-10-19 18:13:57 - PHP Notice:  Undefined index: wholesale in /Applications/XAMPP/xamppfiles/htdocs/Loja-Virtual/vqmod/vqcache/vq2-catalog_controller_common_header.php on line 116
+2012-10-19 18:13:57 - PHP Notice:  Undefined index: wholesale in /Applications/XAMPP/xamppfiles/htdocs/Loja-Virtual/vqmod/vqcache/vq2-catalog_controller_common_header.php on line 116
+2012-10-19 18:13:57 - PHP Notice:  Undefined index: wholesale in /Applications/XAMPP/xamppfiles/htdocs/Loja-Virtual/vqmod/vqcache/vq2-catalog_controller_common_header.php on line 116
+2012-10-19 18:13:57 - PHP Notice:  Undefined index: wholesale in /Applications/XAMPP/xamppfiles/htdocs/Loja-Virtual/vqmod/vqcache/vq2-catalog_controller_common_header.php on line 116
+2012-10-19 18:13:57 - PHP Notice:  Undefined index: wholesale in /Applications/XAMPP/xamppfiles/htdocs/Loja-Virtual/vqmod/vqcache/vq2-catalog_controller_common_header.php on line 116
+2012-10-19 18:13:57 - PHP Notice:  Undefined index: wholesale in /Applications/XAMPP/xamppfiles/htdocs/Loja-Virtual/vqmod/vqcache/vq2-catalog_controller_common_header.php on line 116
+2012-10-19 18:13:57 - PHP Notice:  Undefined index: wholesale in /Applications/XAMPP/xamppfiles/htdocs/Loja-Virtual/vqmod/vqcache/vq2-catalog_controller_common_header.php on line 116
+2012-10-19 18:13:57 - PHP Notice:  Undefined index: wholesale in /Applications/XAMPP/xamppfiles/htdocs/Loja-Virtual/vqmod/vqcache/vq2-catalog_controller_common_header.php on line 116
+2012-10-19 18:13:57 - PHP Notice:  Undefined index: wholesale in /Applications/XAMPP/xamppfiles/htdocs/Loja-Virtual/vqmod/vqcache/vq2-catalog_controller_common_header.php on line 116
+2012-10-19 18:13:57 - PHP Notice:  Undefined index: wholesale in /Applications/XAMPP/xamppfiles/htdocs/Loja-Virtual/vqmod/vqcache/vq2-catalog_controller_common_header.php on line 116
+2012-10-19 18:13:57 - PHP Notice:  Undefined index: wholesale in /Applications/XAMPP/xamppfiles/htdocs/Loja-Virtual/vqmod/vqcache/vq2-catalog_controller_common_header.php on line 116
+2012-10-19 18:13:57 - PHP Notice:  Undefined index: wholesale in /Applications/XAMPP/xamppfiles/htdocs/Loja-Virtual/vqmod/vqcache/vq2-catalog_controller_common_header.php on line 135
+2012-10-19 18:13:58 - PHP Notice:  Undefined variable: checkout in /Applications/XAMPP/xamppfiles/htdocs/Loja-Virtual/vqmod/vqcache/vq2-catalog_view_theme_default_template_product_product.tpl on line 265
+2012-10-19 18:13:59 - PHP Notice:  Undefined index: wholesale in /Applications/XAMPP/xamppfiles/htdocs/Loja-Virtual/vqmod/vqcache/vq2-catalog_controller_common_header.php on line 135
+2012-10-19 18:13:59 - PHP Notice:  Undefined index: wholesale in /Applications/XAMPP/xamppfiles/htdocs/Loja-Virtual/vqmod/vqcache/vq2-catalog_controller_common_header.php on line 116
+2012-10-19 18:13:59 - PHP Notice:  Undefined index: wholesale in /Applications/XAMPP/xamppfiles/htdocs/Loja-Virtual/vqmod/vqcache/vq2-catalog_controller_common_header.php on line 116
+2012-10-19 18:13:59 - PHP Notice:  Undefined index: wholesale in /Applications/XAMPP/xamppfiles/htdocs/Loja-Virtual/vqmod/vqcache/vq2-catalog_controller_common_header.php on line 135
+2012-10-19 18:13:59 - PHP Notice:  Undefined index: wholesale in /Applications/XAMPP/xamppfiles/htdocs/Loja-Virtual/vqmod/vqcache/vq2-catalog_controller_common_header.php on line 116
+2012-10-19 18:13:59 - PHP Notice:  Undefined index: wholesale in /Applications/XAMPP/xamppfiles/htdocs/Loja-Virtual/vqmod/vqcache/vq2-catalog_controller_common_header.php on line 116
+2012-10-19 18:13:59 - PHP Notice:  Undefined index: wholesale in /Applications/XAMPP/xamppfiles/htdocs/Loja-Virtual/vqmod/vqcache/vq2-catalog_controller_common_header.php on line 135
+2012-10-19 18:13:59 - PHP Notice:  Undefined index: wholesale in /Applications/XAMPP/xamppfiles/htdocs/Loja-Virtual/vqmod/vqcache/vq2-catalog_controller_common_header.php on line 116
+2012-10-19 18:13:59 - PHP Notice:  Undefined index: wholesale in /Applications/XAMPP/xamppfiles/htdocs/Loja-Virtual/vqmod/vqcache/vq2-catalog_controller_common_header.php on line 116
+2012-10-19 18:13:59 - PHP Notice:  Undefined index: wholesale in /Applications/XAMPP/xamppfiles/htdocs/Loja-Virtual/vqmod/vqcache/vq2-catalog_controller_common_header.php on line 116
+2012-10-19 18:13:59 - PHP Notice:  Undefined index: wholesale in /Applications/XAMPP/xamppfiles/htdocs/Loja-Virtual/vqmod/vqcache/vq2-catalog_controller_common_header.php on line 116
+2012-10-19 18:14:00 - PHP Notice:  Undefined index: wholesale in /Applications/XAMPP/xamppfiles/htdocs/Loja-Virtual/vqmod/vqcache/vq2-catalog_controller_common_header.php on line 116
+2012-10-19 18:14:00 - PHP Notice:  Undefined index: wholesale in /Applications/XAMPP/xamppfiles/htdocs/Loja-Virtual/vqmod/vqcache/vq2-catalog_controller_common_header.php on line 135
+2012-10-19 18:14:00 - PHP Notice:  Undefined index: wholesale in /Applications/XAMPP/xamppfiles/htdocs/Loja-Virtual/vqmod/vqcache/vq2-catalog_controller_common_header.php on line 135
+2012-10-19 18:14:00 - PHP Notice:  Undefined index: wholesale in /Applications/XAMPP/xamppfiles/htdocs/Loja-Virtual/vqmod/vqcache/vq2-catalog_controller_common_header.php on line 135
+2012-10-19 18:14:00 - PHP Notice:  Undefined index: wholesale in /Applications/XAMPP/xamppfiles/htdocs/Loja-Virtual/vqmod/vqcache/vq2-catalog_controller_common_header.php on line 135
+2012-10-19 18:14:00 - PHP Notice:  Undefined index: wholesale in /Applications/XAMPP/xamppfiles/htdocs/Loja-Virtual/vqmod/vqcache/vq2-catalog_controller_common_header.php on line 135
+2012-10-19 18:14:00 - PHP Notice:  Undefined index: wholesale in /Applications/XAMPP/xamppfiles/htdocs/Loja-Virtual/vqmod/vqcache/vq2-catalog_controller_common_header.php on line 116
+2012-10-19 18:14:00 - PHP Notice:  Undefined index: wholesale in /Applications/XAMPP/xamppfiles/htdocs/Loja-Virtual/vqmod/vqcache/vq2-catalog_controller_common_header.php on line 116
+2012-10-19 18:14:00 - PHP Notice:  Undefined index: wholesale in /Applications/XAMPP/xamppfiles/htdocs/Loja-Virtual/vqmod/vqcache/vq2-catalog_controller_common_header.php on line 116
+2012-10-19 18:14:00 - PHP Notice:  Undefined index: wholesale in /Applications/XAMPP/xamppfiles/htdocs/Loja-Virtual/vqmod/vqcache/vq2-catalog_controller_common_header.php on line 116
+2012-10-19 18:14:00 - PHP Notice:  Undefined index: wholesale in /Applications/XAMPP/xamppfiles/htdocs/Loja-Virtual/vqmod/vqcache/vq2-catalog_controller_common_header.php on line 116
+2012-10-19 18:14:00 - PHP Notice:  Undefined index: wholesale in /Applications/XAMPP/xamppfiles/htdocs/Loja-Virtual/vqmod/vqcache/vq2-catalog_controller_common_header.php on line 116
+2012-10-19 18:14:00 - PHP Notice:  Undefined index: wholesale in /Applications/XAMPP/xamppfiles/htdocs/Loja-Virtual/vqmod/vqcache/vq2-catalog_controller_common_header.php on line 116
+2012-10-19 18:14:00 - PHP Notice:  Undefined index: wholesale in /Applications/XAMPP/xamppfiles/htdocs/Loja-Virtual/vqmod/vqcache/vq2-catalog_controller_common_header.php on line 116
+2012-10-19 18:14:00 - PHP Notice:  Undefined index: wholesale in /Applications/XAMPP/xamppfiles/htdocs/Loja-Virtual/vqmod/vqcache/vq2-catalog_controller_common_header.php on line 116
+2012-10-19 18:14:00 - PHP Notice:  Undefined index: wholesale in /Applications/XAMPP/xamppfiles/htdocs/Loja-Virtual/vqmod/vqcache/vq2-catalog_controller_common_header.php on line 116
+2012-10-19 18:14:00 - PHP Notice:  Undefined index: wholesale in /Applications/XAMPP/xamppfiles/htdocs/Loja-Virtual/vqmod/vqcache/vq2-catalog_controller_common_header.php on line 116
+2012-10-19 18:14:00 - PHP Notice:  Undefined index: wholesale in /Applications/XAMPP/xamppfiles/htdocs/Loja-Virtual/vqmod/vqcache/vq2-catalog_controller_common_header.php on line 116
+2012-10-19 18:14:00 - PHP Notice:  Undefined index: wholesale in /Applications/XAMPP/xamppfiles/htdocs/Loja-Virtual/vqmod/vqcache/vq2-catalog_controller_common_header.php on line 116
+2012-10-19 18:14:00 - PHP Notice:  Undefined index: wholesale in /Applications/XAMPP/xamppfiles/htdocs/Loja-Virtual/vqmod/vqcache/vq2-catalog_controller_common_header.php on line 116
+2012-10-19 18:14:00 - PHP Notice:  Undefined index: wholesale in /Applications/XAMPP/xamppfiles/htdocs/Loja-Virtual/vqmod/vqcache/vq2-catalog_controller_common_header.php on line 116
+2012-10-19 18:14:00 - PHP Notice:  Undefined index: wholesale in /Applications/XAMPP/xamppfiles/htdocs/Loja-Virtual/vqmod/vqcache/vq2-catalog_controller_common_header.php on line 116
+2012-10-19 18:14:00 - PHP Notice:  Undefined index: wholesale in /Applications/XAMPP/xamppfiles/htdocs/Loja-Virtual/vqmod/vqcache/vq2-catalog_controller_common_header.php on line 116
+2012-10-19 18:14:00 - PHP Notice:  Undefined index: wholesale in /Applications/XAMPP/xamppfiles/htdocs/Loja-Virtual/vqmod/vqcache/vq2-catalog_controller_common_header.php on line 116
+2012-10-19 18:14:00 - PHP Notice:  Undefined index: wholesale in /Applications/XAMPP/xamppfiles/htdocs/Loja-Virtual/vqmod/vqcache/vq2-catalog_controller_common_header.php on line 135
+2012-10-19 18:14:19 - PHP Notice:  Undefined variable: checkout in /Applications/XAMPP/xamppfiles/htdocs/Loja-Virtual/vqmod/vqcache/vq2-catalog_view_theme_default_template_product_product.tpl on line 265
+2012-10-25 12:09:28 - PHP Notice:  Undefined variable: checkout in /Applications/XAMPP/xamppfiles/htdocs/Loja-Virtual/vqmod/vqcache/vq2-catalog_view_theme_default_template_product_product.tpl on line 265
+2012-10-25 12:13:34 - PHP Notice:  Undefined variable: checkout in /Applications/XAMPP/xamppfiles/htdocs/Loja-Virtual/vqmod/vqcache/vq2-catalog_view_theme_default_template_product_product.tpl on line 265
+2012-10-25 12:13:42 - PAC: CEP de destino invalido.
+2012-10-25 12:13:42 - SEDEX: CEP de destino invalido.
+2012-10-25 12:13:43 - PAC: CEP de destino invalido.
+2012-10-25 12:13:43 - SEDEX: CEP de destino invalido.
+2012-10-25 12:13:43 - PAC: CEP de destino invalido.
+2012-10-25 12:13:43 - SEDEX: CEP de destino invalido.
+2012-10-25 12:13:43 - PAC: CEP de destino invalido.
+2012-10-25 12:13:43 - SEDEX: CEP de destino invalido.
+2012-10-25 12:13:44 - PAC: CEP de destino invalido.
+2012-10-25 12:13:44 - SEDEX: CEP de destino invalido.
+2012-10-25 12:13:50 - PAC: CEP de destino invalido.
+2012-10-25 12:13:50 - SEDEX: CEP de destino invalido.
+2012-10-25 12:13:50 - PAC: CEP de destino invalido.
+2012-10-25 12:13:50 - SEDEX: CEP de destino invalido.
+2012-10-25 12:13:50 - PAC: CEP de destino invalido.
+2012-10-25 12:13:50 - SEDEX: CEP de destino invalido.
+2012-10-25 12:13:50 - PAC: CEP de destino invalido.
+2012-10-25 12:13:50 - SEDEX: CEP de destino invalido.
+2012-10-25 12:13:50 - PAC: CEP de destino invalido.
+2012-10-25 12:13:50 - SEDEX: CEP de destino invalido.
+2012-10-25 12:14:10 - PAC: CEP de destino invalido.
+2012-10-25 12:14:10 - SEDEX: CEP de destino invalido.
+2012-10-25 12:14:10 - PAC: CEP de destino invalido.
+2012-10-25 12:14:10 - SEDEX: CEP de destino invalido.
+2012-10-25 12:14:10 - PAC: CEP de destino invalido.
+2012-10-25 12:14:10 - SEDEX: CEP de destino invalido.
+2012-10-25 12:14:11 - PAC: CEP de destino invalido.
+2012-10-25 12:14:11 - SEDEX: CEP de destino invalido.
+2012-10-25 12:14:11 - PAC: CEP de destino invalido.
+2012-10-25 12:14:11 - SEDEX: CEP de destino invalido.
+2012-10-25 12:14:15 - PAC: CEP de destino invalido.
+2012-10-25 12:14:15 - SEDEX: CEP de destino invalido.
+2012-10-25 12:14:15 - PAC: CEP de destino invalido.
+2012-10-25 12:14:15 - SEDEX: CEP de destino invalido.
+2012-10-25 12:14:15 - PAC: CEP de destino invalido.
+2012-10-25 12:14:15 - SEDEX: CEP de destino invalido.
+2012-10-25 12:14:16 - PAC: CEP de destino invalido.
+2012-10-25 12:14:16 - SEDEX: CEP de destino invalido.
+2012-10-25 12:14:16 - PAC: CEP de destino invalido.
+2012-10-25 12:14:16 - SEDEX: CEP de destino invalido.
+2012-10-25 12:14:23 - PagSeguro: [HTTP 401] - UNAUTHORIZED
+
+>>>>>>> dev
