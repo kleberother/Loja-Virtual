@@ -143,9 +143,7 @@ $('.optionChoice, .grade input').bind("change blur",function(){
 
                         if (data.success) {
                             var mensagem = $('.loading');
-                            
-                            console.log(quantity_now)
-                            
+                                                      
                             if(quantity_now > parseInt(data.data.stock)){
                                 mensagem.removeClass("loading").addClass('success').empty().text(data.success);
                                 updatePrice(stringPrice,stringDiscount);
