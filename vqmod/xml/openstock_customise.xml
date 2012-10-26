@@ -160,6 +160,8 @@ $('.optionChoice, .grade input').bind("change keyup",function(){
                             $('.loading').removeClass('loading').addClass('warning').empty().text(data.nostock);
                             updatePrice(stringPrice,stringDiscount);
 
+                            input.val(0);
+
                             if(data.nostockcheckout == 1)
                             {
                                // $('#product-cart').show();
@@ -201,4 +203,112 @@ $('.optionChoice, .grade input').bind("change keyup",function(){
 //--></script>]]></add>
 		</operation>
 	</file>
+        <!-- cart -->
+        <file name="catalog/controller/checkout/cart.php">
+		<operation>
+			<search position="after" offset="2"><![CDATA[if ($product['minimum'] > $product_total) {]]></search>
+			<add><![CDATA[
+                                                
+                            $this->load->model('openstock/openstock');
+                        
+                            foreach($products as $product_3){
+                                
+                                
+                                $hash_option = "";
+                                $id_product  = "";
+                                
+                                foreach($product_3["option"] as $option_3) $hash_option .= $option_3["product_option_value_id"] . ":";
+                                
+                                $hash_option = substr($hash_option, 0, (strlen($hash_option)-1));
+                                $id_product  = $product_3["product_id"];
+                                
+                                if( $hash_option || $id_product ){
+                                    
+                                    $product_option = $this->model_openstock_openstock->getRelation($hash_option, $id_product);
+                                    
+                                    if( $product_3['quantity'] > $product_option["stock"] ){
+                                        $this->data['error_warning'] = sprintf($this->language->get('error_minimum'), $product_3['name'], $product_option["stock"]);
+                                    }
+                                }
+                                
+                                
+                                
+                            }
+
+                        ]]></add>
+		</operation>   
+	</file>        
+        
+        
+        <!-- checkout -->
+        <file name="catalog/controller/checkout/checkout.php">
+		<operation>
+			<search position="before"><![CDATA[$this->document->setTitle($this->language->get('heading_title'));]]></search>
+			<add><![CDATA[
+                                                
+                            $this->load->model('openstock/openstock');
+                        
+                            foreach($products as $product_3){
+                                
+                                
+                                $hash_option = "";
+                                $id_product  = "";
+                                
+                                foreach($product_3["option"] as $option_3) $hash_option .= $option_3["product_option_value_id"] . ":";
+                                
+                                $hash_option = substr($hash_option, 0, (strlen($hash_option)-1));
+                                $id_product  = $product["product_id"];
+                                
+                                if( $hash_option || $id_product ){
+                                    
+                                    $product_option = $this->model_openstock_openstock->getRelation($hash_option, $id_product);
+                                    
+                                    if( $product_3['quantity'] > $product_option["stock"] ){
+                                        $this->redirect($this->url->link('checkout/cart'));
+                                    }
+                                }
+                                
+                                
+                                
+                            }
+
+                        ]]></add>
+		</operation>   
+	</file>
+       
+        <!-- quickcheckout -->
+        <file name="catalog/controller/quickcheckout/checkout.php">
+		<operation>
+			<search position="before"><![CDATA[$this->document->setTitle($this->language->get('heading_title'));]]></search>
+			<add><![CDATA[
+                                                
+                            $this->load->model('openstock/openstock');
+                        
+                            foreach($products as $product_3){
+                                
+                                
+                                $hash_option = "";
+                                $id_product  = "";
+                                
+                                foreach($product_3["option"] as $option_3) $hash_option .= $option_3["product_option_value_id"] . ":";
+                                
+                                $hash_option = substr($hash_option, 0, (strlen($hash_option)-1));
+                                $id_product  = $product_3["product_id"];
+                                
+                                if( $hash_option || $id_product ){
+                                    
+                                    $product_option = $this->model_openstock_openstock->getRelation($hash_option, $id_product);
+                                    
+                                    if( $product_3['quantity'] > $product_option["stock"] ){
+                                        $this->redirect($this->url->link('checkout/cart'));
+                                    }
+                                }
+                                
+                                
+                                
+                            }
+
+                        ]]></add>
+		</operation>     
+	</file>        
 </modification>

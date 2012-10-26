@@ -56,6 +56,30 @@
 		</operation>
 	</file>
         <!-- catalog -->
+        <file name="catalog/controller/checkout/cart.php">
+		<operation>
+			<search position="after"><![CDATA[$this->language->load('checkout/cart');]]></search>
+			<add><![CDATA[
+                            $this->language->load('module/limitsales');
+                        ]]></add>
+		</operation>            
+		<operation>
+			<search position="replace" offset="6"><![CDATA[if (isset($this->error['warning'])) {]]></search>
+			<add><![CDATA[
+                            if (isset($this->error['warning'])) {
+                                $this->data['error_warning'] = $this->error['warning'];
+                            } elseif (!$this->cart->hasStock() && (!$this->config->get('config_stock_checkout') || $this->config->get('config_stock_warning'))) {
+                                $this->data['error_warning'] = $this->language->get('error_stock');
+                            } elseif (isset($this->session->data['warning'])) {
+                                $this->data['error_warning'] = $this->session->data['warning'];
+                                unset($this->session->data['warning']);
+                            } else {
+                                $this->data['error_warning'] = '';
+                            }
+                        ]]></add>
+		</operation>                 
+        </file>        
+        <!-- checkout -->
         <file name="catalog/controller/checkout/checkout.php">
 		<operation>
 			<search position="before"><![CDATA[$products = $this->cart->getProducts();]]></search>
@@ -124,30 +148,7 @@
                         
                         ]]></add>
 		</operation>
-	</file>        
-        <file name="catalog/controller/checkout/cart.php">
-		<operation>
-			<search position="after"><![CDATA[$this->language->load('checkout/cart');]]></search>
-			<add><![CDATA[
-                            $this->language->load('module/limitsales');
-                        ]]></add>
-		</operation>            
-		<operation>
-			<search position="replace" offset="6"><![CDATA[if (isset($this->error['warning'])) {]]></search>
-			<add><![CDATA[
-                            if (isset($this->error['warning'])) {
-                                $this->data['error_warning'] = $this->error['warning'];
-                            } elseif (!$this->cart->hasStock() && (!$this->config->get('config_stock_checkout') || $this->config->get('config_stock_warning'))) {
-                                $this->data['error_warning'] = $this->language->get('error_stock');
-                            } elseif (isset($this->session->data['warning'])) {
-                                $this->data['error_warning'] = $this->session->data['warning'];
-                                unset($this->session->data['warning']);
-                            } else {
-                                $this->data['error_warning'] = '';
-                            }
-                        ]]></add>
-		</operation>                 
-        </file>
+	</file>
         <!-- quickcheckout -->
         <file name="catalog/controller/quickcheckout/checkout.php">
 		<operation>
@@ -217,7 +218,5 @@
                         
                         ]]></add>
 		</operation>
-	</file>         
-      
-      
+	</file>
 </modification>
