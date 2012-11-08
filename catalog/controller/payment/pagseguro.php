@@ -141,16 +141,20 @@ class ControllerPaymentPagseguro extends Controller {
         // obtendo frete
         $total_shipping = array();
         $_total_shipping = 0;
+		$value_shipping = 0;
         $taxes = $this->cart->getTaxes();	
 
 
         if ($this->config->get('shipping_status')) {
                 $this->load->model('total/shipping');
-
                 $this->{'model_total_shipping'}->getTotal($total_shipping, $_total_shipping, $taxes);
+				
+				$value_shipping =  $total_shipping[0]["value"];	
+				
+				$paymentRequest->getShipping()->setCost($this->currency->format((float) $value_shipping, $order_info['currency_code'], false, false));
         }
 
-        $value_shipping =  $this->currency->format((float) $total_shipping[0]["value"], $order_info['currency_code'], false, false);		
+        	
 
 
         // obtendo frete, descontos e taxas 
@@ -167,9 +171,8 @@ class ControllerPaymentPagseguro extends Controller {
         } else if ($total < 0) {
             $paymentRequest->setExtraAmount($total);
         }
-        
 	
-        $paymentRequest->getShipping()->setCost($value_shipping);
+       
         
 
         /*
