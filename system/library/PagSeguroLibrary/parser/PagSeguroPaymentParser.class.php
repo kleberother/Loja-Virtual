@@ -95,6 +95,10 @@ class PagSeguroPaymentParser extends PagSeguroServiceParser {
 			if ($payment->getShipping()->getType() != null && $payment->getShipping()->getType()->getValue() != null) {
 				$data['shippingType'] = $payment->getShipping()->getType()->getValue();
 			}
+                        
+			if ($payment->getShipping()->getCost() != null) {
+				$data['shippingCost'] = $payment->getShipping()->getCost();
+			}                        
 
 			// address
 			if ($payment->getShipping()->getAddress() != null) {
