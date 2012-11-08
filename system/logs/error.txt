@@ -567,3 +567,10 @@
 2012-10-25 12:14:16 - SEDEX: CEP de destino invalido.
 2012-10-25 12:14:23 - PagSeguro: [HTTP 401] - UNAUTHORIZED
 
+2012-11-08 16:55:10 - PagSeguro: [HTTP 401] - UNAUTHORIZED
+
+2012-11-08 16:58:33 - PagSeguro: Parâmetros de notificação inválidos.
+2012-11-08 17:13:48 - PagSeguro: [HTTP 400] - BAD_REQUEST
+[11112] - shippingCost invalid pattern: 341. Must fit the patern: \d+.\d{2}  
+2012-11-08 17:14:50 - PagSeguro: [HTTP 400] - BAD_REQUEST
+[11112] - shippingCost invalid pattern: 341. Must fit the patern: \d+.\d{2}  
