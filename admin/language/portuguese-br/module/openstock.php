@@ -5,9 +5,10 @@ $_['module_installed']              = '<p>A extensão OpenStock está instalado 
 $_['module_export_txt']             = '<p>Você só pode modificar o nível de estoque e status de uma variante através do recurso de importação / exportação. Todas as outras alterações serão ignoradas. <br /> Adicionar e remover linhas não é suportado.</p>';
 
 // Buttons
-$_['button_cancel']                 = 'Voltar a módulos';
+$_['button_cancel']                 = 'Cancelar';
 $_['button_export']                 = 'Exportar';
 $_['button_import']                 = 'Executar Importação';
+$_['button_return_stock']           = 'Retorna Estoque';
 
 //Tabs
 $_['tab_status']                    = 'Status';

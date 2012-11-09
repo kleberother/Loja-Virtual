@@ -5,9 +5,10 @@ $_['module_installed']              = '<p>The OpenStock extension is installed.<
 $_['module_export_txt']             = '<p>You can only modify the stock level and status of a variant through the import / export feature. All other changes will be ignored.<br />Adding and removing rows is not supported.</p>';
 
 // Buttons
-$_['button_cancel']                 = 'Return to modules';
+$_['button_cancel']                 = 'Cancel';
 $_['button_export']                 = 'Export';
 $_['button_import']                 = 'Run Import';
+$_['button_return_stock']           = 'Return Stock';
 
 //Tabs
 $_['tab_status']                    = 'Status';

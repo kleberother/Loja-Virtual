@@ -574,3 +574,49 @@
 [11112] - shippingCost invalid pattern: 341. Must fit the patern: \d+.\d{2}  
 2012-11-08 17:14:50 - PagSeguro: [HTTP 400] - BAD_REQUEST
 [11112] - shippingCost invalid pattern: 341. Must fit the patern: \d+.\d{2}  
+2012-11-09 12:23:01 - PHP Warning:  Cannot modify header information - headers already sent by (output started at /Applications/XAMPP/xamppfiles/htdocs/Loja-Virtual/vqmod/vqcache/vq2-admin_model_sale_order.php:267) in /Applications/XAMPP/xamppfiles/htdocs/Loja-Virtual/vqmod/vqcache/vq2-system_engine_controller.php on line 28
+2012-11-09 12:23:01 - PHP Warning:  Cannot modify header information - headers already sent by (output started at /Applications/XAMPP/xamppfiles/htdocs/Loja-Virtual/vqmod/vqcache/vq2-admin_model_sale_order.php:267) in /Applications/XAMPP/xamppfiles/htdocs/Loja-Virtual/vqmod/vqcache/vq2-system_engine_controller.php on line 29
+2012-11-09 12:24:25 - PHP Warning:  Cannot modify header information - headers already sent by (output started at /Applications/XAMPP/xamppfiles/htdocs/Loja-Virtual/vqmod/vqcache/vq2-admin_model_sale_order.php:267) in /Applications/XAMPP/xamppfiles/htdocs/Loja-Virtual/vqmod/vqcache/vq2-system_engine_controller.php on line 28
+2012-11-09 12:24:25 - PHP Warning:  Cannot modify header information - headers already sent by (output started at /Applications/XAMPP/xamppfiles/htdocs/Loja-Virtual/vqmod/vqcache/vq2-admin_model_sale_order.php:267) in /Applications/XAMPP/xamppfiles/htdocs/Loja-Virtual/vqmod/vqcache/vq2-system_engine_controller.php on line 29
+2012-11-09 12:24:26 - PHP Warning:  Cannot modify header information - headers already sent by (output started at /Applications/XAMPP/xamppfiles/htdocs/Loja-Virtual/vqmod/vqcache/vq2-admin_model_sale_order.php:267) in /Applications/XAMPP/xamppfiles/htdocs/Loja-Virtual/vqmod/vqcache/vq2-system_engine_controller.php on line 28
+2012-11-09 12:24:26 - PHP Warning:  Cannot modify header information - headers already sent by (output started at /Applications/XAMPP/xamppfiles/htdocs/Loja-Virtual/vqmod/vqcache/vq2-admin_model_sale_order.php:267) in /Applications/XAMPP/xamppfiles/htdocs/Loja-Virtual/vqmod/vqcache/vq2-system_engine_controller.php on line 29
+2012-11-09 12:24:27 - PHP Warning:  Cannot modify header information - headers already sent by (output started at /Applications/XAMPP/xamppfiles/htdocs/Loja-Virtual/vqmod/vqcache/vq2-admin_model_sale_order.php:267) in /Applications/XAMPP/xamppfiles/htdocs/Loja-Virtual/vqmod/vqcache/vq2-system_engine_controller.php on line 28
+2012-11-09 12:24:27 - PHP Warning:  Cannot modify header information - headers already sent by (output started at /Applications/XAMPP/xamppfiles/htdocs/Loja-Virtual/vqmod/vqcache/vq2-admin_model_sale_order.php:267) in /Applications/XAMPP/xamppfiles/htdocs/Loja-Virtual/vqmod/vqcache/vq2-system_engine_controller.php on line 29
+2012-11-09 12:24:27 - PHP Warning:  Cannot modify header information - headers already sent by (output started at /Applications/XAMPP/xamppfiles/htdocs/Loja-Virtual/vqmod/vqcache/vq2-admin_model_sale_order.php:267) in /Applications/XAMPP/xamppfiles/htdocs/Loja-Virtual/vqmod/vqcache/vq2-system_engine_controller.php on line 28
+2012-11-09 12:24:27 - PHP Warning:  Cannot modify header information - headers already sent by (output started at /Applications/XAMPP/xamppfiles/htdocs/Loja-Virtual/vqmod/vqcache/vq2-admin_model_sale_order.php:267) in /Applications/XAMPP/xamppfiles/htdocs/Loja-Virtual/vqmod/vqcache/vq2-system_engine_controller.php on line 29
+2012-11-09 12:24:27 - PHP Warning:  Cannot modify header information - headers already sent by (output started at /Applications/XAMPP/xamppfiles/htdocs/Loja-Virtual/vqmod/vqcache/vq2-admin_model_sale_order.php:267) in /Applications/XAMPP/xamppfiles/htdocs/Loja-Virtual/vqmod/vqcache/vq2-system_engine_controller.php on line 28
+2012-11-09 12:24:27 - PHP Warning:  Cannot modify header information - headers already sent by (output started at /Applications/XAMPP/xamppfiles/htdocs/Loja-Virtual/vqmod/vqcache/vq2-admin_model_sale_order.php:267) in /Applications/XAMPP/xamppfiles/htdocs/Loja-Virtual/vqmod/vqcache/vq2-system_engine_controller.php on line 29
+2012-11-09 12:24:28 - PHP Warning:  Cannot modify header information - headers already sent by (output started at /Applications/XAMPP/xamppfiles/htdocs/Loja-Virtual/vqmod/vqcache/vq2-admin_model_sale_order.php:267) in /Applications/XAMPP/xamppfiles/htdocs/Loja-Virtual/vqmod/vqcache/vq2-system_engine_controller.php on line 28
+2012-11-09 12:24:28 - PHP Warning:  Cannot modify header information - headers already sent by (output started at /Applications/XAMPP/xamppfiles/htdocs/Loja-Virtual/vqmod/vqcache/vq2-admin_model_sale_order.php:267) in /Applications/XAMPP/xamppfiles/htdocs/Loja-Virtual/vqmod/vqcache/vq2-system_engine_controller.php on line 29
+2012-11-09 12:29:38 - PHP Notice:  Undefined variable: idOption in /Applications/XAMPP/xamppfiles/htdocs/Loja-Virtual/vqmod/vqcache/vq2-admin_model_sale_order.php on line 273
+2012-11-09 12:35:43 - PHP Warning:  explode() expects parameter 2 to be string, array given in /Applications/XAMPP/xamppfiles/htdocs/Loja-Virtual/vqmod/vqcache/vq2-admin_model_sale_order.php on line 277
+2012-11-09 12:35:43 - PHP Warning:  explode() expects parameter 2 to be string, array given in /Applications/XAMPP/xamppfiles/htdocs/Loja-Virtual/vqmod/vqcache/vq2-admin_model_sale_order.php on line 277
+2012-11-09 12:35:44 - PHP Warning:  explode() expects parameter 2 to be string, array given in /Applications/XAMPP/xamppfiles/htdocs/Loja-Virtual/vqmod/vqcache/vq2-admin_model_sale_order.php on line 277
+2012-11-09 12:35:44 - PHP Warning:  explode() expects parameter 2 to be string, array given in /Applications/XAMPP/xamppfiles/htdocs/Loja-Virtual/vqmod/vqcache/vq2-admin_model_sale_order.php on line 277
+2012-11-09 12:56:50 - PHP Notice:  Error: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ') WHERE product_id = 42 AND  var = '17:23' AND subtract = 1' at line 1<br />Error No: 1064<br />UPDATE oc_product_option_relation SET stock = stock + 10) WHERE product_id = 42 AND  var = '17:23' AND subtract = 1 in /Applications/XAMPP/xamppfiles/htdocs/Loja-Virtual/system/database/mysql.php on line 49
+2012-11-09 15:18:17 - PHP Notice:  Undefined variable: checkout in /Applications/XAMPP/xamppfiles/htdocs/Loja-Virtual/vqmod/vqcache/vq2-catalog_view_theme_default_template_product_product.tpl on line 265
+2012-11-09 15:21:02 - PHP Notice:  Undefined variable: checkout in /Applications/XAMPP/xamppfiles/htdocs/Loja-Virtual/vqmod/vqcache/vq2-catalog_view_theme_default_template_product_product.tpl on line 265
+2012-11-09 15:33:51 - PHP Notice:  Undefined variable: checkout in /Applications/XAMPP/xamppfiles/htdocs/Loja-Virtual/vqmod/vqcache/vq2-catalog_view_theme_default_template_product_product.tpl on line 265
+2012-11-09 16:23:26 - PHP Notice:  Undefined variable: text_return_stock in /Applications/XAMPP/xamppfiles/htdocs/Loja-Virtual/vqmod/vqcache/vq2-admin_view_template_sale_order_form.tpl on line 16
+2012-11-09 16:33:58 - PHP Notice:  Error: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ') WHERE product_id = 42 AND  var = '17:22' AND subtract = 1' at line 1<br />Error No: 1064<br />UPDATE oc_product_option_relation SET stock = stock + 10) WHERE product_id = 42 AND  var = '17:22' AND subtract = 1 in /Applications/XAMPP/xamppfiles/htdocs/Loja-Virtual/system/database/mysql.php on line 49
+2012-11-09 16:35:09 - PHP Notice:  Undefined variable: checkout in /Applications/XAMPP/xamppfiles/htdocs/Loja-Virtual/vqmod/vqcache/vq2-catalog_view_theme_default_template_product_product.tpl on line 265
+2012-11-09 16:35:23 - PAC: CEP de destino invalido.
+2012-11-09 16:35:23 - SEDEX: CEP de destino invalido.
+2012-11-09 16:35:23 - PAC: CEP de destino invalido.
+2012-11-09 16:35:23 - SEDEX: CEP de destino invalido.
+2012-11-09 16:35:23 - PAC: CEP de destino invalido.
+2012-11-09 16:35:23 - SEDEX: CEP de destino invalido.
+2012-11-09 16:35:23 - PAC: CEP de destino invalido.
+2012-11-09 16:35:23 - SEDEX: CEP de destino invalido.
+2012-11-09 16:35:24 - PAC: CEP de destino invalido.
+2012-11-09 16:35:24 - SEDEX: CEP de destino invalido.
+2012-11-09 16:35:25 - PAC: CEP de destino invalido.
+2012-11-09 16:35:25 - SEDEX: CEP de destino invalido.
+2012-11-09 16:35:25 - PAC: CEP de destino invalido.
+2012-11-09 16:35:25 - SEDEX: CEP de destino invalido.
+2012-11-09 16:35:25 - PAC: CEP de destino invalido.
+2012-11-09 16:35:25 - SEDEX: CEP de destino invalido.
+2012-11-09 16:35:26 - PAC: CEP de destino invalido.
+2012-11-09 16:35:26 - SEDEX: CEP de destino invalido.
+2012-11-09 16:35:26 - PAC: CEP de destino invalido.
+2012-11-09 16:35:26 - SEDEX: CEP de destino invalido.

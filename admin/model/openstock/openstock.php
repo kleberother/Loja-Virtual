@@ -112,6 +112,8 @@ class ModelOpenstockOpenstock extends Model
         $this->log->write('OPENSTOCK --> Starting install');
         
         $this->db->query("ALTER TABLE `".DB_PREFIX."product` ADD `has_option` TINYINT( 1 ) NOT NULL");
+        $this->db->query("ALTER TABLE `".DB_PREFIX."order` ADD `return_stock` TINYINT( 1 ) NOT NULL");
+        
         $this->log->write('OPENSTOCK --> Altered '.DB_PREFIX.'product table');
         
         $sql = "
@@ -152,6 +154,7 @@ class ModelOpenstockOpenstock extends Model
         $this->log->write('OPENSTOCK --> Starting uninstall');
         
         $query = $this->db->query("ALTER TABLE `".DB_PREFIX."product` DROP `has_option`");
+        $query = $this->db->query("ALTER TABLE `".DB_PREFIX."order` DROP `return_stock`");
         $this->log->write('OPENSTOCK --> Altered '.DB_PREFIX.'product table');
         
         $query = $this->db->query("DROP TABLE `".DB_PREFIX."product_option_relation`");
