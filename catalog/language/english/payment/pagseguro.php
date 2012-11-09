@@ -1,9 +1,12 @@
 <?php
 // Heading
 $_['heading_title']       			= 'PagSeguro';
-
+$_['text_title']                    = 'PagSeguro';
 // Text
 $_['text_payment']        			= 'Pagamento';
+$_['button_confirm_pagseguro']      = 'Pagamento com Pagseguro';
+$_['text_information']				= '';
+$_['text_wait']						= "espere";
 $_['text_success']        			= 'Módulo PagSeguro atualizado com sucesso!';
 $_['text_pagseguro'] 				= '<a onclick="window.open(\'http://www.pagseguro.com.br/\');"><img src="view/image/payment/pagseguro_uol.gif" alt="PagSeguro" title="PagSeguro" style="border: 1px solid #EEEEEE;" /></a>';
 $_['text_order_nao_efetivado'] 		= 'O pagamento no site do PagSeguro não foi concluído.';
