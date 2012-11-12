@@ -31,7 +31,7 @@
 			<search position="before"><![CDATA[ <div><?php echo $text_qty; ?>]]></search>
 			<add><![CDATA[<div id="product-cart">]]></add>
 		</operation>
-		<operation>
+		<operation error="skip">
 			<search position="after"><![CDATA[<?php echo $text_or; ?>&nbsp;&nbsp;&nbsp;</span></div>]]></search>
 			<add><![CDATA[</div>]]></add>
 		</operation>
