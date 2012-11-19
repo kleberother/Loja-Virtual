@@ -64,6 +64,7 @@
 			<search position="before"><![CDATA[$this->load->model('catalog/review');]]></search>
 			<add><![CDATA[
                             $this->data['config_option_store'] = $this->config->get('config_option_store');
+                            $this->data['checkout'] = $this->url->link('checkout/cart');
                         ]]></add>
 		</operation>      
                 <operation>
