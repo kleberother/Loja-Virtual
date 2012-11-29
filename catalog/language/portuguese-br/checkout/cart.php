@@ -40,7 +40,7 @@ $_['entry_postcode']         = 'CEP:';
 
 // Error
 $_['error_stock']            = 'Produtos marcados com *** não estão disponíveis na quantia desejada ou não encontram-se em estoque!';
-$_['error_minimum']          = 'A quantidade mínima para %s é %s!';	
+$_['error_minimum']          = 'A quantidade máxima no estoque para %s é %s!';	
 $_['error_required']         = '%s é obrigatório!';
 $_['error_product']          = 'Atenção: Não há produtos em seu carrinho!';	
 $_['error_coupon']           = 'Atenção: O cupom é inválido, expirou, atingiu seu limite de uso ou seu valor de ativação não foi atingido!';
