@@ -179,7 +179,21 @@
 	            <?php } ?>
 	          </select>
 			</td>
-	      </tr>		      
+	      </tr>
+	      <tr>
+	        <td><?php echo $entry_gateway_status; ?></td>
+	        <td>
+			  <select name="pagseguro_gateway_status">
+	            <?php if ($pagseguro_gateway_status) { ?>
+	            <option value="1" selected="selected"><?php echo $text_yes; ?></option>
+	            <option value="0"><?php echo $text_no; ?></option>
+	            <?php } else { ?>
+	            <option value="1"><?php echo $text_yes; ?></option>
+	            <option value="0" selected="selected"><?php echo $text_no; ?></option>
+	            <?php } ?>
+	          </select>
+			</td>
+	      </tr>              
 	      <tr>
 	        <td><?php echo $entry_geo_zone; ?></td>
 	        <td>

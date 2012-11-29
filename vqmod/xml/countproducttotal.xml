@@ -1,0 +1,46 @@
+<!-- Created using vQmod XML Generator by UKSB - http://www.opencart-extensions.co.uk //-->
+<modification>
+	<id>Count Product Total</id>
+	<version>For OpenCart 1.5.x</version>
+	<vqmver>1.2.3</vqmver>
+	<author><![CDATA[Kleber Oliveira]]></author>
+        <!-- admin -->
+	<file name="admin/controller/sale/order.php">
+            <operation>
+                <search position="after"><![CDATA[$this->load->language('sale/order');]]></search>
+                <add><![CDATA[
+                    $count_quantity = 0;
+                ]]></add>
+            </operation> 
+            <operation>
+                <search position="after"><![CDATA[$this->load->language('sale/order');]]></search>
+                <add><![CDATA[
+                    $this->load->language('module/countproducttotal');                    
+                    $this->data['entry_count_product_total'] = $this->language->get('entry_count_product_total');                    
+                ]]></add>
+            </operation>             
+            <operation>
+                <search position="before"><![CDATA[$product_data[] = array(]]></search>
+                <add><![CDATA[
+                    $count_quantity += (int) $product['quantity'];
+                ]]></add>
+            </operation>
+            <operation>
+                <search position="before"><![CDATA[$this->template = 'sale/order_invoice.tpl';]]></search>
+                <add><![CDATA[
+                    $this->data['count_product_total'] = $count_quantity;
+                ]]></add>
+            </operation>            
+	</file>
+	<file name="admin/view/template/sale/order_invoice.tpl">
+            <operation>
+                <search position="before"><![CDATA[<?php foreach ($order['total'] as $total) { ?>]]></search>
+                <add><![CDATA[
+    <tr>
+      <td align="right" colspan="4"><b><?php echo $entry_count_product_total; ?></b></td>
+      <td align="right"><?php echo $count_product_total; ?></td>
+    </tr>                   
+                ]]></add>
+            </operation>
+	</file>
+</modification>

@@ -45,6 +45,7 @@ class ControllerPaymentPagseguro extends Controller {
 		$this->data['entry_status'] = $this->language->get('entry_status');
 		$this->data['entry_sort_order'] = $this->language->get('entry_sort_order');	
 		$this->data['entry_update_status_alert'] = $this->language->get('entry_update_status_alert');
+                $this->data['entry_gateway_status'] = $this->language->get('entry_gateway_status');
 		$this->data['entry_tipo_frete'] = $this->language->get('entry_tipo_frete');
 		
 		$this->data['button_save'] = $this->language->get('button_save');
@@ -120,7 +121,13 @@ class ControllerPaymentPagseguro extends Controller {
 			$this->data['pagseguro_update_status_alert'] = $this->request->post['pagseguro_update_status_alert'];
 		} else {
 			$this->data['pagseguro_update_status_alert'] = $this->config->get('pagseguro_update_status_alert');
-		}		
+		}	
+                
+		if (isset($this->request->post['pagseguro_gateway_status'])) {
+			$this->data['pagseguro_gateway_status'] = $this->request->post['pagseguro_gateway_status'];
+		} else {
+			$this->data['pagseguro_gateway_status'] = $this->config->get('pagseguro_gateway_status');
+		}	                
 		
 		if (isset($this->request->post['pagseguro_order_aguardando_retorno'])) {
 		  $this->data['pagseguro_order_aguardando_retorno'] = $this->request->post['pagseguro_order_aguardando_retorno'];

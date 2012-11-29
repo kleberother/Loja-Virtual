@@ -15,7 +15,11 @@ $('#button-confirm').bind('click', function() {
 			$('#payment').before('<div class="attention"><img src="catalog/view/theme/default/image/loading.gif" alt="" /> <?php echo $text_wait; ?></div>');
 		},
 		success: function() {
+                    <?php if($pagseguro_gateway_status) { ?>
 			location = '<?php echo $url; ?>';
+                    <?php }else{ ?>
+                        location = 'index.php?route=checkout/success';
+                    <?php } ?>
 		}
 	});
 });

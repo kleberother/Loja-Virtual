@@ -50,6 +50,7 @@ class ControllerPaymentPagseguro extends Controller {
          */
 
         $tipo_frete = $this->config->get('pagseguro_tipo_frete');
+        $this->data["pagseguro_gateway_status"] = $this->config->get('pagseguro_gateway_status');
 
         if ($tipo_frete) {
             $paymentRequest->setShippingType($tipo_frete);
