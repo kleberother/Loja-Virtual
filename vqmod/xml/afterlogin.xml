@@ -1,0 +1,103 @@
+<!-- Created using vQmod XML Generator by UKSB - http://www.opencart-extensions.co.uk //-->
+<modification>
+	<id>After Login</id>
+	<version>For OpenCart 1.5.x</version>
+	<vqmver>1.2.3</vqmver>
+	<author><![CDATA[Kleber Oliveira]]></author>
+        <!-- admin -->
+	<file name="admin/controller/setting/setting.php">
+		<operation>
+			<search position="after"><![CDATA[$this->load->language('setting/setting');]]></search>
+			<add><![CDATA[
+                            $this->load->language('module/afterlogin');
+                        ]]></add>
+		</operation> 
+		<operation>
+			<search position="after"><![CDATA[$this->data['entry_weight_class'] = $this->language->get('entry_weight_class');]]></search>
+			<add><![CDATA[
+                            $this->data['entry_after_login'] = $this->language->get('entry_after_login');
+                        ]]></add>
+		</operation> 
+		<operation>
+			<search position="after"><![CDATA[$this->load->model('localisation/weight_class');]]></search>
+			<add><![CDATA[
+                                if (isset($this->request->post['config_after_login'])) {
+                                    $this->data['config_after_login'] = $this->request->post['config_after_login'];
+                                } else {
+                                    $this->data['config_after_login'] = $this->config->get('config_after_login');
+                                }
+                        ]]></add>
+		</operation>                
+                
+	</file>
+        <file name="admin/view/template/setting/setting.tpl">
+		<operation>
+			<search position="after" offset="12"><![CDATA[<td><?php echo $entry_customer_price; ?></td>]]></search>
+			<add><![CDATA[ <tr>
+                            <tr>
+                                <td><?php echo $entry_after_login; ?></td>
+                                <td><?php if ($config_after_login) { ?>
+                                    <input type="radio" name="config_after_login" value="1" checked="checked" />
+                                    <?php echo $text_yes; ?>
+                                    <input type="radio" name="config_after_login" value="0" />
+                                    <?php echo $text_no; ?>
+                                    <?php } else { ?>
+                                    <input type="radio" name="config_after_login" value="1" />
+                                    <?php echo $text_yes; ?>
+                                    <input type="radio" name="config_after_login" value="0" checked="checked" />
+                                    <?php echo $text_no; ?>
+                                    <?php } ?></td>
+                                </tr>
+   
+                        </tr>]]></add>
+		</operation>
+	</file>
+        <!-- catalog -->
+        <file name="catalog/controller/product/product.php">
+		<operation>
+			<search position="after"><![CDATA[$this->language->load('product/product');]]></search>
+			<add><![CDATA[
+                            $this->language->load('module/afterlogin');
+                        ]]></add>
+		</operation>            
+		<operation>
+			<search position="before"><![CDATA[$this->response->setOutput($this->render());]]></search>
+			<add><![CDATA[
+                        
+                            $this->data['text_after_login'] = sprintf($this->language->get('entry_after_login'), $this->url->link('account/login', '', 'SSL'), $this->url->link('account/register', '', 'SSL'));
+                        
+                            if($this->config->get('config_after_login')){
+                                $this->data['config_after_login'] = $this->customer->isLogged();
+                            }else{
+                                $this->data['config_after_login'] = 1;
+                            }
+                            
+                        ]]></add>
+		</operation>                 
+        </file>  
+        
+        <file name="catalog/view/theme/*/template/product/product.tpl">
+		<operation>
+			<search position="before" offset="1"><![CDATA[<div class="options">]]></search>
+			<add><![CDATA[
+                        
+                            <?php if($config_after_login){?>
+                        
+                           
+                        ]]></add>
+		</operation>
+	
+                <operation>
+			<search position="before" offset="1"><![CDATA[<div class="review">]]></search>
+			<add><![CDATA[
+                            <?php }else{ ?>
+                                <div class="description center">
+                                    <?php echo $this->data['text_after_login']; ?>
+                                </div>
+                            <?php } ?>
+                        ]]></add>
+		</operation>         
+        
+        </file>
+        
+</modification>
