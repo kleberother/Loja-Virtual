@@ -1,0 +1,32 @@
+<!-- Created using vQmod XML Generator by UKSB - http://www.opencart-extensions.co.uk //-->
+<modification>
+	<id>Secure</id>
+	<version>For OpenCart 1.5.x</version>
+	<vqmver>1.2.3</vqmver>
+	<author><![CDATA[Kleber Oliveira]]></author>
+	<!-- admin -->
+	<file name="admin/controller/common/forgotten.php">
+		<operation>
+			<search position="after"><![CDATA[public function index() {]]></search>
+			<add><![CDATA[
+					$this->redirect($this->url->link('common/home', '', 'SSL'));
+			]]></add>
+		</operation> 
+	</file>
+	<file name="admin/controller/common/reset.php">
+		<operation>
+			<search position="after"><![CDATA[public function index() {]]></search>
+			<add><![CDATA[
+					$this->redirect($this->url->link('common/home', '', 'SSL'));
+			]]></add>
+		</operation> 
+	</file>
+	<file name="admin/view/template/common/login.tpl">
+		<operation>
+			<search position="replace"><![CDATA[<a href="<?php echo $forgotten; ?>"><?php echo $text_forgotten; ?></a></td>]]></search>
+			<add><![CDATA[
+				</td>
+			]]></add>
+		</operation> 
+	</file>	
+</modification>

@@ -1,0 +1,120 @@
+<!-- Created using vQmod XML Generator by UKSB - http://www.opencart-extensions.co.uk //-->
+<modification>
+	<id>correios</id>
+	<version>For OpenCart 1.5.x</version>
+	<vqmver>0.1</vqmver>
+	<author><![CDATA[Kleber Oliveira]]></author>
+	<!-- admin -->
+	<file name="catalog/model/shipping/correios.php">
+		<operation>
+			<search position="replace"><![CDATA[$url = "http://ws.correios.com.br/calculador/CalcPrecoPrazo.asmx?";]]></search>
+			<add><![CDATA[
+				$url = "http://ws.correios.com.br/calculador/CalcPrecoPrazo.asmx/CalcPreco?";
+			]]></add>
+		</operation>
+		<operation>
+			<search position="before"><![CDATA[?>]]></search>
+			<add><![CDATA[
+
+class CorreiosPrazo {
+	
+	public $url = '';
+	private $nCdServico = '';
+	private $sCepOrigem;
+	private $sCepDestino;
+	
+	public function __construct($servico,$cepOrigem,$cepDestino){
+		
+		$this->nCdServico = $servico;
+		$this->sCepOrigem = $cepOrigem;
+		$this->sCepDestino = $cepDestino;				
+		$this->setUrl();
+	
+	}
+	
+	public function getQuote(){
+		return $this->getServicosPrazo();
+	}
+	
+	private function setUrl(){
+		
+		$url = "http://ws.correios.com.br/calculador/CalcPrecoPrazo.asmx/CalcPrazo?";
+		$url .=	"nCdServico=%s";
+		$url .=	"&sCepOrigem=%s";
+		$url .=	"&sCepDestino=%s";
+		
+		$this->url = sprintf($url, $this->nCdServico, $this->sCepOrigem, $this->sCepDestino);
+	}
+	
+	private function getXML($url){
+
+		$ch = curl_init();
+		curl_setopt($ch, CURLOPT_URL, $url);
+		curl_setopt($ch, CURLOPT_HEADER, 0);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+		
+		$result = curl_exec($ch);
+		
+		curl_close($ch);
+		
+		$result = str_replace('&amp;lt;sup&amp;gt;&amp;amp;reg;&amp;lt;/sup&amp;gt;', '', $result);
+		$result = str_replace('&amp;lt;sup&amp;gt;&amp;amp;trade;&amp;lt;/sup&amp;gt;', '', $result);
+		$result = str_replace('**', '', $result);
+		$result = str_replace("\r\n", '', $result);
+		$result = str_replace('\"', '"', $result);		
+		
+		return $result;
+	}	
+	
+	public function getServicosPrazo(){
+
+		$dados = array();
+	
+		$xml = $this->getXML($this->url);
+	
+		// lendo o xml
+		if ($xml) {
+			$dom = new DOMDocument('1.0', 'ISO-8859-1');
+			$dom->loadXml($xml);
+			
+			$servicos = $dom->getElementsByTagName('cServico');
+			
+			if ($servicos) {
+			
+				foreach ($servicos as $servico) {
+					$codigo = $servico->getElementsByTagName('Codigo')->item(0)->nodeValue;
+					// Sedex 10 e Sedex Hoje não tem prazo adicional
+				
+					$dados = array(
+						"Codigo" => $codigo,
+						"PrazoEntrega" => ($servico->getElementsByTagName('PrazoEntrega')->item(0)->nodeValue),
+						"EntregaDomiciliar" => $servico->getElementsByTagName('EntregaDomiciliar')->item(0)->nodeValue,
+						"EntregaSabado" => $servico->getElementsByTagName('EntregaSabado')->item(0)->nodeValue,
+						"Erro" => $servico->getElementsByTagName('Erro')->item(0)->nodeValue,
+						"MsgErro" => $servico->getElementsByTagName('MsgErro')->item(0)->nodeValue
+					);
+				}
+			}
+		}
+		return $dados;
+	}	
+	
+	
+}
+			]]></add>
+		</operation>
+		<operation>
+			<search position="after"><![CDATA[$prazo = ($codigo == $this->correios['SEDEX 10'] || $codigo == $this->correios['SEDEX Hoje']) ? 0 : $prazo_adicional;]]></search>
+			<add><![CDATA[
+					$newPrazo = new CorreiosPrazo($codigo, $this->cep_origem, $this->cep_destino);
+					$valor_prazo = $newPrazo->getQuote();					
+			]]></add>
+		</operation>
+		<operation>
+			<search position="after"><![CDATA["PrazoEntrega" => ($servico->getElementsByTagName('PrazoEntrega')->item(0)->nodeValue + $prazo),]]></search>
+			<add><![CDATA[
+					"PrazoEntrega" => ($valor_prazo["PrazoEntrega"] + $prazo),				
+			]]></add>
+		</operation>					
+	</file>
+</modification>
