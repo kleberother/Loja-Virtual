@@ -620,3 +620,7 @@
 2012-11-09 16:35:26 - SEDEX: CEP de destino invalido.
 2012-11-09 16:35:26 - PAC: CEP de destino invalido.
 2012-11-09 16:35:26 - SEDEX: CEP de destino invalido.
+2012-12-05 12:57:28 - PHP Notice:  Undefined index: config_save_cart in /Applications/XAMPP/xamppfiles/htdocs/Loja-Virtual/vqmod/vqcache/vq2-admin_controller_sale_customer_group.php on line 388
+2012-12-05 12:57:37 - PHP Notice:  Undefined index: config_save_cart in /Applications/XAMPP/xamppfiles/htdocs/Loja-Virtual/vqmod/vqcache/vq2-admin_controller_sale_customer_group.php on line 388
+2012-12-05 12:58:04 - PHP Notice:  Undefined index: config_save_cart in /Applications/XAMPP/xamppfiles/htdocs/Loja-Virtual/vqmod/vqcache/vq2-admin_controller_sale_customer_group.php on line 388
+2012-12-05 15:38:22 - PHP Notice:  Undefined variable: config_save_cart in /Applications/XAMPP/xamppfiles/htdocs/Loja-Virtual/vqmod/vqcache/vq2-admin_view_template_setting_setting.tpl on line 386

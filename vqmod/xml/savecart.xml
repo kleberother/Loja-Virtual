@@ -1,0 +1,71 @@
+<!-- Created using vQmod XML Generator by UKSB - http://www.opencart-extensions.co.uk //-->
+<modification>
+	<id>Savecart</id>
+	<version>For OpenCart 1.5.x</version>
+	<vqmver>1.2.3</vqmver>
+	<author><![CDATA[Kleber Oliveira]]></author>
+	<!-- admin -->
+	<file name="admin/controller/setting/setting.php">
+            <operation>
+                <search position="after"><![CDATA[public function index() {]]></search>
+                <add><![CDATA[
+                    
+                    $this->load->language('module/savecart');
+                    $this->data["entry_save_cart"] = $this->language->get("entry_save_cart");
+                    
+                ]]></add>
+            </operation>       
+            <operation>
+                <search position="before"><![CDATA[if (isset($this->request->post['config_customer_price'])) {]]></search>
+                <add><![CDATA[
+                    
+                        if (isset($this->request->post['config_save_cart'])) {
+                                $this->data['config_save_cart'] = $this->request->post['config_save_cart'];
+                        } else {
+                                $this->data['config_save_cart'] = $this->config->get('config_save_cart');			
+                        }
+                    
+                ]]></add>
+            </operation>                   
+	</file>
+
+	<file name="admin/view/template/setting/setting.tpl">
+            <operation>
+                <search after="1" position="before"><![CDATA[<td><?php echo $entry_customer_group; ?></td>]]></search>
+                <add><![CDATA[
+                    
+                    <tr>
+                        <td><?php echo $entry_save_cart; ?></td>
+                        <td><?php if ($config_save_cart) { ?>
+                            <input type="radio" name="config_save_cart" value="1" checked="checked" />
+                            <?php echo $text_yes; ?>
+                            <input type="radio" name="config_save_cart" value="0" />
+                            <?php echo $text_no; ?>
+                            <?php } else { ?>
+                            <input type="radio" name="config_save_cart" value="1" />
+                            <?php echo $text_yes; ?>
+                            <input type="radio" name="config_save_cart" value="0" checked="checked" />
+                            <?php echo $text_no; ?>
+                            <?php } ?>
+                        </td>
+                    </tr>
+                    
+                ]]></add>
+            </operation>         
+	</file>
+        
+	<file name="system/library/customer.php">
+            <operation>
+                <search position="replace"><![CDATA[$this->db->query("UPDATE " . DB_PREFIX . "customer SET cart = '" . $this->db->escape(isset($this->session->data['cart']) ? serialize($this->session->data['cart']) : '') . "', wishlist = '" . $this->db->escape(isset($this->session->data['wishlist']) ? serialize($this->session->data['wishlist']) : '') . "' WHERE customer_id = '" . (int)$this->customer_id . "'");]]></search>
+                <add><![CDATA[
+               
+                    if($this->config->get("config_save_cart")){
+                        $this->db->query("UPDATE " . DB_PREFIX . "customer SET cart = '" . $this->db->escape(isset($this->session->data['cart']) ? serialize($this->session->data['cart']) : '') . "', wishlist = '" . $this->db->escape(isset($this->session->data['wishlist']) ? serialize($this->session->data['wishlist']) : '') . "' WHERE customer_id = '" . (int)$this->customer_id . "'");
+                    } else {
+                        $this->db->query("UPDATE " . DB_PREFIX . "customer SET cart = '', wishlist = '" . $this->db->escape(isset($this->session->data['wishlist']) ? serialize($this->session->data['wishlist']) : '') . "' WHERE customer_id = '" . (int)$this->customer_id . "'");                    
+                    }
+                ]]></add>
+            </operation>         
+	</file>
+        
+</modification>
