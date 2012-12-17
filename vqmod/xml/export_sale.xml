@@ -1,0 +1,123 @@
+<!-- Created using vQmod XML Generator by UKSB - http://www.opencart-extensions.co.uk //-->
+<modification>
+    <id>Export Sale</id>
+    <version>For OpenCart 1.5.x</version>
+    <vqmver>1.2.3</vqmver>
+    <author><![CDATA[Kleber Oliveira]]></author>
+    <!-- admin -->
+    <file name="admin/controller/sale/order.php">
+        <operation>
+            <search position="after"><![CDATA[$this->load->language('sale/order');]]></search>
+            <add><![CDATA[
+                $this->load->language('module/export_sale');
+            ]]></add>
+        </operation>
+        <operation>
+            <search position="before"><![CDATA[$this->data['invoice'] = $this->url->link('sale/order/invoice', 'token=' . $this->session->data['token'], 'SSL');]]></search>
+            <add><![CDATA[
+                $this->data['export'] = $this->url->link('sale/order/export', 'token=' . $this->session->data['token'], 'SSL');
+            ]]></add>
+        </operation>
+        <operation>
+            <search position="before"><![CDATA[$this->data['button_invoice'] = $this->language->get('button_invoice');]]></search>
+            <add><![CDATA[
+                $this->data['button_export'] = $this->language->get('button_export');
+            ]]></add>
+        </operation>        
+        
+        
+        <operation>
+            <search position="before"><![CDATA[public function invoice() {]]></search>
+            <add><![CDATA[
+
+                public function export() {
+                    
+                    require_once(DIR_SYSTEM . 'library/nusoap/nusoap.php');
+
+                    $this->load->language('sale/order');
+                    $this->load->model('sale/order');
+                    $this->load->model('setting/setting');                    
+                    
+                    function getOrders(){
+                    
+                    
+                        $product_orders = array(); 
+                    
+                        $orders_id = $this->model_sale_order->getOrders();
+
+                        foreach ($orders_id as $id){
+                            $orders[] = $id["order_id"];
+                        }
+
+
+                        foreach ($orders as $order_id) {
+
+                            $order_info = $this->model_sale_order->getOrder($order_id);
+
+                            if ($order_info) {
+
+                                $product_data = array();
+
+                                $products = $this->model_sale_order->getOrderProducts($order_id);
+
+                                foreach ($products as $product) {
+
+                                    $option_data = $this->model_sale_order->getOrderOptions($order_id, $product['order_product_id']);
+
+                                    $product_data[] = array(
+                                        'item' => $product,
+                                        'option' => $option_data
+                                    );
+
+                                }
+
+                                $voucher_data = $this->model_sale_order->getOrderVouchers($order_id);
+
+                                $total_data = $this->model_sale_order->getOrderTotals($order_id);
+
+                                $product_orders[] = array(
+
+                                    'order_id'	     => $order_id,
+                                    'date_added'         => date($this->language->get('date_format_short'), strtotime($order_info['date_added'])),
+                                    'info'               => $order_info,
+                                    'product'            => $product_data,
+                                    'voucher'            => $voucher_data,
+                                    'total'              => $total_data,
+                                    'comment'            => nl2br($order_info['comment'])
+
+                                );
+
+                            }
+
+                        }
+                        
+                        return $product_orders;
+                    
+                    
+                    }
+                    
+
+                                       
+                    $server = new soap_server;
+                    $server->configureWSDL('server.getOrders','urn:server.getOrders');
+                    $server->wsdl->schemaTargetNamespace = 'urn:server.getOrders';
+                    
+                    $server->register('getOrders',array('id'=>'xsd:string'),array('retorno'=>'xsd:string'),'urn:server.getOrders','urn:server.getOrders#getOrder','rpc','encoded','Retorna todos os pedidos');
+
+                    $HTTP_RAW_PORT_DATA = isset($HTTP_RAW_PORT_DATA)?$HTTP_RAW_PORT_DATA : '';
+                    $server->service($HTTP_RAW_PORT_DATA);
+
+                }
+                
+            ]]></add>
+        </operation>
+    </file>
+    <file name="admin/view/template/sale/order_list.tpl">
+        <operation>
+            <search position="replace"><![CDATA[<div class="buttons"><a onclick="$('#form').attr('action', '<?php echo $invoice; ?>'); $('#form').attr('target', '_blank'); $('#form').submit();" class="button"><?php echo $button_invoice; ?></a><a onclick="location = '<?php echo $insert; ?>'" class="button"><?php echo $button_insert; ?></a><a onclick="$('#form').attr('action', '<?php echo $delete; ?>'); $('#form').attr('target', '_self'); $('#form').submit();" class="button"><?php echo $button_delete; ?></a></div>]]></search>
+            <add><![CDATA[
+                <div class="buttons"><a onclick="$('#form').attr('action', '<?php echo $export; ?>'); $('#form').attr('target', '_blank'); $('#form').submit();" class="button"><?php echo $button_export; ?></a><a onclick="$('#form').attr('action', '<?php echo $invoice; ?>'); $('#form').attr('target', '_blank'); $('#form').submit();" class="button"><?php echo $button_invoice; ?></a><a onclick="location = '<?php echo $insert; ?>'" class="button"><?php echo $button_insert; ?></a><a onclick="$('#form').attr('action', '<?php echo $delete; ?>'); $('#form').attr('target', '_self'); $('#form').submit();" class="button"><?php echo $button_delete; ?></a></div>
+            ]]></add>
+        </operation>              
+    </file>
+</modification>
