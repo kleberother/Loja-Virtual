@@ -6,6 +6,11 @@
     <author><![CDATA[Kleber Oliveira]]></author>
     <!-- admin -->
     <file name="admin/controller/sale/order.php">
+<<<<<<< HEAD
+=======
+        
+        
+>>>>>>> dev
         <operation>
             <search position="after"><![CDATA[$this->load->language('sale/order');]]></search>
             <add><![CDATA[
@@ -26,6 +31,7 @@
         </operation>        
         
         
+<<<<<<< HEAD
         <operation>
             <search position="before"><![CDATA[public function invoice() {]]></search>
             <add><![CDATA[
@@ -112,6 +118,107 @@
             ]]></add>
         </operation>
     </file>
+=======
+        
+        <operation>
+            <search position="before"><![CDATA[public function invoice() {]]></search>
+            <add><![CDATA[
+                public function export() {
+
+                    $xml = new SimpleXMLElement('<pedidos/>');
+                    $server = new SoapServer(null, array('uri' => "http://dev.lojavirtual.com.br/webservice/"));                    
+
+                    $this->load->model('sale/order');
+                    $this->load->model('setting/setting');  
+                    
+                    
+                    $orders = array();
+                    
+                    /*$orders_id = $this->model_sale_order->getOrders();
+
+                    foreach ($orders_id as $id){
+                        $orders[] = $id["order_id"];
+                    }*/
+                    
+                    
+                    if (isset($this->request->post['selected'])) {
+                            $orders = $this->request->post['selected'];
+                    } elseif (isset($this->request->get['order_id'])) {
+                            $orders[] = $this->request->get['order_id'];
+                    }
+
+                    foreach ($orders as $order_id) {
+                        $order_info = $this->model_sale_order->getOrder($order_id);
+
+                        if ($order_info) {
+                        
+                            $child_order = $xml->addChild("order");
+                            foreach ($order_info as $campos=>$values){
+                                $child_order->addChild($campos,$values);
+                            }
+
+                            $child_products = $child_order->addChild("products");
+                            
+                            $products = $this->model_sale_order->getOrderProducts($order_id);                            
+                            foreach ($products as $product) {
+                                
+                                $child_product = $child_products->addChild("product");
+                                foreach($product as $campos=>$values){
+                                    $child_product->addChild($campos,$values);
+                                }
+
+                                
+                                $child_option = $child_product->addChild("option");                                
+                                
+                                $options = $this->model_sale_order->getOrderOptions($order_id, $product['order_product_id']);
+                                foreach($options as $option){
+                                
+                                    foreach($option as $campos=>$values){
+                                        $child_option->addChild($campos,$values); 
+                                    }
+                           
+                                }
+                                
+                            }
+
+                            $total_data = $this->model_sale_order->getOrderTotals($order_id);
+                            foreach($total_data as $total){
+                                foreach($total as $campos=>$values){    
+                                    $child_order->addChild($campos,$values);                                    
+                                }
+                            }
+                            
+                            
+                            $child_order->addChild('comment',nl2br($order_info['comment']));
+
+                        }
+
+                    }
+                    
+                    
+                    
+                    echo $xml->asXML();
+
+                    
+                    /*$server->setObject("xml");
+                    if($_SERVER['REQUEST_METHOD'] == "POST"){
+                        $server->handle();    
+                    }else{
+                    
+                        $functions = $server->getFunctions();
+                        foreach($functions as $func)
+                        {
+                          //print $func. "<br>";
+                        }
+                    }
+                    */
+                }
+                
+            ]]></add>
+        </operation>        
+    </file>
+
+>>>>>>> dev
     <file name="admin/view/template/sale/order_list.tpl">
         <operation>
             <search position="replace"><![CDATA[<div class="buttons"><a onclick="$('#form').attr('action', '<?php echo $invoice; ?>'); $('#form').attr('target', '_blank'); $('#form').submit();" class="button"><?php echo $button_invoice; ?></a><a onclick="location = '<?php echo $insert; ?>'" class="button"><?php echo $button_insert; ?></a><a onclick="$('#form').attr('action', '<?php echo $delete; ?>'); $('#form').attr('target', '_self'); $('#form').submit();" class="button"><?php echo $button_delete; ?></a></div>]]></search>
@@ -120,4 +227,8 @@
             ]]></add>
         </operation>              
     </file>
+<<<<<<< HEAD
+=======
+
+>>>>>>> dev
 </modification>
