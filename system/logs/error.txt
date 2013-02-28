@@ -1231,3 +1231,27 @@
 2012-12-18 17:34:27 - PHP Warning:  SoapServer::setObject() expects parameter 1 to be object, string given in /Applications/XAMPP/xamppfiles/htdocs/Loja-Virtual/vqmod/vqcache/vq2-admin_controller_sale_order.php on line 2558
 2012-12-18 17:34:48 - PHP Warning:  SoapServer::setObject() expects parameter 1 to be object, string given in /Applications/XAMPP/xamppfiles/htdocs/Loja-Virtual/vqmod/vqcache/vq2-admin_controller_sale_order.php on line 2559
 2012-12-18 17:34:55 - PHP Warning:  SoapServer::setObject() expects parameter 1 to be object, string given in /Applications/XAMPP/xamppfiles/htdocs/Loja-Virtual/vqmod/vqcache/vq2-admin_controller_sale_order.php on line 2559
+2013-02-28 14:27:21 - PAC: CEP de destino invalido.
+2013-02-28 14:27:21 - SEDEX: CEP de destino invalido.
+2013-02-28 14:27:21 - PAC: CEP de destino invalido.
+2013-02-28 14:27:21 - SEDEX: CEP de destino invalido.
+2013-02-28 14:27:21 - PAC: CEP de destino invalido.
+2013-02-28 14:27:21 - SEDEX: CEP de destino invalido.
+2013-02-28 14:27:21 - PAC: CEP de destino invalido.
+2013-02-28 14:27:21 - SEDEX: CEP de destino invalido.
+2013-02-28 14:27:21 - PAC: CEP de destino invalido.
+2013-02-28 14:27:21 - SEDEX: CEP de destino invalido.
+2013-02-28 14:27:21 - PAC: CEP de destino invalido.
+2013-02-28 14:27:21 - SEDEX: CEP de destino invalido.
+2013-02-28 14:27:22 - PAC: CEP de destino invalido.
+2013-02-28 14:27:22 - SEDEX: CEP de destino invalido.
+2013-02-28 14:27:22 - PAC: CEP de destino invalido.
+2013-02-28 14:27:22 - SEDEX: CEP de destino invalido.
+2013-02-28 14:27:22 - PAC: CEP de destino invalido.
+2013-02-28 14:27:22 - SEDEX: CEP de destino invalido.
+2013-02-28 14:27:23 - PAC: CEP de destino invalido.
+2013-02-28 14:27:23 - SEDEX: CEP de destino invalido.
+2013-02-28 14:27:23 - PAC: CEP de destino invalido.
+2013-02-28 14:27:23 - SEDEX: CEP de destino invalido.
+2013-02-28 14:27:23 - PAC: CEP de destino invalido.
+2013-02-28 14:27:23 - SEDEX: CEP de destino invalido.
