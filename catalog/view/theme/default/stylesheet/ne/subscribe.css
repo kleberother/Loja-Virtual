@@ -1,0 +1,20 @@
+.ne_subscribe label {
+	display: block;
+}
+
+.ne_subscribe input[type="text"] {
+	margin: 0 5px 5px 0;
+	width: 150px;
+}
+
+.ne_subscribe p {
+	margin: 5px 0 5px;
+}
+
+.ne_subscribe > p:first-child {
+	margin: 0 0 5px;
+}
+
+.ne_subscribe .ne_list_data {
+	padding: 0 0 10px;
+}
