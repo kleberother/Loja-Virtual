@@ -2,7 +2,7 @@
 -- version 3.2.4
 -- http://www.phpmyadmin.net
 --
--- Máquina: Kleber
+-- Máquina: localhost
 -- Data de Criação: 26-Mar-2013 às 12:38
 -- Versão do servidor: 5.1.44
 -- versão do PHP: 5.3.1
