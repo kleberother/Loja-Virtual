@@ -1,0 +1,59 @@
+.ne_modal {
+	width: 400px;
+	padding: 20px;
+	background: #fff;
+	display: none;
+	background-color: #fff;
+}
+
+.ne_modal hr {
+	color: #ccc;
+	background: #ccc;
+	border: 0;
+	height: 1px;
+	margin: 10px 0;
+}
+
+.ne_modal .ne_list_data {
+	padding: 0 0 10px;
+}
+
+.ne_modal label {
+	display: block;
+}
+
+.ne_modal .ne_actions {
+	text-align: center;
+}
+
+.ne_modal .ne_actions pre {
+	margin: 0;
+	display: inline;
+}
+
+.ne_modal a:first-child {
+	display: block;
+	text-align: center;
+	margin-bottom: 5px;
+}
+
+.ne_modal input[type="text"] {
+	margin: 0 5px 5px 0;
+	width: 98%;
+}
+
+.ne_modal p {
+	margin: 5px 0 5px;
+}
+
+.ne_modal > p:first-child {
+	margin: 0 0 5px;
+}
+
+#simplemodal-overlay {
+	background-color: #000;
+}
+
+#simplemodal-container {
+	background-color: #fff;
+}

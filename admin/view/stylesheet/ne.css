@@ -1,0 +1,49 @@
+
+#ne_stats_info .name {
+	padding-right:40px;
+	font-weight:bold;
+}
+
+#ne_stats_info .green {
+	color:#218000;
+}
+
+#ne_stats_info .red {
+	color:#980000;
+}
+
+.ne_stats_track, .ne_stats_recipient_track {
+	width:100%;
+}
+
+.ne_stats_track thead tr {
+	background:#c3d9ff;
+}
+
+.ne_stats_track thead tr th, .ne_stats_recipient_track thead tr th {
+	font-weight:bold;
+	text-align:left;
+	padding-left:5px;
+}
+
+.ne_stats_track thead tr th + th, .ne_stats_recipient_track thead tr th + th {
+	margin-left:10px;
+	font-weight:bold;
+	width:120px;
+	text-align:left;
+	padding-left:5px;
+}
+
+.ne_stats_recipient_track thead tr th + th, .ne_stats_recipient_track tbody tr td + td {
+	text-align:right;
+}
+
+.ne_stats_track tbody tr:nth-child(even) {
+	background:#e5ecf9;
+}
+
+.ne_stats_track td {
+	border:none;
+}
+
+.ne_loading { background: url(/admin/view/image/loading.gif) center no-repeat !important}
