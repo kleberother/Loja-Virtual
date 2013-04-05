@@ -609,6 +609,8 @@ class ControllerNeNewsletter extends Controller {
 			'common/header',
 			'common/footer'
 		);
+                
+                $this->data['ne_stats'] = $this->url->link('ne/stats', 'token=' . $this->session->data['token'], 'SSL');                                
 				
 		$this->response->setOutput($this->render());
 	}

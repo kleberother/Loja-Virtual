@@ -665,7 +665,7 @@
         
         function send(){
 
-            var dialog = $('<div><div class="ne_status">- de -</div><div id="progressbar"></div></div>').appendTo('body').dialog({title: '<?php echo $text_loading; ?>', width: '260', height: '100', close: function(event, ui) { dialog.remove(); }, modal: true}).dialog('open');
+            var dialog = $('<div><div class="ne_status">- de -</div><div id="progressbar"></div><a class="button-estatisticas" href="<?php echo $ne_stats; ?>" target="_blank">Abrir Estatisticas</a></div>').appendTo('body').dialog({title: '<?php echo $text_loading; ?>', width: '260', height: '130', close: function(event, ui) { dialog.remove(); }, modal: true}).dialog('open');
 
             var message = '';
             for (instance in CKEDITOR.instances) {
@@ -674,6 +674,8 @@
             
             dialog.dialog('option', 'title', "Enviando Newsletters");
             $("#progressbar").progressbar({ value: false });
+            
+            $(".button-estatisticas").css({'margin':'4px 0','width':'100%'}).button();
             
             function resend(){
                 
