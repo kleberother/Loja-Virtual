@@ -1,6 +1,6 @@
 <?php
 // HTTP
-define('HTTP_SERVER', 'http://dev.lojavirtual.com.br/');
+define('HTTP_SERVER', 'http://dev.lojavirtual.com.br/a');
 define('HTTP_IMAGE', 'http://dev.lojavirtual.com.br/image/');
 define('HTTP_ADMIN', 'http://dev.lojavirtual.com.br/admin/');
 
